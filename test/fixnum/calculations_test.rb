@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FixnumTest < ActiveSupport::TestCase
+class Fixnum::CalculationsTest < ActiveSupport::TestCase
   test "Fixnums should be extended with #factorial" do
     assert 1.respond_to?(:factorial)
   end
