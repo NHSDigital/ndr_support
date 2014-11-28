@@ -1,3 +1,8 @@
+require 'active_record'
+require 'active_support/time'
+require 'ndr_support/date_and_time_extensions'
+require 'ndr_support/daterange'
+
 # Convert a string into a single date
 # (helped by String.thedate)
 class Ourdate
