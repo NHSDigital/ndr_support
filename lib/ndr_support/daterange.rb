@@ -1,3 +1,6 @@
+require 'active_support/time'
+require 'ndr_support/fixnum/julian_date_conversions'
+
 # Our "vague date" class, which can represent a single date or a date range.
 class Daterange
   attr_reader :date1, :date2, :source
