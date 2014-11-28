@@ -31,4 +31,32 @@ class ActiveSupport::TestCase
   def deny(condition, message='No further information given')
     assert !condition, message
   end
+
+  # Assert that two arrays have the same contents.
+  #
+  #  assert_same_elements [1,3,2], [3,2,1] #=> PASS
+  #  
+  #  assert_same_elements [1,2], [1,2,3] #=> FAIL
+  #
+  #  assert_same_elements [], [] #=> PASS
+  #
+  #  assert_same_elements [1,1,1], [1,1] #=> FAIL
+  #
+  #  assert_same_elements [1,1,1], [1,1,1] #=> PASS
+  #
+  def assert_same_elements(array1, array2, *args)
+    converter = Proc.new do |array|
+      {}.tap do |hash|
+        array.each do |key|
+          if hash.key?(key)
+            key = [key] until !hash.key?(key)
+          end
+          hash[key] = true
+        end
+      end
+    end
+    
+    condition = converter[array1] == converter[array2]
+    assert condition, "#{array1.inspect} << EXPECTED NOT SAME AS ACTUAL >> #{array2.inspect}", *args
+  end
 end

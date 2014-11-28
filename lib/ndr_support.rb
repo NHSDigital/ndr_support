@@ -1,4 +1,5 @@
 require 'ndr_support/version'
+require 'ndr_support/array'
 require 'ndr_support/daterange'
 require 'ndr_support/hash'
 require 'ndr_support/integer'
