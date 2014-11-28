@@ -12,7 +12,6 @@ class String::CleaningTest < ActiveSupport::TestCase
     assert_equal 'CB2 2QQ', 'CB22QQ  '.postcodeize(:db)
     assert_equal 'CB2A2QQ', 'CB2A 2QQ  '.postcodeize(:db)
     assert_equal '', ''.postcodeize
-    # assert_equal nil, nil.postcodeize
     assert_equal 'CB2 2QQ', 'cb22qq'.postcodeize(:db)
     # Database storage format for all major UK postcode formats:
     assert_equal 'A9  9AA', 'A9 9AA'.postcodeize(:db)
@@ -154,7 +153,6 @@ class String::CleaningTest < ActiveSupport::TestCase
 
   test 'clean tnmcategory' do
     assert_equal '', ''.clean(:tnmcategory)
-    # assert_equal nil, nil.clean(:tnmcategory)
     assert_equal 'X', 'X'.clean(:tnmcategory)
     assert_equal 'X', 'x'.clean(:tnmcategory)
     assert_equal '1a', '1A'.clean(:tnmcategory)
