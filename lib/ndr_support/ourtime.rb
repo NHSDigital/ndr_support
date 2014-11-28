@@ -1,3 +1,6 @@
+require 'active_support/time'
+require 'ndr_support/ourdate'
+
 # Convert a string into a time value (timestamp)
 # (helped by String.thetime)
 class Ourtime
