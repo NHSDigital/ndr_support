@@ -12,5 +12,5 @@ guard :test do
   watch('test/test_helper.rb')  { 'test' }
 
   # Non-rails
-  watch(%r{^lib/(.+)\.rb$}) { |m| "test/#{m[1]}_test.rb" }
+  watch(%r{^lib/ndr_support/(.+)\.rb$}) { |m| "test/#{m[1]}_test.rb" }
 end
