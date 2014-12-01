@@ -22,19 +22,19 @@ class Ourtime
     @thetime ? @thetime.to_time.to_s(:ui) : ''
   end
 
-	def empty?
-		# An unspecified time will be empty. A valid or invalid time will not.
-		@thetime.nil? && @source.blank?
-	end
+  def empty?
+    # An unspecified time will be empty. A valid or invalid time will not.
+    @thetime.nil? && @source.blank?
+  end
 
   def source=(s)
     begin
       # Re-parse our own timestamps [+- seconds] without swapping month / day
-      @thetime = DateTime.strptime(s, fmt='%d.%m.%Y %H:%M:%S').to_time
-    rescue ArgumentError => e
+      @thetime = DateTime.strptime(s, '%d.%m.%Y %H:%M:%S').to_time
+    rescue ArgumentError
       begin
-        @thetime = DateTime.strptime(s, fmt='%d.%m.%Y %H:%M').to_time
-      rescue ArgumentError => e
+        @thetime = DateTime.strptime(s, '%d.%m.%Y %H:%M').to_time
+      rescue ArgumentError
         @thetime = Time.parse(s)
       end
     end
@@ -48,5 +48,4 @@ class Ourtime
   end
 
   private :source=
-
 end

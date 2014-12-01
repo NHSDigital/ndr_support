@@ -4,7 +4,7 @@ class String::CleaningTest < ActiveSupport::TestCase
   # squash
 
   test 'postcodeize' do
-    assert_equal "CB22 3AD", "CB223AD".postcodeize
+    assert_equal 'CB22 3AD', 'CB223AD'.postcodeize
     assert_equal 'CB2 2QQ', 'CB22QQ'.postcodeize
     assert_equal 'CB2 2QQ', 'CB22QQ  '.postcodeize
     assert_equal 'CB2 2QQ', 'C   B   22QQ  '.postcodeize
@@ -27,7 +27,7 @@ class String::CleaningTest < ActiveSupport::TestCase
   end
 
   test 'xml_unsafe?' do
-    without_control = "hello world!"
+    without_control = 'hello world!'
     deny without_control.xml_unsafe?
 
     with_safe_control = "increase: 100\045"
@@ -38,7 +38,7 @@ class String::CleaningTest < ActiveSupport::TestCase
   end
 
   test 'strip_xml_unsafe_characters' do
-    without_control = "hello world!"
+    without_control = 'hello world!'
     assert_equal without_control, without_control.strip_xml_unsafe_characters
 
     with_safe_control = "increase: 100\045"
@@ -49,7 +49,7 @@ class String::CleaningTest < ActiveSupport::TestCase
   end
 
   test 'clean xmlsafe' do
-    without_control = "hello world!"
+    without_control = 'hello world!'
     assert_equal without_control, without_control.clean(:xmlsafe)
 
     with_safe_control = "increase: 100\045"
@@ -60,7 +60,7 @@ class String::CleaningTest < ActiveSupport::TestCase
   end
 
   test 'clean make_xml_safe' do
-    without_control = "hello world!"
+    without_control = 'hello world!'
     assert_equal without_control, without_control.clean(:make_xml_safe)
 
     with_safe_control = "increase: 100\045"
@@ -113,8 +113,8 @@ class String::CleaningTest < ActiveSupport::TestCase
     assert_equal 'MAKE A NAME', ' Make A. Name       '.clean(:name)
     assert_equal 'PUNCTUATE A NAME', 'PUNCTUATE,A;NAME'.clean(:name)
     assert_equal 'SPREAD A NAME', 'spread    a      name'.clean(:name)
-    assert_equal "O'NAME", "O`NAME".clean(:name)
-    assert_equal "JOHN MIDDLE O'NAME", "John,  Middle.   O`NAME".clean(:name)
+    assert_equal "O'NAME", 'O`NAME'.clean(:name)
+    assert_equal "JOHN MIDDLE O'NAME", 'John,  Middle.   O`NAME'.clean(:name)
     assert_equal '', ''.clean(:name)
   end
 

@@ -1,5 +1,6 @@
 require 'test_helper'
 
+# This tests our Nil extension
 class NilTest < ActiveSupport::TestCase
   test 'to_date' do
     assert_nil nil.to_date

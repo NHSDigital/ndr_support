@@ -10,7 +10,7 @@ require 'ndr_support/ourtime'
 # Date._parse has been known to change.
 unless defined?(::ParseDate)
   class ParseDate
-    def self.parsedate(str, comp=false)
+    def self.parsedate(str, comp = false)
       Date._parse(str, comp).
         values_at(:year, :mon, :mday, :hour, :min, :sec, :zone, :wday)
     end
@@ -132,6 +132,6 @@ class String
     # SECURE: BNS 2012-10-09: But may behave oddly for multi-line input
     return true if self == true || self =~ (/^(true|t|yes|y|1)$/i)
     return false if self == false || self.nil? || self =~ (/^(false|f|no|n|0)$/i)
-    raise ArgumentError.new("invalid value for Boolean: \"#{self}\"")
+    fail ArgumentError, "invalid value for Boolean: \"#{self}\""
   end
 end
