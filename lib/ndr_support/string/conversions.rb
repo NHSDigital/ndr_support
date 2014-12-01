@@ -18,6 +18,26 @@ unless defined?(::ParseDate)
 end
 
 class String
+  SOUNDEX_CHARS = 'BPFVCSKGJQXZDTLMNR'
+  SOUNDEX_NUMS  = '111122222222334556'
+  SOUNDEX_CHARS_EX = '^' + SOUNDEX_CHARS
+  SOUNDEX_CHARS_DEL = '^A-Z'
+
+  # desc: http://en.wikipedia.org/wiki/Soundex
+  def soundex(census = true)
+    str = upcase.delete(SOUNDEX_CHARS_DEL).squeeze
+
+    str[0 .. 0] + str[1 .. -1].
+      delete(SOUNDEX_CHARS_EX).
+      tr(SOUNDEX_CHARS, SOUNDEX_NUMS)[0 .. (census ? 2 : -1)].
+      squeeze[0 .. (census ? 2 : -1)].
+      ljust(3, '0') rescue ''
+  end
+
+  def sounds_like(other)
+    soundex == other.soundex
+  end
+
   def date1
     Daterange.new(self).date1
   end
@@ -32,6 +52,34 @@ class String
 
   def thetime
     Ourtime.new(self).thetime
+  end
+
+  # Convert "SMITH JD" into "Smith JD"
+	def surname_and_initials
+		a = split
+		initials = a.pop
+		a.collect {|x| x.capitalize}.join(' ') + ' ' + initials
+	end
+
+  # Like titleize but copes with Scottish and Irish names.
+  def surnameize
+    s = slice(0,2).upcase
+    if s == 'MC' || s == "O'"
+      s.titleize + slice(2 .. -1).titleize
+    else
+      titleize
+    end
+  end
+
+  # Show NHS numbers with spaces
+	def nhs_numberize
+    return self unless length == 10
+		self[0..2] + ' ' + self[3..5] + ' ' + self[6..9]
+	end
+
+  # truncate a string, with a HTML &hellip; at the end
+  def truncate_hellip(n)
+    length > n ? slice(0, n - 1) + '&hellip;' : self
   end
 
   # Try to convert the string value into a date.

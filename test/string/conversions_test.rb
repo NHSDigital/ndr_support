@@ -1,6 +1,12 @@
 require 'test_helper'
 
 class String::ConversionsTest < ActiveSupport::TestCase
+  test 'soundex' do
+    assert_equal 'C460', 'colour'.soundex
+    assert_equal 'color'.soundex, 'colour'.soundex
+    assert 'color'.sounds_like('colour')
+  end
+
   test 'date1' do
     assert_equal "01.01.2000", "2000".date1.to_s
   end
@@ -25,6 +31,26 @@ class String::ConversionsTest < ActiveSupport::TestCase
     t = '01.02.1993 04:05'.thetime
     assert_kind_of Time, t
     assert_equal "1993-02-01 04:05:00", t.strftime("%Y-%m-%d %H:%M:%S")
+  end
+
+  test 'surname_and_initials' do
+    assert_equal "Smith JD", "SMITH JD".surname_and_initials
+    assert_equal 'Pencheon JM', 'PENCHEON JM'.surname_and_initials
+  end
+
+  test 'surnameize' do
+    assert_equal 'Smith', 'SMITH'.surnameize
+    assert_equal 'McKinnon', 'MCKINNON'.surnameize
+    assert_equal 'O\'Neil', 'o\'neil'.surnameize
+    assert_equal 'X', 'X'.surnameize
+    assert_equal '', ''.surnameize
+  end
+
+  test 'nhs_numberize' do
+    assert_equal "123 456 7890", "1234567890".nhs_numberize
+    assert_equal '012 345 6789', '0123456789'.nhs_numberize
+    assert_equal '012345678', '012345678'.nhs_numberize
+    assert_equal '', ''.nhs_numberize
   end
 
   test 'should parse dates correctly' do
