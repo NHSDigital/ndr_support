@@ -1,4 +1,10 @@
-SAFETY_FILE = "config/code_safety.yml"
+SAFETY_FILE =
+  if defined?(Rails)
+    Rails.root.join('config', 'code_safety.yml')
+  else
+    'code_safety.yml'
+  end
+
 # Temporarily override to only audit external access files
 SAFETY_REPO = "https://deepthought/svn/extra/era/external-access"
 
