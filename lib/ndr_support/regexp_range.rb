@@ -8,13 +8,13 @@ class RegexpRange
   end
 
   attr_reader :begin, :end, :excl
-  
+
   def initialize(range_start, range_end, exclusive = false)
     @begin = range_start
     @end = range_end
     @excl = exclusive
   end
-  
+
   def to_range(lines)
     start_line_number = @begin
     if start_line_number.is_a?(Regexp)
@@ -24,10 +24,12 @@ class RegexpRange
           break
         end
       end
-      
-      raise PatternMatchError.new("begin pattern #{start_line_number.inspect} not found") if start_line_number.is_a?(Regexp)
+
+      if start_line_number.is_a?(Regexp)
+        fail PatternMatchError, "begin pattern #{start_line_number.inspect} not found"
+      end
     end
-    
+
     end_line_number = @end
     if end_line_number.is_a?(Regexp)
       start_scan_line = start_line_number + 1
@@ -38,9 +40,12 @@ class RegexpRange
           break
         end
       end
-      raise PatternMatchError.new("end pattern #{end_line_number.inspect} not found on or after line #{start_scan_line}") if end_line_number.is_a?(Regexp)
+      if end_line_number.is_a?(Regexp)
+        fail PatternMatchError,
+             "end pattern #{end_line_number.inspect} not found on or after line #{start_scan_line}"
+      end
     end
-    
+
     Range.new(start_line_number, end_line_number, @excl)
   end
 end
