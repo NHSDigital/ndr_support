@@ -32,7 +32,7 @@ Time::DATE_FORMATS.update(
 ActiveRecord::Base.default_timezone = :local
 ActiveRecord::Base.time_zone_aware_attributes = false
 
-SafePath.configure! File.dirname(__FILE__) + '/filesystem_paths.yml'
+SafePath.configure! File.dirname(__FILE__) + '/resources/filesystem_paths.yml'
 
 module ActiveSupport
   class TestCase
