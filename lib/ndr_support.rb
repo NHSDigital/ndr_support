@@ -8,6 +8,8 @@ require 'ndr_support/nil'
 require 'ndr_support/ourdate'
 require 'ndr_support/ourtime'
 require 'ndr_support/regexp_range'
+require 'ndr_support/safe_file'
+require 'ndr_support/safe_path'
 require 'ndr_support/string/cleaning'
 require 'ndr_support/string/conversions'
 

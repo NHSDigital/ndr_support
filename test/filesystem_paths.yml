@@ -1,0 +1,37 @@
+# This allows us different filesystem paths for different platforms
+--- 
+test_files: &test_files
+  root: <%= Dir.mktmpdir %>
+
+? !ruby/regexp /.*/
+: 
+  dbs_outbox: 
+    root: "/mounts/ron/dbs_outbox"
+    prms:
+      - r
+      - w
+      - x
+  broken_space:
+    root: "potato"
+    prms:
+      - r
+      - w
+      - x
+  test_space_r:
+    <<: *test_files
+    prms:
+      - r
+  test_space_w:
+    <<: *test_files
+    prms:
+      - w
+  test_space_rw:
+    <<: *test_files
+    prms:
+      - r
+      - w
+  permanent_test_files:
+    root: <%#= Rails.root.join("test","unit","files") %>
+    prms:
+      - r
+      - w

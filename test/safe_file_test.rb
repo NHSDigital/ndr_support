@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 # Switch on the patientlimiter as though in external environment
 
@@ -19,7 +19,7 @@ class SafeFileTest < ActiveSupport::TestCase
   end
 
   def teardown
-    FileUtils.rm(Dir[Rails.root.join("test").join("unit").join("test_files/*")])
+    FileUtils.rm(Dir[SafePath.new("test_space_rw").join('*')])
   end
 
 ################################################################################

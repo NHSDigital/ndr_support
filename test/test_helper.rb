@@ -3,6 +3,7 @@ require 'active_record'
 require 'active_support/test_case'
 require 'active_support/time'
 require 'ndr_support'
+require 'tmpdir'
 
 # Override default date and time formats:
 Date::DATE_FORMATS.update(
@@ -30,6 +31,8 @@ Time::DATE_FORMATS.update(
 # Instead, we want to store all times in local time.
 ActiveRecord::Base.default_timezone = :local
 ActiveRecord::Base.time_zone_aware_attributes = false
+
+SafePath.configure! File.dirname(__FILE__) + '/filesystem_paths.yml'
 
 module ActiveSupport
   class TestCase
