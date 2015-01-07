@@ -1,4 +1,3 @@
-require 'ndr_support/version'
 require 'ndr_support/array'
 require 'ndr_support/daterange'
 require 'ndr_support/fixnum/calculations'
@@ -12,6 +11,9 @@ require 'ndr_support/safe_file'
 require 'ndr_support/safe_path'
 require 'ndr_support/string/cleaning'
 require 'ndr_support/string/conversions'
+require 'ndr_support/utf8_encoding'
+require 'ndr_support/version'
+require 'ndr_support/yaml/serialization_migration'
 
 module NdrSupport
   # Your code goes here...

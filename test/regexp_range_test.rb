@@ -2,6 +2,9 @@ require 'test_helper'
 
 # This tests our RegexpRange class
 class RegexpRangeTest < ActiveSupport::TestCase
+  include YAML::SerializationMigration
+  extend YAML::EngineSelector
+
   def setup
     @lines = [
       '0Lorem ipsum dolor sit amet',
@@ -12,23 +15,27 @@ class RegexpRangeTest < ActiveSupport::TestCase
     ]
   end
 
-  test 'to_yaml' do
+  test 'to_yaml with syck' do
     regexp_range = RegexpRange.new(0, /^3Ut/)
 
-    yaml = <<YAML
---- !ruby/object:RegexpRange
-begin: 0
-end: !ruby/regexp /^3Ut/
-excl: false
-YAML
-    assert_equal yaml, regexp_range.to_yaml
-
-    deserialized_regexp_range = Psych.load(regexp_range.to_yaml)
+    # Don't test YAML serialisation directly, but make it can be loaded:
+    deserialized_regexp_range = SYCK.load(regexp_range.to_yaml)
     assert_instance_of RegexpRange, deserialized_regexp_range
     assert_equal regexp_range.begin, deserialized_regexp_range.begin
     assert_equal regexp_range.end, deserialized_regexp_range.end
     assert_equal regexp_range.excl, deserialized_regexp_range.excl
-  end
+  end if syck_available?
+
+  test 'to_yaml with psych' do
+    regexp_range = RegexpRange.new(0, /^3Ut/)
+
+    # Don't test YAML serialisation directly, but make it can be loaded:
+    deserialized_regexp_range = PSYCH.load(regexp_range.to_yaml)
+    assert_instance_of RegexpRange, deserialized_regexp_range
+    assert_equal regexp_range.begin, deserialized_regexp_range.begin
+    assert_equal regexp_range.end, deserialized_regexp_range.end
+    assert_equal regexp_range.excl, deserialized_regexp_range.excl
+  end if psych_available?
 
   test 'to_range with number and number' do
     assert_equal Range.new(2, 3, true), RegexpRange.new(2, 3, true).to_range(@lines)

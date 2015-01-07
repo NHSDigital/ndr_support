@@ -5,25 +5,7 @@ require 'active_support/time'
 require 'ndr_support'
 require 'tmpdir'
 
-# Override default date and time formats:
-Date::DATE_FORMATS.update(
-  :db => '%Y-%m-%d %H:%M:%S', :ui => '%d.%m.%Y', :default => '%d.%m.%Y'
-)
-# Rails 2 loads Oracle dates (with timestamps) as DateTime or Time values
-# (before or after 1970) whereas Rails 1.2 treated them as Date objects.
-# Therefore we have a formatting challenge, which we overcome by hiding
-# the time if it's exactly midnight
-Time::DATE_FORMATS.update(
-  :db => '%Y-%m-%d %H:%M:%S',
-  :ui => '%d.%m.%Y %H:%M',
-  :default => lambda do |time|
-    if time.hour != 0 || time.min != 0 || time.sec != 0
-      time.strftime('%d.%m.%Y %H:%M')
-    else
-      time.strftime('%d.%m.%Y')
-    end
-  end
-)
+NdrSupport.apply_era_date_formats!
 
 # We do not use Rails' preferred time zone support, as this would
 # require all dates to be stored in UTC in the database.
