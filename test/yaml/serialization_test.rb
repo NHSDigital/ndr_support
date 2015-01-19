@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class SerializationTest < ActiveSupport::TestCase
-  include YAML::SerializationMigration
-  extend YAML::EngineSelector
+  include NdrSupport::YAML::SerializationMigration
+  extend  NdrSupport::YAML::EngineSelector
 
   test 'should serialize then deserialize an object correctly' do
     hash = { :a => 1 }

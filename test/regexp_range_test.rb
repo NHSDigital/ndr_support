@@ -2,8 +2,8 @@ require 'test_helper'
 
 # This tests our RegexpRange class
 class RegexpRangeTest < ActiveSupport::TestCase
-  include YAML::SerializationMigration
-  extend YAML::EngineSelector
+  include NdrSupport::YAML::SerializationMigration
+  extend  NdrSupport::YAML::EngineSelector
 
   def setup
     @lines = [

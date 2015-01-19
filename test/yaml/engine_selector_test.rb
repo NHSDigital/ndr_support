@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class EngineSelectorTest < ActiveSupport::TestCase
-  include YAML::EngineSelector
+  include NdrSupport::YAML::EngineSelector
 
   # TODO: this is a temporary test, until everything
   #       is running on Ruby 1.9.3.
