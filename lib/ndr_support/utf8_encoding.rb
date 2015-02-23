@@ -15,7 +15,7 @@ module UTF8Encoding
   # Does the current Ruby support encodings?
   ENCODING_AWARE = ''.respond_to?(:valid_encoding?)
   # How should unmappable characters be escaped, when forcing encoding?
-  REPLACEMENT_SCHEME = lambda { |char| '\x' + char.ord.to_s(16) }
+  REPLACEMENT_SCHEME = lambda { |char| '0x' + char.ord.to_s(16) }
 
   # Returns true if the current Ruby supports string encodings.
   # TODO: Code out of existance once we're past Ruby 1.8.7

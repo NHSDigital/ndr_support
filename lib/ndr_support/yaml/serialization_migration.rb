@@ -11,11 +11,12 @@ module NdrSupport
       include EngineSelector
 
       # Wrapper around: YAML.load(string)
-      def load_yaml(string)
-        ensure_utf8!(string)
+      def load_yaml(string, coerce_invalid_chars = false)
+        fix_encoding!(string, coerce_invalid_chars)
 
         # Achieve same behaviour using `syck` and `psych`:
         handle_special_characters!(string)
+        fix_encoding!(string, coerce_invalid_chars)
 
         loader = yaml_loader_for(string)
         object = loader.load(string)
@@ -32,6 +33,13 @@ module NdrSupport
 
       private
 
+      # Makes `string` valid UTF-8. If `coerce` is true,
+      # any invalid characters will be escaped - if false,
+      # they will trigger an UTF8Encoding::UTF8CoercionError.
+      def fix_encoding!(string, coerce)
+        coerce ? coerce_utf8!(string) : ensure_utf8!(string)
+      end
+
       # Within double quotes, YAML allows special characters.
       # While `psych` emits UTF-8 YAML, `syck` double escapes
       # higher characters. We need to unescape any we find:
@@ -41,8 +49,6 @@ module NdrSupport
 
         # Escape any null chars, as they can confuse YAML:
         string.gsub!(/\x00/, '\x00')
-
-        ensure_utf8!(string)
       end
     end
   end

@@ -123,7 +123,7 @@ class Utf8EncodingTest < ActiveSupport::TestCase
 
     test 'coerce_utf8 should escape unmappable values' do
       assert_nothing_raised do
-        expected = 'rubbish \x90 rubbish'
+        expected = 'rubbish 0x90 rubbish'
         actual   = coerce_utf8("rubbish \x90 rubbish")
 
         assert_equal expected, actual
@@ -135,7 +135,7 @@ class Utf8EncodingTest < ActiveSupport::TestCase
     test 'coerce_utf8 should use given source encoding' do
       input        = "maybe \xc0 rubbish"
       win_expected = 'maybe À rubbish'
-      utf_expected = 'maybe \xc0 rubbish'
+      utf_expected = 'maybe 0xc0 rubbish'
 
       assert_nothing_raised do
         win_actual = coerce_utf8(input, 'Windows-1252')

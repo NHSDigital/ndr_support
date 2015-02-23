@@ -3,6 +3,7 @@ require 'test_helper'
 class SerializationTest < ActiveSupport::TestCase
   include NdrSupport::YAML::SerializationMigration
   extend  NdrSupport::YAML::EngineSelector
+  extend  UTF8Encoding
 
   test 'should serialize then deserialize an object correctly' do
     hash = { :a => 1 }
@@ -22,6 +23,18 @@ class SerializationTest < ActiveSupport::TestCase
     stubs(:yaml_loader_for => PSYCH)
     assert_syck_1_8_yaml_loads_correctly
   end if psych_available? # We can't test this on 1.8.7
+
+  if encoding_aware?
+    test 'load_yaml should not coerce to UTF-8 be default when using syck' do
+      stubs(:yaml_loader_for => SYCK)
+      assert_yaml_coercion_behaviour
+    end if syck_available?
+
+    test 'load_yaml should not coerce to UTF-8 be default when using psych' do
+      stubs(:yaml_loader_for => PSYCH)
+      assert_yaml_coercion_behaviour
+    end if psych_available?
+  end
 
   if psych_available? && syck_available?
     test 'time-like objects should serialise correctly with psych' do
@@ -98,5 +111,18 @@ class SerializationTest < ActiveSupport::TestCase
 
     assert_equal 'UTF-8', hash['diagnosis'].encoding.name
     assert hash['diagnosis'].valid_encoding?
+  end
+
+  def assert_yaml_coercion_behaviour
+    yaml = "---\nfulltextreport: \"Here is a weird \\x9D char\"\n"
+
+    # By default, we'd expect the (serialised) \x9D
+    assert_raises(UTF8Encoding::UTF8CoercionError) { load_yaml(yaml) }
+
+    # With the optional second argument, we can force an escape:
+    assert_nothing_raised do
+      hash = load_yaml(yaml, true)
+      assert_equal 'Here is a weird 0x9d char', hash['fulltextreport']
+    end
   end
 end
