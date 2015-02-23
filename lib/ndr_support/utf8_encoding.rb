@@ -14,6 +14,8 @@ module UTF8Encoding
   AUTO_ENCODINGS = %w( UTF-8 Windows-1252 )
   # Does the current Ruby support encodings?
   ENCODING_AWARE = ''.respond_to?(:valid_encoding?)
+  # How should unmappable characters be escaped, when forcing encoding?
+  REPLACEMENT_SCHEME = lambda { |char| '\x' + char.ord.to_s(16) }
 
   # Returns true if the current Ruby supports string encodings.
   # TODO: Code out of existance once we're past Ruby 1.8.7
@@ -22,12 +24,12 @@ module UTF8Encoding
   end
 
   # Returns a new string with valid UTF-8 encoding,
-  # or raises an exception if coercion fails.
+  # or raises an exception if encoding fails.
   def ensure_utf8(string, source_encoding = nil)
     ensure_utf8!(string.dup, source_encoding)
   end
 
-  # Attempts to coerce `string` to UTF-8, in place.
+  # Attempts to encode `string` to UTF-8, in place.
   # Returns `string`, or raises an exception.
   def ensure_utf8!(string, source_encoding = nil)
     return string unless encoding_aware?
@@ -45,6 +47,22 @@ module UTF8Encoding
     end
 
     string
+  end
+
+  # Returns a UTF-8 version of `string`, escaping any unmappable characters.
+  def coerce_utf8(string, source_encoding = nil)
+    coerce_utf8!(string.dup, source_encoding)
+  end
+
+  # Coerces `string` to UTF-8, in place, escaping any unmappable characters.
+  def coerce_utf8!(string, source_encoding = nil)
+    return string unless encoding_aware?
+
+    # Try normally first...
+    ensure_utf8!(string, source_encoding)
+  rescue UTF8CoercionError
+    # ...before going back-to-basics, and replacing things that don't map:
+    string.encode!('UTF-8', 'BINARY', :fallback => REPLACEMENT_SCHEME)
   end
 
   private

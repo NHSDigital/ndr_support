@@ -1,7 +1,7 @@
 require 'ndr_support/utf8_encoding'
 
 # Allows any object (if supported) to have all related
-# strings coerced in place to UTF-8.
+# strings encoded in place to UTF-8.
 module UTF8Encoding
   module ObjectSupport
     # Recursively ensure the correct encoding is being used:

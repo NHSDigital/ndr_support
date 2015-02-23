@@ -2,10 +2,10 @@ require 'yaml'
 require 'ndr_support/utf8_encoding'
 require 'ndr_support/yaml/engine_selector'
 
-# Lightweight wrapper around YAML serialization, to provide any
-# necessary support for YAML engines and string encodings.
 module NdrSupport
   module YAML
+    # Lightweight wrapper around YAML serialization, to provide any
+    # necessary support for YAML engines and string encodings.
     module SerializationMigration
       include UTF8Encoding
       include EngineSelector
@@ -15,7 +15,7 @@ module NdrSupport
         ensure_utf8!(string)
 
         # Achieve same behaviour using `syck` and `psych`:
-        unescape_special_characters!(string)
+        handle_special_characters!(string)
 
         loader = yaml_loader_for(string)
         object = loader.load(string)
@@ -35,9 +35,13 @@ module NdrSupport
       # Within double quotes, YAML allows special characters.
       # While `psych` emits UTF-8 YAML, `syck` double escapes
       # higher characters. We need to unescape any we find:
-      def unescape_special_characters!(string)
+      def handle_special_characters!(string)
         # Replace any encoded hex chars with their actual value:
-        string.gsub!(/\\x([0-9A-F]{2})/) { [$1].pack("H2") }
+        string.gsub!(/\\x([0-9A-F]{2})/) { [$1].pack('H2') }
+
+        # Escape any null chars, as they can confuse YAML:
+        string.gsub!(/\x00/, '\x00')
+
         ensure_utf8!(string)
       end
     end

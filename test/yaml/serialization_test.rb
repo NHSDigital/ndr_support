@@ -46,7 +46,6 @@ class SerializationTest < ActiveSupport::TestCase
   end
 
   def assert_times
-    date = Date.new(2014, 3, 1)
     assert_nothing_raised do # Dumped by 1.9.3 syck, within era.
       loaded = YAML.load("--- !timestamp 2014-03-01\n")
       assert [Date, Time].include?(loaded.class), '1.8.7 era timestamp class'
@@ -80,10 +79,13 @@ class SerializationTest < ActiveSupport::TestCase
   end
 
   def assert_syck_1_8_yaml_loads_correctly
-    yaml = "--- \nname: Dr. Doctor\ndiagnosis: \"CIN 1 \\xE2\\x80\\x93 CIN 2\"\n"
+    yaml = "--- \nname: Dr. Doctor\000\000\000 \ndiagnosis: \"CIN 1 \\xE2\\x80\\x93 CIN 2\"\n"
     hash = {}
 
     assert_nothing_raised { hash = load_yaml(yaml) }
+
+    # The null chars should be escaped:
+    assert_equal 'Dr. Doctor\x00\x00\x00', hash['name']
 
     # The dash should be 3 bytes, but recognised as one char:
     assert_equal 15, hash['diagnosis'].bytes.to_a.length
