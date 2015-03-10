@@ -98,7 +98,7 @@ class SerializationTest < ActiveSupport::TestCase
     assert_nothing_raised { hash = load_yaml(yaml) }
 
     # The null chars should be escaped:
-    assert_equal 'Dr. Doctor\x00\x00\x00', hash['name']
+    assert_equal 'Dr. Doctor0x000x000x00', hash['name']
 
     # The dash should be 3 bytes, but recognised as one char:
     assert_equal 15, hash['diagnosis'].bytes.to_a.length

@@ -48,7 +48,7 @@ module NdrSupport
         string.gsub!(/\\x([0-9A-F]{2})/) { [$1].pack('H2') }
 
         # Escape any null chars, as they can confuse YAML:
-        string.gsub!(/\x00/, '\x00')
+        string.gsub!(/\x00/) { UTF8Encoding::REPLACEMENT_SCHEME[0] }
       end
     end
   end
