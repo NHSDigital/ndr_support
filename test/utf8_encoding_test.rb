@@ -114,6 +114,19 @@ class Utf8EncodingTest < ActiveSupport::TestCase
       assert string2.valid_encoding?
     end
 
+    test 'ensure_utf8 should handle UTF-16 strings (using bom)' do
+      alpha_beta_le = ensure_utf8("\xff\xfe\xb1\x03\xb2\x03") # Little endian
+      alpha_beta_be = ensure_utf8("\xfe\xff\x03\xb1\x03\xb2") # Big endian
+
+      assert_equal Encoding.find('UTF-8'), alpha_beta_le.encoding
+      assert_equal Encoding.find('UTF-8'), alpha_beta_be.encoding
+
+      assert_equal 2, alpha_beta_le.chars.to_a.length
+      assert_equal 2, alpha_beta_be.chars.to_a.length
+
+      assert_equal alpha_beta_be, alpha_beta_le
+    end
+
     test 'ensure_utf8 should fail if unable to derive encoding' do
       assert_raise(UTF8Encoding::UTF8CoercionError) do
         # Not going to work with UTF-8 or Windows-1252:

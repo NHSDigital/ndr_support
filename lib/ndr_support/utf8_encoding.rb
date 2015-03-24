@@ -11,7 +11,7 @@ module UTF8Encoding
   class UTF8CoercionError < EncodingError; end
 
   # Our known source encodings, in order of preference:
-  AUTO_ENCODINGS = %w( UTF-8 Windows-1252 )
+  AUTO_ENCODINGS = %w( UTF-8 UTF-16 Windows-1252 )
   # Does the current Ruby support encodings?
   ENCODING_AWARE = ''.respond_to?(:valid_encoding?)
   # How should unmappable characters be escaped, when forcing encoding?
