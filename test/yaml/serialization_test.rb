@@ -56,15 +56,16 @@ class SerializationTest < ActiveSupport::TestCase
     assert_times
     assert_dates
     assert_datetimes
+    assert_datetimes_with_zones
   end
 
   def assert_times
     assert_nothing_raised do # Dumped by 1.9.3 syck, within era.
       loaded = YAML.load("--- !timestamp 2014-03-01\n")
-      assert [Date, Time].include?(loaded.class), '1.8.7 era timestamp class'
-      assert_equal 2014, loaded.year,  '1.8.7 era timestamp year'
-      assert_equal 3,    loaded.month, '1.8.7 era timestamp month'
-      assert_equal 1,    loaded.day,   '1.8.7 era timestamp day'
+      assert [Date, Time].include?(loaded.class), '1.9.3 era timestamp class'
+      assert_equal 2014, loaded.year,  '1.9.3 era timestamp year'
+      assert_equal 3,    loaded.month, '1.9.3 era timestamp month'
+      assert_equal 1,    loaded.day,   '1.9.3 era timestamp day'
     end
   end
 
@@ -89,6 +90,34 @@ class SerializationTest < ActiveSupport::TestCase
     assert_equal 12,   loaded.hour,  'datetime hour'
     assert_equal 45,   loaded.min,   'datetime minute'
     assert_equal 15,   loaded.sec,   'datetime second'
+  end
+
+  def assert_datetimes_with_zones
+    bst_datetime = DateTime.new(2014, 4, 1, 0, 0, 0, '+1')
+    bst_loaded   = load_yaml(bst_datetime.to_yaml)
+
+    assert [DateTime, Time].include?(bst_loaded.class), 'bst datetime class'
+    assert_equal 2014, bst_loaded.year,  'bst datetime year'
+    assert_equal 4,    bst_loaded.month, 'bst datetime month'
+    assert_equal 1,    bst_loaded.day,   'bst datetime day'
+    assert_equal 0,    bst_loaded.hour,  'bst datetime hour'
+    assert_equal 0,    bst_loaded.min,   'bst datetime minute'
+    assert_equal 0,    bst_loaded.sec,   'bst datetime second'
+
+    assert_equal '01.04.2014', bst_loaded.to_s
+
+    gmt_datetime = DateTime.new(2014, 3, 1, 0, 0, 0, '+0')
+    gmt_loaded   = load_yaml(gmt_datetime.to_yaml)
+
+    assert [DateTime, Time].include?(gmt_loaded.class), 'gmt datetime class'
+    assert_equal 2014, gmt_loaded.year,  'gmt datetime year'
+    assert_equal 3,    gmt_loaded.month, 'gmt datetime month'
+    assert_equal 1,    gmt_loaded.day,   'gmt datetime day'
+    assert_equal 0,    gmt_loaded.hour,  'gmt datetime hour'
+    assert_equal 0,    gmt_loaded.min,   'gmt datetime minute'
+    assert_equal 0,    gmt_loaded.sec,   'gmt datetime second'
+
+    assert_equal '01.03.2014', gmt_loaded.to_s
   end
 
   def assert_syck_1_8_yaml_loads_correctly

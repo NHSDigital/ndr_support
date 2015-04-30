@@ -86,7 +86,7 @@ module NdrSupport
       Time::DATE_FORMATS.update(
         :db      => '%Y-%m-%d %H:%M:%S',
         :ui      => '%d.%m.%Y %H:%M',
-        :yaml    => '%Y-%m-%d %H:%M:%S', # For DateTimes
+        :yaml    => '%Y-%m-%d %H:%M:%S %:z', # For DateTimes
         :default => lambda do |time|
           non_zero_time = time.hour != 0 || time.min != 0 || time.sec != 0
           time.strftime(non_zero_time ? '%d.%m.%Y %H:%M' : '%d.%m.%Y')
