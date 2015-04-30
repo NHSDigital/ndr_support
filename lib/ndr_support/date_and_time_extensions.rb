@@ -1,5 +1,8 @@
 require 'yaml'
 
+require File.expand_path('../concerns/working_days', __FILE__)
+[Time, Date, DateTime].each { |klass| klass.send(:include, WorkingDays) }
+
 class Date
   # Note: default date format is specified in config/environment.rb
   def to_verbose
