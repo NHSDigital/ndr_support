@@ -140,6 +140,9 @@ class String::CleaningTest < ActiveSupport::TestCase
   test 'clean code_opcs' do
     assert_equal 'B274 Z943', ' b27.4,Z94.3;'.clean(:code_opcs)
     assert_equal 'B274 Z943', 'B27.4 Z94.3'.clean(:code_opcs)
+    assert_equal 'CZ001', 'CZ001'.clean(:code_opcs)
+    assert_equal 'B274 CZ002', 'B27.4 cz00.2'.clean(:code_opcs)
+    assert_equal '', 'CZ003'.clean(:code_opcs)
     assert_equal '', 'UNKNOWN'.clean(:code_opcs)
     assert_equal '', ''.clean(:code_opcs)
   end

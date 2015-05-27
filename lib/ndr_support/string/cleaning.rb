@@ -93,10 +93,7 @@ class String
       end
       cleaned_codes.join(' ')
     when :code_opcs
-      self.split(/ |,|;/).map do |code|
-        db_code = code.squash
-        db_code.length < 3 || db_code.length > 4 ? next : db_code
-      end.compact.join(' ')
+      clean_code_opcs
     when :hospitalnumber
       self[-1..-1] =~ /\d/ ? self : self[0..-2]
     when :xmlsafe, :make_xml_safe
@@ -122,5 +119,18 @@ class String
 
   def xml_unsafe?
     self =~ String::INVALID_CONTROL_CHARS
+  end
+
+  private
+
+  def clean_code_opcs
+    split(/ |,|;/).map do |code|
+      db_code = code.squash
+      if 4 == db_code.length || db_code =~ /CZ00[12]/
+        db_code
+      else
+        next
+      end
+    end.compact.join(' ')
   end
 end
