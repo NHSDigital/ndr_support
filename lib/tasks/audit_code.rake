@@ -60,7 +60,7 @@ end
 # passwords.
 # Parameter max_print is number of entries to print before truncating output
 # (negative value => print all)
-def audit_code_safety(max_print = 20, ignore_new = false, show_diffs = false, user_name = 'usr')
+def audit_code_safety(max_print = 20, ignore_new = false, show_diffs = false, show_in_priority = false, user_name = 'usr')
   puts <<EOT
 Running source code safety audit script.
 This currently takes about 3 minutes to run.
@@ -79,7 +79,7 @@ EOT
     # Temporarily override to only audit a different file list
     repo = SAFETY_REPO
   else
-    repo = %x[svn info].split("\n").select{|x| x =~ /^URL: /}.collect{|x| x[5..-1]}
+    repo = %x[svn info].split("\n").select{|x| x =~ /^URL: /}.collect{|x| x[5..-1]}.first
   end
   if ignore_new
     puts "Not checking for new files in #{repo}"
@@ -118,7 +118,13 @@ EOT
   puts
   printed = []
   # We also print a third category: ones which are no longer in the repository
-  file_safety.keys.sort.each{|f|
+  if show_in_priority
+    file_list = file_safety.sort_by {|k,v| v.nil? ? -100 : v["last_changed_rev"].to_i}.map(&:first)
+  else
+    file_list = file_safety.keys.sort
+  end
+  
+  file_list.each{|f|
     if print_file_safety(file_safety, f, false, printed.size >= max_print)
       printed << f
     end
@@ -143,6 +149,7 @@ def print_file_safety(file_safety, fname, verbose = false, silent = false)
     msg += "File not in audit list"
   elsif entry["safe_revision"].nil?
     msg += "No safe revision known"
+    msg += ", last changed at revision #{entry['last_changed_rev']}" unless entry["last_changed_rev"].nil?
   else
     if entry["last_changed_rev"].nil?
       update_changed_rev(file_safety, [fname])
@@ -216,7 +223,7 @@ def update_changed_rev(file_safety, fnames = nil)
   # TODO: Use svn info --xml instead
   # TODO: Is it possible to get %x[] syntax to accept variable arguments?
   #all_info = %x[svn info -r HEAD "#{fnames.join(' ')}"]
-  repo = %x[svn info].split("\n").select{|x| x =~ /^URL: /}.collect{|x| x[5..-1]}
+  repo = %x[svn info].split("\n").select{|x| x =~ /^URL: /}.collect{|x| x[5..-1]}.first
   # Filename becomes too long, and extra arguments get ignored
   #all_info = Kernel.send("`", "svn info -r HEAD #{fnames.sort.join(' ')}").split("\n\n")
   # Note: I'd like to be able to use svn -u status -v instead of svn info,
@@ -332,13 +339,14 @@ File #{SAFETY_FILE} lists the safety and revision information
 of the era source code. This task updates the list, and [TODO] warns about
 files which have changed since they were last verified as safe."
   task(:code) do
-    puts "Usage: audit:code [max_print=n] [ignore_new=false|true] [show_diffs=false|true] [reviewed_by=usr]"
-    ignore_new = (ENV['ignore_new'].to_s =~ /\Afalse\Z/i)
+    puts "Usage: audit:code [max_print=n] [ignore_new=false|true] [show_diffs=false|true] [show_in_priority=false|true] [reviewed_by=usr]"
+    ignore_new = (ENV['ignore_new'].to_s =~ /\Atrue\Z/i)
     show_diffs = (ENV['show_diffs'].to_s =~ /\Atrue\Z/i)
+    show_in_priority = (ENV['show_in_priority'].to_s =~ /\Atrue\Z/i)
     if ENV['max_print'] =~ /\A-?[0-9][0-9]*\Z/
-      audit_code_safety(ENV['max_print'].to_i, ignore_new, show_diffs, ENV['reviewed_by'])
+      audit_code_safety(ENV['max_print'].to_i, ignore_new, show_diffs, show_in_priority, ENV['reviewed_by'])
     else
-      audit_code_safety(20, ignore_new, show_diffs, ENV['reviewed_by'])
+      audit_code_safety(20, ignore_new, show_diffs, show_in_priority, ENV['reviewed_by'])
     end
     unless show_diffs
       puts "To show file diffs, run:  rake audit:code max_print=-1 show_diffs=true"
