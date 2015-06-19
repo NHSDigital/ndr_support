@@ -1,9 +1,11 @@
+require File.join(File.dirname(__FILE__), 'utf8_encoding', 'control_characters')
 require File.join(File.dirname(__FILE__), 'utf8_encoding', 'object_support')
 
 # Provides encoding support to be used for file / rawtext handling.
 # Degrades gracefully on Ruby 1.8.7, where there is no encoding support.
 module UTF8Encoding
-  include UTF8Encoding::ObjectSupport
+  include ControlCharacters
+  include ObjectSupport
 
   # Backfill for basic 1.8 support:
   class EncodingError < StandardError; end unless defined?(EncodingError)
