@@ -24,6 +24,9 @@ module NdrSupport
         # Ensure that any string related to the object
         # we've loaded is also valid UTF-8.
         ensure_utf8_object!(object)
+
+        # We escape all non-printing control chars:
+        escape_control_chars_in_object!(object)
       end
 
       # Wrapper around: YAML.dump(object)

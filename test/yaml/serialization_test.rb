@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require 'test_helper'
 
 class SerializationTest < ActiveSupport::TestCase
@@ -25,6 +27,16 @@ class SerializationTest < ActiveSupport::TestCase
   end if psych_available? # We can't test this on 1.8.7
 
   if encoding_aware?
+    test 'should handle binary yaml with control chars' do
+      # irb> "\xC2\xA1null \x00 characters \r\n suck!".to_yaml
+      yaml = "--- !binary |-\n  wqFudWxsIAAgY2hhcmFjdGVycyANCiBzdWNrIQ==\n"
+      assert_equal "¡null 0x00 characters \r\n suck!", load_yaml(yaml)
+
+      # irb> {fulltext: "\xC2\xA1null \x00 characters \r\n suck!"}.to_yaml
+      yamled_hash = "---\n:fulltext: !binary |-\n  wqFudWxsIAAgY2hhcmFjdGVycyANCiBzdWNrIQ==\n"
+      assert_equal({ :fulltext => "¡null 0x00 characters \r\n suck!" }, load_yaml(yamled_hash))
+    end
+
     test 'load_yaml should not coerce to UTF-8 be default when using syck' do
       stubs(:yaml_loader_for => SYCK)
       assert_yaml_coercion_behaviour
