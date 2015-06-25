@@ -14,25 +14,7 @@ require 'yaml'
 # e.g. so that file diffs are consistent
 # TODO: Instead declare ordered version of YAML.dump or use OrderedHash
 def order_to_yaml_output!
-  if RUBY_VERSION =~ /^1\.8/
-    eval <<-EOT
-    class Hash
-      # Replacing the to_yaml function so it'll serialize hashes sorted (by their keys)
-      # See http://snippets.dzone.com/posts/show/5811
-      #
-      # Original function is in /usr/lib/ruby/1.8/yaml/rubytypes.rb
-      def to_yaml( opts = {} )
-        YAML::quick_emit( object_id, opts ) do |out|
-          out.map( taguri, to_yaml_style ) do |map|
-            sort.each do |k, v|   # <-- here's my addition (the 'sort')
-              map.add( k, v )
-            end
-          end
-        end
-      end
-    end
-    EOT
-  elsif RUBY_VERSION =~ /\A1\.9/
+  if RUBY_VERSION =~ /\A1\.9/
     puts "Warning: Hash output will not be sorted." unless YAML::ENGINE.syck?
     eval <<-EOT
     class Hash

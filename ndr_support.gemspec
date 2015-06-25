@@ -25,16 +25,11 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'mocha', '~> 1.1'
 
-  # TODO: once we're on 1.9.3 everywhere, uncomment, and remove YAML cruft.
-  # spec.required_ruby_version = '>= 1.9.3'
+  # TODO: once we're on 1.9.3 everywhere, remove YAML cruft.
+  spec.required_ruby_version = '>= 1.9.3'
 
-  if RUBY_VERSION == '1.8.7'
-    # FIXME: For Josh, bundle won't install on 1.8.7 without this
-    spec.add_development_dependency 'i18n', '0.6.9'
-  else
-    spec.add_development_dependency 'guard'
-    spec.add_development_dependency 'guard-rubocop'
-    spec.add_development_dependency 'guard-test'
-    spec.add_development_dependency 'terminal-notifier-guard' if RUBY_PLATFORM =~ /darwin/
-  end
+  spec.add_development_dependency 'guard'
+  spec.add_development_dependency 'guard-rubocop'
+  spec.add_development_dependency 'guard-test'
+  spec.add_development_dependency 'terminal-notifier-guard' if RUBY_PLATFORM =~ /darwin/
 end
