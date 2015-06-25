@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 require 'test/unit'
 require 'active_record'
 require 'active_support/test_case'
