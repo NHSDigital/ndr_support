@@ -35,7 +35,7 @@ class RegexpRangeTest < ActiveSupport::TestCase
     assert_equal regexp_range.begin, deserialized_regexp_range.begin
     assert_equal regexp_range.end, deserialized_regexp_range.end
     assert_equal regexp_range.excl, deserialized_regexp_range.excl
-  end if psych_available?
+  end
 
   test 'to_range with number and number' do
     assert_equal Range.new(2, 3, true), RegexpRange.new(2, 3, true).to_range(@lines)

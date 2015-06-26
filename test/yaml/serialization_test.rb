@@ -24,7 +24,7 @@ class SerializationTest < ActiveSupport::TestCase
   test 'should handle syck-encoded characters with psych too' do
     stubs(:yaml_loader_for => PSYCH)
     assert_syck_1_8_yaml_loads_correctly
-  end if psych_available? # We can't test this on 1.8.7
+  end
 
   test 'should handle binary yaml with control chars' do
     # irb> "\xC2\xA1null \x00 characters \r\n suck!".to_yaml
@@ -44,9 +44,9 @@ class SerializationTest < ActiveSupport::TestCase
   test 'load_yaml should not coerce to UTF-8 be default when using psych' do
     stubs(:yaml_loader_for => PSYCH)
     assert_yaml_coercion_behaviour
-  end if psych_available?
+  end
 
-  if psych_available? && syck_available?
+  if syck_available?
     test 'time-like objects should serialise correctly with psych' do
       YAML::ENGINE.yamler = 'psych'
       NdrSupport.apply_era_date_formats! # Need applying after swapping yamler

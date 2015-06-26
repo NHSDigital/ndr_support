@@ -27,14 +27,13 @@ module NdrSupport
         end
       end
 
-      # Aliases to the engines. Ruby 1.8.7 doesn't expose Syck directly.
-      SYCK  = defined?(::Syck)  ? ::Syck  : (defined?(::YAML::Syck) ? ::YAML : nil)
+      # Aliases to the engines.
+      SYCK  = defined?(::Syck)  ? ::Syck  : nil
       PSYCH = defined?(::Psych) ? ::Psych : nil
 
       # Returns the YAML engine we should use
       # to load the given `string`.
       def yaml_loader_for(string)
-        return SYCK  unless psych_available?
         return PSYCH unless syck_available?
 
         # Only if both engines are available can we choose:
@@ -51,10 +50,9 @@ module NdrSupport
 
       private
 
-      # Is everything running at least 1.9.3?
       # TODO: code out once true.
       def universal_psych_support?
-        false && psych_available?
+        false
       end
 
       # We can make an educated guess as to whether it was psych
@@ -71,11 +69,6 @@ module NdrSupport
       #
       def emitted_by_psych?(string)
         (string =~ /\A---\n/) || (string =~ /\n[.]{3}\n\z/)
-      end
-
-      # TODO: code out once we're on 1.9.3+ everywhere.
-      def psych_available?
-        !PSYCH.nil?
       end
 
       # TODO: code out once we're on 2.0+ everywhere.

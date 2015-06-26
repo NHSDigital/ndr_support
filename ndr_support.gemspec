@@ -25,7 +25,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'mocha', '~> 1.1'
 
-  # TODO: once we're on 1.9.3 everywhere, remove YAML cruft.
   spec.required_ruby_version = '>= 1.9.3'
 
   spec.add_development_dependency 'guard'
