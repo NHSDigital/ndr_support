@@ -26,27 +26,25 @@ class SerializationTest < ActiveSupport::TestCase
     assert_syck_1_8_yaml_loads_correctly
   end if psych_available? # We can't test this on 1.8.7
 
-  if encoding_aware?
-    test 'should handle binary yaml with control chars' do
-      # irb> "\xC2\xA1null \x00 characters \r\n suck!".to_yaml
-      yaml = "--- !binary |-\n  wqFudWxsIAAgY2hhcmFjdGVycyANCiBzdWNrIQ==\n"
-      assert_equal "¡null 0x00 characters \r\n suck!", load_yaml(yaml)
+  test 'should handle binary yaml with control chars' do
+    # irb> "\xC2\xA1null \x00 characters \r\n suck!".to_yaml
+    yaml = "--- !binary |-\n  wqFudWxsIAAgY2hhcmFjdGVycyANCiBzdWNrIQ==\n"
+    assert_equal "¡null 0x00 characters \r\n suck!", load_yaml(yaml)
 
-      # irb> {fulltext: "\xC2\xA1null \x00 characters \r\n suck!"}.to_yaml
-      yamled_hash = "---\n:fulltext: !binary |-\n  wqFudWxsIAAgY2hhcmFjdGVycyANCiBzdWNrIQ==\n"
-      assert_equal({ :fulltext => "¡null 0x00 characters \r\n suck!" }, load_yaml(yamled_hash))
-    end
-
-    test 'load_yaml should not coerce to UTF-8 be default when using syck' do
-      stubs(:yaml_loader_for => SYCK)
-      assert_yaml_coercion_behaviour
-    end if syck_available?
-
-    test 'load_yaml should not coerce to UTF-8 be default when using psych' do
-      stubs(:yaml_loader_for => PSYCH)
-      assert_yaml_coercion_behaviour
-    end if psych_available?
+    # irb> {fulltext: "\xC2\xA1null \x00 characters \r\n suck!"}.to_yaml
+    yamled_hash = "---\n:fulltext: !binary |-\n  wqFudWxsIAAgY2hhcmFjdGVycyANCiBzdWNrIQ==\n"
+    assert_equal({ :fulltext => "¡null 0x00 characters \r\n suck!" }, load_yaml(yamled_hash))
   end
+
+  test 'load_yaml should not coerce to UTF-8 be default when using syck' do
+    stubs(:yaml_loader_for => SYCK)
+    assert_yaml_coercion_behaviour
+  end if syck_available?
+
+  test 'load_yaml should not coerce to UTF-8 be default when using psych' do
+    stubs(:yaml_loader_for => PSYCH)
+    assert_yaml_coercion_behaviour
+  end if psych_available?
 
   if psych_available? && syck_available?
     test 'time-like objects should serialise correctly with psych' do
@@ -144,7 +142,7 @@ class SerializationTest < ActiveSupport::TestCase
     # The dash should be 3 bytes, but recognised as one char:
     assert_equal 15, hash['diagnosis'].bytes.to_a.length
 
-    assert_syck_1_8_handles_encoding(hash) if encoding_aware?
+    assert_syck_1_8_handles_encoding(hash)
   end
 
   def assert_syck_1_8_handles_encoding(hash)
