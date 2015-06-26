@@ -51,8 +51,9 @@ module NdrSupport
       private
 
       # TODO: code out once true.
+      # !syck_available? forces this to be true for ruby 2.0 and above
       def universal_psych_support?
-        false
+        false || !syck_available?
       end
 
       # We can make an educated guess as to whether it was psych
