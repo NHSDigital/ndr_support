@@ -5,38 +5,10 @@ SAFETY_FILE =
     'code_safety.yml'
   end
 
-# Temporarily override to only audit external access files
-SAFETY_REPO = "https://deepthought/svn/extra/era/external-access"
+# Temporary overrides to only audit external access files
+SAFETY_REPOS = [['/svn/era', '/svn/extra/era/external-access']]
 
 require 'yaml'
-
-# Force yaml output from hashes to be ordered
-# e.g. so that file diffs are consistent
-# TODO: Instead declare ordered version of YAML.dump or use OrderedHash
-def order_to_yaml_output!
-  if RUBY_VERSION =~ /\A1\.9/
-    puts "Warning: Hash output will not be sorted." unless YAML::ENGINE.syck?
-    eval <<-EOT
-    class Hash
-      # Replacing the to_yaml function so it'll serialize hashes sorted (by their keys)
-      # See http://snippets.dzone.com/posts/show/5811
-      #
-      # Original function is in /usr/lib/ruby/1.9.1/syck/rubytypes.rb
-      def to_yaml( opts = {} )
-        return super unless YAML::ENGINE.syck?
-        YAML::quick_emit( self, opts ) do |out|
-          out.map( taguri, to_yaml_style ) do |map|
-            sort.each do |k, v|   # <-- here's my addition (the 'sort')
-            #each do |k, v|
-              map.add( k, v )
-            end
-          end
-        end
-      end
-    end
-    EOT
-  end
-end
 
 # Run a PL/SQL based password cracker on the main database to identify weak
 # passwords.
@@ -57,12 +29,16 @@ EOT
   end
   orig_count = file_safety.size
 
-  if defined? SAFETY_REPO
+  repo_info = %x[svn info]
+  repo_info = %x[git svn info] unless repo_info =~ /^URL: /
+  repo = repo_info.split("\n").select{|x| x =~ /^URL: /}.collect{|x| x[5..-1]}.first
+  SAFETY_REPOS.each{|suffix, alt|
     # Temporarily override to only audit a different file list
-    repo = SAFETY_REPO
-  else
-    repo = %x[svn info].split("\n").select{|x| x =~ /^URL: /}.collect{|x| x[5..-1]}.first
-  end
+    if repo.end_with?(suffix)
+      repo = repo[0...-suffix.length]+alt
+      break
+    end
+  }
   if ignore_new
     puts "Not checking for new files in #{repo}"
   else
@@ -79,7 +55,8 @@ EOT
       end
     }
     File.open(SAFETY_FILE, 'w') do |file|
-      order_to_yaml_output!
+      # Consistent file diffs, as ruby preserves Hash insertion order since v1.9
+      safety_cfg["file safety"] = Hash[file_safety.sort]
       YAML.dump(safety_cfg, file) # Save changes before checking latest revisions
     end
   end
@@ -303,7 +280,8 @@ def flag_file_as_safe(release, reviewed_by, comments, f)
     puts "No changes when updating safe_revision to #{release || '[none]'} for #{f}"
   else
     File.open(SAFETY_FILE, 'w') do |file|
-      order_to_yaml_output!
+      # Consistent file diffs, as ruby preserves Hash insertion order since v1.9
+      safety_cfg["file safety"] = Hash[file_safety.sort]
       YAML.dump(safety_cfg, file) # Save changes before checking latest revisions
     end
     puts "Updated safe_revision to #{release || '[none]'} for #{f}"
