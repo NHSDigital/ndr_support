@@ -22,28 +22,32 @@ We seem to have issues with Apache on deepthought rate limiting svn requests.
 
 EOT
   max_print = 1000000 if max_print < 0
-  safety_cfg = YAML.load_file(SAFETY_FILE)
+  safety_cfg = File.exist?(SAFETY_FILE) ? YAML.load_file(SAFETY_FILE) : {}
   file_safety = safety_cfg["file safety"]
   if file_safety.nil?
+    puts "Creating new 'file safety' block in #{SAFETY_FILE}"
     safety_cfg["file safety"] = file_safety = {}
   end
   orig_count = file_safety.size
 
   repo_info = %x[svn info]
   repo_info = %x[git svn info] unless repo_info =~ /^URL: /
-  repo = repo_info.split("\n").select{|x| x =~ /^URL: /}.collect{|x| x[5..-1]}.first
+  # trunk_repo is the trunk code
+  # safety_repo is the release branch
+  safety_repo = trunk_repo = repo_info.split("\n").select{|x|
+    x =~ /^URL: /}.collect{|x| x[5..-1]}.first
   SAFETY_REPOS.each{|suffix, alt|
     # Temporarily override to only audit a different file list
-    if repo.end_with?(suffix)
-      repo = repo[0...-suffix.length]+alt
+    if safety_repo.end_with?(suffix)
+      safety_repo = safety_repo[0...-suffix.length]+alt
       break
     end
   }
   if ignore_new
-    puts "Not checking for new files in #{repo}"
+    puts "Not checking for new files in #{safety_repo}"
   else
-    puts "Checking for new files in #{repo}"
-    new_files = %x[svn ls -R "#{repo}"].split("\n")
+    puts "Checking for new files in #{safety_repo}"
+    new_files = %x[svn ls -R "#{safety_repo}"].split("\n")
     # Ignore subdirectories
     new_files.delete_if{|f| f =~ /[\/\\]$/}
     new_files.each{|f|
@@ -61,7 +65,7 @@ EOT
     end
   end
   puts "Checking latest revisions"
-  update_changed_rev(file_safety)
+  update_changed_rev(file_safety, trunk_repo)
   puts "\nSummary:"
   puts "Number of files originally in #{SAFETY_FILE}: #{orig_count}"
   puts "Number of new files added: #{file_safety.size - orig_count}"
@@ -84,7 +88,7 @@ EOT
   end
   
   file_list.each{|f|
-    if print_file_safety(file_safety, f, false, printed.size >= max_print)
+    if print_file_safety(file_safety, trunk_repo, f, false, printed.size >= max_print)
       printed << f
     end
   }
@@ -92,7 +96,7 @@ EOT
   if show_diffs
     puts
     printed.each{|f|
-      print_file_diffs(file_safety, f, user_name)
+      print_file_diffs(file_safety, trunk_repo, f, user_name)
     }
   end
 end
@@ -101,7 +105,7 @@ end
 # If not verbose, only prints details for unsafe files
 # Returns true if anything printed (or would have been printed if silent),
 # or false otherwise.
-def print_file_safety(file_safety, fname, verbose = false, silent = false)
+def print_file_safety(file_safety, repo, fname, verbose = false, silent = false)
   msg = "#{fname}\n  "
   entry = file_safety[fname]
   if entry.nil?
@@ -111,7 +115,7 @@ def print_file_safety(file_safety, fname, verbose = false, silent = false)
     msg += ", last changed at revision #{entry['last_changed_rev']}" unless entry["last_changed_rev"].nil?
   else
     if entry["last_changed_rev"].nil?
-      update_changed_rev(file_safety, [fname])
+      update_changed_rev(file_safety, repo, [fname])
     end
     svnlatest = entry["last_changed_rev"] # May have been prepopulated en mass
     if entry["last_changed_rev"] == -1
@@ -130,22 +134,26 @@ def print_file_safety(file_safety, fname, verbose = false, silent = false)
 end
 
 # Print file diffs, for code review
-def print_file_diffs(file_safety, fname, user_name)
+def print_file_diffs(file_safety, repo, fname, user_name)
   entry = file_safety[fname]
   if entry.nil?
     # File not in audit list
   elsif entry["safe_revision"].nil?
     puts "No safe revision for #{fname}"
-    rev = %x[svn info -r head "#{fname}"].match('Last Changed Rev: ([0-9]*)').to_a[1]
+    rev = %x[svn info -r head "#{repo}/#{fname}"].match('Last Changed Rev: ([0-9]*)').to_a[1]
     if rev
-      mime_type = %x[svn propget svn:mime-type "#{fname}"].chomp
+      mime_type = %x[svn propget svn:mime-type "#{repo}/#{fname}"].chomp
       if ['application/octet-stream'].include?(mime_type)
         puts "Cannot display: file marked as a binary type."
         puts "svn:mime-type = #{mime_type}"
       else
-        fdata = %x[svn cat -r "#{rev}" "#{fname}"]
+        fdata = %x[svn cat -r "#{rev}" "#{repo}/#{fname}"]
         # TODO: Add header information like svn
-        puts fdata.split("\n").collect{|line| "+ #{line}"}
+        begin
+          puts fdata.split("\n").collect{|line| "+ #{line}"}
+        rescue ArgumentError # invalid byte sequence in UTF-8
+          puts "+ " + fdata
+        end
       end
       puts "To flag the changes to this file as safe, run:"
     else
@@ -162,7 +170,7 @@ def print_file_diffs(file_safety, fname, user_name)
     if entry["last_changed_rev"] == -1
       # Not in svn repository
     elsif svnlatest > entry['safe_revision']
-      cmd = "svn diff -r #{entry['safe_revision']}:#{svnlatest} -x-b #{fname}"
+      cmd = "svn diff -r #{entry['safe_revision']}:#{svnlatest} -x-b #{repo}/#{fname}"
       puts cmd
       system(cmd)
       puts %(To flag the changes to this file as safe, run:)
@@ -177,12 +185,12 @@ end
 # Fill in the latest changed revisions in a file safety map.
 # (Don't write this data to the YAML file, as it is intrinsic to the SVN
 # repository.)
-def update_changed_rev(file_safety, fnames = nil)
+def update_changed_rev(file_safety, repo, fnames = nil)
   fnames = file_safety.keys if fnames.nil?
   # TODO: Use svn info --xml instead
   # TODO: Is it possible to get %x[] syntax to accept variable arguments?
   #all_info = %x[svn info -r HEAD "#{fnames.join(' ')}"]
-  repo = %x[svn info].split("\n").select{|x| x =~ /^URL: /}.collect{|x| x[5..-1]}.first
+  #repo = %x[svn info].split("\n").select{|x| x =~ /^URL: /}.collect{|x| x[5..-1]}.first
   # Filename becomes too long, and extra arguments get ignored
   #all_info = Kernel.send("`", "svn info -r HEAD #{fnames.sort.join(' ')}").split("\n\n")
   # Note: I'd like to be able to use svn -u status -v instead of svn info,
@@ -191,7 +199,7 @@ def update_changed_rev(file_safety, fnames = nil)
   all_info = []
   while f2 && !f2.empty?
     blocksize = 10
-    extra_info = svn_info_entries(f2.first(blocksize))
+    extra_info = svn_info_entries(f2.first(blocksize), repo)
     #if extra_info.size != [blocksize, f2.size].min
     #  puts "Mismatch (got #{extra_info.size}, expected #{[blocksize, f2.size].min})"
     #end
@@ -224,13 +232,13 @@ end
 # entries are returned than expected.
 # debug argument: 0 => silent (even for errors), 1 => only print errors,
 #                 2 => print commands + errors
-def svn_info_entries(fnames, retries = true, debug = 0)
+def svn_info_entries(fnames, repo, retries = true, debug = 0)
   puts "svn info -r HEAD #{fnames.join(' ')}" if debug >= 2
   return [] if fnames.empty?
   # Silence if retries and debug=1, as we'll get repeats when we retry
   silencer = (debug == 2 || (debug == 1 && !retries)) ? "" :
     (RUBY_PLATFORM =~ /mswin32|mingw32/ ? " 2>nul " : " 2>/dev/null ")
-  result = Kernel.send("`", "svn info -r HEAD #{fnames.join(' ')}#{silencer}").split("\n\n")
+  result = Kernel.send("`", "svn info -r HEAD #{fnames.collect{|fn|"#{repo}/#{fn}"}.join(' ')}#{silencer}").split("\n\n")
   if retries && result.size != fnames.size && fnames.size > 1
     # At least one invalid (deleted file --> subsequent arguments ignored)
     # Try each file individually
@@ -238,7 +246,7 @@ def svn_info_entries(fnames, retries = true, debug = 0)
     puts "Retrying (got #{result.size}, expected #{fnames.size})" if debug >= 2
     result = []
     fnames.each{ |f|
-      result += svn_info_entries([f], false, debug)
+      result += svn_info_entries([f], repo, false, debug)
     }
   end
   result
@@ -259,8 +267,8 @@ def flag_file_as_safe(release, reviewed_by, comments, f)
   end
   entry = file_safety[f]
   entry_orig = entry.dup
-  if comments.present? && entry["comments"] != comments
-    entry["comments"] = if entry["comments"].blank?
+  if comments.to_s.length > 0 && entry["comments"] != comments
+    entry["comments"] = if entry["comments"].to_s.empty?
                           comments
                         else
                           "#{entry["comments"]}#{'.' unless entry["comments"].end_with?('.')} Revision #{release}: #{comments}"
@@ -321,7 +329,7 @@ Usage:
   task (:safe) do
     required_fields = ["release", "file"]
     required_fields << "reviewed_by" unless ENV['release'] == '0'
-    missing = required_fields.collect{|f| (f if ENV[f].blank? || (f=='reviewed_by' && ENV[f] == 'usr'))}.compact # Avoid accidental missing username
+    missing = required_fields.collect{|f| (f if ENV[f].to_s.empty? || (f=='reviewed_by' && ENV[f] == 'usr'))}.compact # Avoid accidental missing username
     if !missing.empty?
       puts "Usage: rake audit:safe release=revision reviewed_by=usr [comments=...] file=f"
       puts "or, to flag a file for review: rake audit:safe release=0 [comments=...] file=f"
