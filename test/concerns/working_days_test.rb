@@ -38,11 +38,6 @@ class WorkingDaysTest < ActiveSupport::TestCase
     assert DateTime.parse('2015-12-28 3pm').public_holiday?
   end
 
-  test 'should not allow comparison of Date and Time' do
-    assert_raise(ArgumentError) { @normal_date.working_days_until(@normal_time) }
-    assert_raise(ArgumentError) { @normal_time.working_days_until(@normal_date) }
-  end
-
   test 'should allow comparison of Time and DateTime' do
     assert_nothing_raised { @normal_time.working_days_until(@normal_date_time) }
     assert_nothing_raised { @normal_date_time.working_days_until(@normal_time) }
