@@ -2,14 +2,14 @@ require 'test_helper'
 
 # Switch on the patientlimiter as though in external environment
 
-class SafePathTest < ActiveSupport::TestCase
+class SafePathTest < Minitest::Test
   def setup
      @sp = SafePath.new("dbs_outbox").join!("/usr/lib")
   end
 
   def test_reconfiguring_exception
     # We need SafePath to be well-configured for testing already:
-    assert_nothing_raised { SafePath.fs_paths }
+    SafePath.fs_paths # force configuration
     assert_raises(SecurityError) { SafePath.configure! 'dodgy_config.yml' }
   end
 
@@ -65,11 +65,11 @@ class SafePathTest < ActiveSupport::TestCase
   end
 
   test 'safe path should raise expecption if incorrect path is assigned' do
-    assert_raise SecurityError do
+    assert_raises SecurityError do
       @sp.path= "/etc/passwd"
     end
 
-    assert_raise SecurityError do
+    assert_raises SecurityError do
       @sp.path= "/mounts/ron/dbs_outbox/../../../evil_path"
     end
   end
@@ -85,7 +85,7 @@ class SafePathTest < ActiveSupport::TestCase
   end
 
   test 'join should create new object' do
-    assert_not_equal @sp.object_id, @sp.join("test").object_id
+    refute_equal @sp.object_id, @sp.join("test").object_id
   end
 
   test 'join! should return SafePath' do
@@ -118,7 +118,7 @@ class SafePathTest < ActiveSupport::TestCase
   end
 
   test '+ should create new object' do
-    assert_not_equal @sp.object_id, (@sp + "test").object_id
+    refute_equal @sp.object_id, (@sp + "test").object_id
   end
 
   test "constructor should raise exception if the path space doesn't exist" do
@@ -141,9 +141,7 @@ class SafePathTest < ActiveSupport::TestCase
   end
 
   test 'should accept root paths that are subpath of the root specified in the yaml file' do
-    assert_nothing_raised do
-      assert_equal "/mounts/ron/dbs_outbox/nice_path/path", SafePath.new("dbs_outbox", "nice_path/path").root.to_s
-    end
+    assert_equal "/mounts/ron/dbs_outbox/nice_path/path", SafePath.new("dbs_outbox", "nice_path/path").root.to_s
   end
 
   test 'should restrict the access only to the subpath specified in the contructor rather than the root in the yaml file' do

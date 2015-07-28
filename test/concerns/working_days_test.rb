@@ -1,7 +1,7 @@
 require 'test_helper'
 
 # This tests our WorkingDays Time/Date/DateTime extension
-class WorkingDaysTest < ActiveSupport::TestCase
+class WorkingDaysTest < Minitest::Test
   def setup
     @normal_date      = Date.parse('2015-02-02')          # Monday 2nd Feb 2015
     @normal_time      = Time.parse('2015-02-02 2pm')      # Monday 2nd Feb 2015
@@ -17,9 +17,9 @@ class WorkingDaysTest < ActiveSupport::TestCase
     assert Time.parse('2015-12-25 3pm').weekday?
     assert DateTime.parse('2015-12-25 3pm').weekday?
 
-    deny Date.parse('2015-12-26').weekday?
-    deny Time.parse('2015-12-26 3pm').weekday?
-    deny DateTime.parse('2015-12-26 3pm').weekday?
+    refute Date.parse('2015-12-26').weekday?
+    refute Time.parse('2015-12-26 3pm').weekday?
+    refute DateTime.parse('2015-12-26 3pm').weekday?
   end
 
   test 'should identify bank holidays' do
@@ -29,9 +29,9 @@ class WorkingDaysTest < ActiveSupport::TestCase
 
     # Boxing Day 2015 is a Saturday; the bank holiday a
     # substitute day, on the following Monday:
-    deny Date.parse('2015-12-26').public_holiday?
-    deny Time.parse('2015-12-26 3pm').public_holiday?
-    deny DateTime.parse('2015-12-26 3pm').public_holiday?
+    refute Date.parse('2015-12-26').public_holiday?
+    refute Time.parse('2015-12-26 3pm').public_holiday?
+    refute DateTime.parse('2015-12-26 3pm').public_holiday?
 
     assert Date.parse('2015-12-28').public_holiday?
     assert Time.parse('2015-12-28 3pm').public_holiday?
@@ -39,13 +39,13 @@ class WorkingDaysTest < ActiveSupport::TestCase
   end
 
   test 'should allow comparison of Time and DateTime' do
-    assert_nothing_raised { @normal_time.working_days_until(@normal_date_time) }
-    assert_nothing_raised { @normal_date_time.working_days_until(@normal_time) }
+    @normal_time.working_days_until(@normal_date_time)
+    @normal_date_time.working_days_until(@normal_time)
   end
 
   test 'should allow comparison of DateTime and Date' do
-    assert_nothing_raised { @normal_date_time.working_days_until(@normal_date) }
-    assert_nothing_raised { @normal_date.working_days_until(@normal_date_time) }
+    @normal_date_time.working_days_until(@normal_date)
+    @normal_date.working_days_until(@normal_date_time)
   end
 
   test 'should be zero working days between same normal day' do

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Time::ConversionsTest < ActiveSupport::TestCase
+class Time::ConversionsTest < Minitest::Test
   test 'to_time should return same object' do
     yaml  = '2015-08-06 00:00:00 Z'
 

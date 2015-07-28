@@ -2,7 +2,7 @@ require 'test_helper'
 
 # Switch on the patientlimiter as though in external environment
 
-class SafeFileTest < ActiveSupport::TestCase
+class SafeFileTest < Minitest::Test
 
   def setup
     @not_empty_fpath = SafePath.new("test_space_rw").join("test_file_rw_not_empty")
@@ -69,77 +69,54 @@ class SafeFileTest < ActiveSupport::TestCase
   test 'should read from read-only space and write to write only space' do
     write_only_path = SafePath.new("test_space_w").join!("new_file_rw_new_file")
     read_only_path = SafePath.new("test_space_r").join!("new_file_rw_new_file")
-    assert !File.exists?(read_only_path)
+    refute File.exists?(read_only_path)
 
-
-    assert_nothing_raised do
-      f = SafeFile.new(write_only_path, "w")
-      assert_equal 4, f.write("test")
-      f.close
-    end
+    f = SafeFile.new(write_only_path, "w")
+    assert_equal 4, f.write("test")
+    f.close
 
     assert File.exists?(read_only_path)
 
-    assert_nothing_raised do
-      f = SafeFile.new(read_only_path, "r")
-      assert_equal "test", f.read
-      f.close
-    end
+    f = SafeFile.new(read_only_path, "r")
+    assert_equal "test", f.read
+    f.close
   end
 
   test 'should read/write from file with new to rw space' do
     fpath = SafePath.new("test_space_rw").join!("new_file_rw_new_file")
 
-    assert !File.exists?(fpath)
+    refute File.exists?(fpath)
 
-
-    assert_nothing_raised do
-      f = SafeFile.new(fpath, "w")
-      assert_equal 4, f.write("test")
-      f.close
-    end
+    f = SafeFile.new(fpath, "w")
+    assert_equal 4, f.write("test")
+    f.close
 
     assert File.exists?(fpath)
 
-    assert_nothing_raised do
-      f = SafeFile.new(fpath, "r")
-      assert_equal "test", f.read
-      f.close
-    end
-
+    f = SafeFile.new(fpath, "r")
+    assert_equal "test", f.read
+    f.close
   end
 
 
   test 'should accept mode types' do
-    assert_nothing_raised do
-      s = SafeFile.new(@empty_fpath, "r")
-      s.close
-    end
+    s = SafeFile.new(@empty_fpath, "r")
+    s.close
 
-    assert_nothing_raised do
-      s = SafeFile.new(@empty_fpath, "w")
-      s.close
-    end
+    s = SafeFile.new(@empty_fpath, "w")
+    s.close
 
-    assert_nothing_raised do
-      s = SafeFile.new(@empty_fpath, "r+")
-      s.close
-    end
+    s = SafeFile.new(@empty_fpath, "r+")
+    s.close
 
-    assert_nothing_raised do
-      s = SafeFile.new(@empty_fpath, "w+")
-      s.close
-    end
+    s = SafeFile.new(@empty_fpath, "w+")
+    s.close
 
-    assert_nothing_raised do
-      s = SafeFile.new(@empty_fpath, "a+")
-      s.close
-    end
+    s = SafeFile.new(@empty_fpath, "a+")
+    s.close
 
-    assert_nothing_raised do
-      s = SafeFile.new(@empty_fpath, "a")
-      s.close
-    end
+    s = SafeFile.new(@empty_fpath, "a")
+    s.close
   end
 
 
@@ -159,14 +136,10 @@ class SafeFileTest < ActiveSupport::TestCase
 
 
   test 'should accept permissions' do
-    assert_nothing_raised do
-      f = SafeFile.new(@empty_fpath, "r", 755)
-      f.close
-    end
+    f = SafeFile.new(@empty_fpath, "r", 755)
+    f.close
 
-    assert_nothing_raised do
-      s = SafeFile.new(@empty_fpath, 755)
-    end
+    s = SafeFile.new(@empty_fpath, 755)
   end
 
 
@@ -175,7 +148,7 @@ class SafeFileTest < ActiveSupport::TestCase
   test '::open should accept safe_path only' do
     p = SafePath.new("test_space_rw").join("test1")
 
-    assert !File.exists?(p)
+    refute File.exists?(p)
 
     assert_raises ArgumentError do
       SafeFile.open(p.to_s, "r") do |f|
@@ -189,7 +162,7 @@ class SafeFileTest < ActiveSupport::TestCase
       f.close
     end
 
-    assert !File.exists?(p)
+    refute File.exists?(p)
   end
 
 
@@ -197,7 +170,7 @@ class SafeFileTest < ActiveSupport::TestCase
     read_only_path = SafePath.new("test_space_r").join!("new_file_rw_blablabla")
     write_only_path = SafePath.new("test_space_w").join!("test_file_rw_not_empty")
 
-    assert !File.exists?(read_only_path)
+    refute File.exists?(read_only_path)
 
     assert_raises SecurityError do
       SafeFile.open(read_only_path, "w") do |f|
@@ -205,7 +178,7 @@ class SafeFileTest < ActiveSupport::TestCase
       end
     end
 
-    assert !File.exists?(read_only_path)
+    refute File.exists?(read_only_path)
 
     fcontent = "something else"
 
@@ -215,7 +188,7 @@ class SafeFileTest < ActiveSupport::TestCase
       end
     end
 
-    assert_not_equal fcontent, File.read(write_only_path)
+    refute_equal fcontent, File.read(write_only_path)
   end
 
 
@@ -223,26 +196,20 @@ class SafeFileTest < ActiveSupport::TestCase
     fpath = SafePath.new("test_space_rw").join!("new_file_rw_blablabla")
     read_only_path = SafePath.new("test_space_r").join!("new_file_rw_blablabla")
     write_only_path = SafePath.new("test_space_w").join!("new_file_rw_blablabla")
-    assert !File.exists?(fpath)
+    refute File.exists?(fpath)
 
 
-    assert_nothing_raised do
-      SafeFile.open(fpath, "w") do |f|
-        assert_equal 4, f.write("test")
-      end
+    SafeFile.open(fpath, "w") do |f|
+      assert_equal 4, f.write("test")
     end
 
-    assert_nothing_raised do
-      SafeFile.open(fpath, "r") do |f|
-        assert_equal "test", f.read
-      end
+    SafeFile.open(fpath, "r") do |f|
+      assert_equal "test", f.read
     end
 
     # Test how the defailt arguments work
-    assert_nothing_raised do
-      SafeFile.open(read_only_path) do |f|
-        assert_equal "test", f.read
-      end
+    SafeFile.open(read_only_path) do |f|
+      assert_equal "test", f.read
     end
 
     # Test how the defailt arguments work
@@ -259,11 +226,9 @@ class SafeFileTest < ActiveSupport::TestCase
   test '::open should accept fs permissions with block' do
     p = SafePath.new('test_space_rw').join('test1')
 
-    assert_nothing_raised do
-      SafeFile.open(p, "w", 255) {|f|
-        f.write "test332"
-      }
-    end
+    SafeFile.open(p, "w", 255) {|f|
+      f.write "test332"
+    }
 
     assert File.exists?(p)
 
@@ -272,10 +237,8 @@ class SafeFileTest < ActiveSupport::TestCase
   test '::open should accept fs permissions with no block' do
     p = SafePath.new('test_space_rw').join('test1')
 
-    assert_nothing_raised do
-      f = SafeFile.open(p, "w", 255)
-      f.close
-    end
+    f = SafeFile.open(p, "w", 255)
+    f.close
 
     assert File.exists?(p)
   end
@@ -283,11 +246,9 @@ class SafeFileTest < ActiveSupport::TestCase
   test '::open should work as new if no block passed' do
     p = SafePath.new('test_space_r').join('test_file_rw')
 
-    assert_nothing_raised do
-      f = SafeFile.open(p)
-      assert_equal SafeFile, f.class
-      f.close
-    end
+    f = SafeFile.open(p)
+    assert_equal SafeFile, f.class
+    f.close
   end
 
 ################################################################################
@@ -310,9 +271,7 @@ class SafeFileTest < ActiveSupport::TestCase
   end
 
   test '::read should read file content' do
-    assert_nothing_raised do
-      assert File.read(@not_empty_fpath), SafeFile.read(@not_empty_fpath)
-    end
+    assert File.read(@not_empty_fpath), SafeFile.read(@not_empty_fpath)
   end
 
 ################################################################################
@@ -333,9 +292,7 @@ class SafeFileTest < ActiveSupport::TestCase
     p = SafePath.new("test_space_r").join('test_file_rw_not_empty')
 
     f = SafeFile.new(p, "r")
-    assert_nothing_raised do
-      assert_equal "I am not empty", f.read
-    end
+    assert_equal "I am not empty", f.read
     f.close
 
   end
@@ -359,15 +316,11 @@ class SafeFileTest < ActiveSupport::TestCase
     p = SafePath.new("test_space_rw").join('test1')
 
     f = SafeFile.new(p, "w")
-    assert_nothing_raised do
-      f.write "good test"
-    end
+    f.write "good test"
     f.close
 
     f = SafeFile.new(p, "r")
-    assert_nothing_raised do
-      assert_equal "good test", f.read
-    end
+    assert_equal "good test", f.read
     f.close
 
     assert File.exists? p.to_s
@@ -383,7 +336,7 @@ class SafeFileTest < ActiveSupport::TestCase
 
     f = SafeFile.new(p)
     assert_equal SafePath, f.path.class
-    assert_not_equal p.object_id, f.path.object_id
+    refute_equal p.object_id, f.path.object_id
     assert_equal p, f.path
   end
 
@@ -394,9 +347,7 @@ class SafeFileTest < ActiveSupport::TestCase
     p = SafePath.new('test_space_w').join('test_file_rw')
     f = SafeFile.new(p, "w")
     f.write "test"
-    assert_nothing_raised do
-      f.close
-    end
+    f.close
   end
 
 
@@ -413,23 +364,13 @@ class SafeFileTest < ActiveSupport::TestCase
     read_only_path = SafePath.new('test_space_r').join('test_file_rw_not_empty')
     write_only_path = SafePath.new('test_space_w').join('test_file_rw_not_empty')
 
-    assert_nothing_raised do
-      SafeFile.extname read_only_path
-    end
-
-    assert_nothing_raised do
-      SafeFile.extname write_only_path
-    end
+    SafeFile.extname read_only_path
+    SafeFile.extname write_only_path
   end
 
   test '::extname should return the extention only' do
-    assert_nothing_raised do
-      assert_equal ".rb", SafeFile.extname(SafePath.new('test_space_r').join("test_file.rb"))
-    end
-
-    assert_nothing_raised do
-      assert_equal "", SafeFile.extname(SafePath.new('test_space_r').join("test_file"))
-    end
+    assert_equal ".rb", SafeFile.extname(SafePath.new('test_space_r').join("test_file.rb"))
+    assert_equal "", SafeFile.extname(SafePath.new('test_space_r').join("test_file"))
   end
 
 ################################################################################
@@ -449,25 +390,15 @@ class SafeFileTest < ActiveSupport::TestCase
     read_only_path = SafePath.new('test_space_r').join('test_file_rw_not_empty')
     write_only_path = SafePath.new('test_space_w').join('test_file_rw_not_empty')
 
-    assert_nothing_raised do
-      SafeFile.basename read_only_path
-    end
-
-    assert_nothing_raised do
-      SafeFile.basename write_only_path
-    end
+    SafeFile.basename read_only_path
+    SafeFile.basename write_only_path
   end
 
   test '::basename should should return the basename' do
     p = SafePath.new("test_space_rw").join("myfile.rb")
 
-    assert_nothing_raised do
-      assert_equal "myfile.rb", SafeFile.basename(p)
-    end
-
-    assert_nothing_raised do
-      assert_equal "myfile", SafeFile.basename(p, ".rb")
-    end
+    assert_equal "myfile.rb", SafeFile.basename(p)
+    assert_equal "myfile", SafeFile.basename(p, ".rb")
   end
 
 ################################################################################
@@ -528,25 +459,14 @@ class SafeFileTest < ActiveSupport::TestCase
     read_only_path = SafePath.new('test_space_r').join('test_file_rw_not_empty')
     write_only_path = SafePath.new('test_space_w').join('test_file_rw_not_empty')
 
-    assert_nothing_raised do
-      SafeFile.directory?(read_only_path)
-    end
-
-    assert_nothing_raised do
-      SafeFile.directory?(write_only_path)
-    end
+    SafeFile.directory?(read_only_path)
+    SafeFile.directory?(write_only_path)
   end
 
   test '::directory? should return true if the path is a directory and false otherwise' do
     p = SafePath.new('test_space_r')
-    assert_nothing_raised do
-      assert SafeFile.directory?(p)
-    end
-
-    assert_nothing_raised do
-      assert !SafeFile.directory?(p.join("test_file_rw_not_empty"))
-    end
-
+    assert SafeFile.directory?(p)
+    refute SafeFile.directory?(p.join("test_file_rw_not_empty"))
   end
 
 ################################################################################
@@ -566,21 +486,10 @@ class SafeFileTest < ActiveSupport::TestCase
     read_only_path = SafePath.new('test_space_r').join('test_file_rw_not_empty')
     write_only_path = SafePath.new('test_space_w').join('test_file_rw_not_empty')
 
-    assert_nothing_raised do
-      SafeFile.exist?(read_only_path)
-    end
-
-    assert_nothing_raised do
-      SafeFile.exist?(write_only_path)
-    end
-
-    assert_nothing_raised do
-      SafeFile.exists?(read_only_path)
-    end
-
-    assert_nothing_raised do
-      SafeFile.exists?(write_only_path)
-    end
+    SafeFile.exist?(read_only_path)
+    SafeFile.exist?(write_only_path)
+    SafeFile.exists?(read_only_path)
+    SafeFile.exists?(write_only_path)
   end
 
   test 'exist? and exists? should return true if the file exists and false otherwise' do
@@ -590,8 +499,8 @@ class SafeFileTest < ActiveSupport::TestCase
     assert SafeFile.exist?(real)
     assert SafeFile.exists?(real)
 
-    assert !SafeFile.exist?(junk)
-    assert !SafeFile.exists?(junk)
+    refute SafeFile.exist?(junk)
+    refute SafeFile.exists?(junk)
   end
 
 ################################################################################
@@ -607,13 +516,8 @@ class SafeFileTest < ActiveSupport::TestCase
     read_only_path = SafePath.new('test_space_r').join('test_file_rw_not_empty')
     write_only_path = SafePath.new('test_space_w').join('test_file_rw_not_empty')
 
-    assert_nothing_raised do
-      SafeFile.file?(read_only_path)
-    end
-
-    assert_nothing_raised do
-      SafeFile.file?(write_only_path)
-    end
+    SafeFile.file?(read_only_path)
+    SafeFile.file?(write_only_path)
   end
 
   test 'file? should return true of the path is file and false otherwise' do
@@ -621,7 +525,7 @@ class SafeFileTest < ActiveSupport::TestCase
     dir = SafePath.new('test_space_r')
 
     assert SafeFile.file?(file)
-    assert !SafeFile.file?(dir)
+    refute SafeFile.file?(dir)
   end
 
 ################################################################################
@@ -637,18 +541,13 @@ class SafeFileTest < ActiveSupport::TestCase
     read_only_path = SafePath.new('test_space_r').join('test_file_rw_not_empty')
     write_only_path = SafePath.new('test_space_w').join('test_file_rw_not_empty')
 
-    assert_nothing_raised do
-      SafeFile.zero?(read_only_path)
-    end
-
-    assert_nothing_raised do
-      SafeFile.zero?(write_only_path)
-    end
+    SafeFile.zero?(read_only_path)
+    SafeFile.zero?(write_only_path)
   end
 
   test '::zero? should return true when the file is empty and false otherwise' do
     assert SafeFile.zero? SafePath.new("test_space_rw").join!("test_file_rw")
-    assert !SafeFile.zero?(SafePath.new("test_space_rw").join!("test_file_rw_not_empty"))
+    refute SafeFile.zero?(SafePath.new("test_space_rw").join!("test_file_rw_not_empty"))
   end
 
 ################################################################################
@@ -664,24 +563,17 @@ class SafeFileTest < ActiveSupport::TestCase
     read_only_path = SafePath.new('test_space_r').join('test_file_rw_not_empty')
     write_only_path = SafePath.new('test_space_w').join('test_file_rw_not_empty')
 
-    assert_nothing_raised do
-      SafeFile.dirname(read_only_path)
-    end
-
-    assert_nothing_raised do
-      SafeFile.dirname(write_only_path)
-    end
+    SafeFile.dirname(read_only_path)
+    SafeFile.dirname(write_only_path)
   end
 
   test '::dirname should return the directory' do
     p = SafePath.new("test_space_r")
 
     assert_equal SafePath, SafeFile.dirname(p.join("test_file_rw")).class
-    assert_not_equal p.object_id, SafeFile.dirname(p.join("test_file_rw")).object_id
+    refute_equal p.object_id, SafeFile.dirname(p.join("test_file_rw")).object_id
 
-    assert_nothing_raised do
-      assert_equal p.to_s, SafeFile.dirname(p.join("test_file_rw")).to_s
-    end
+    assert_equal p.to_s, SafeFile.dirname(p.join("test_file_rw")).to_s
   end
 
 ################################################################################
@@ -711,20 +603,14 @@ class SafeFileTest < ActiveSupport::TestCase
       File.open(fname, "w") { |f| f.write "test" }
     end
 
-    assert_nothing_raised do
-      SafeFile.delete sp
-    end
+    SafeFile.delete sp
 
-    assert !File.exists?(sp)
+    refute File.exists?(sp)
 
-    assert_nothing_raised do
-      SafeFile.delete *group
-    end
+    SafeFile.delete *group
 
     group.each do |fname|
-      assert !File.exists?(fname)
+      refute File.exists?(fname)
     end
-
   end
-
 end

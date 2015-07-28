@@ -1,7 +1,7 @@
 require 'test_helper'
 
 # This tests our Fixnum calculations extension
-class Fixnum::CalculationsTest < ActiveSupport::TestCase
+class Fixnum::CalculationsTest < Minitest::Test
   test 'Fixnums should be extended with #factorial' do
     assert 1.respond_to?(:factorial)
   end

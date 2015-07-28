@@ -1,7 +1,7 @@
 require 'test_helper'
 
 # Tests Utf8Encoding::ControlCharacters module.
-class ControlCharactersTest < ActiveSupport::TestCase
+class ControlCharactersTest < Minitest::Test
   include UTF8Encoding
 
   test 'control char identification' do
@@ -19,7 +19,7 @@ class ControlCharactersTest < ActiveSupport::TestCase
     actual   = escape_control_chars(string)
 
     assert_equal expected, actual
-    deny actual.object_id == string.object_id, 'should not have modified in place'
+    refute actual.object_id == string.object_id, 'should not have modified in place'
   end
 
   test 'escape_control_chars! with harmless string' do
@@ -37,7 +37,7 @@ class ControlCharactersTest < ActiveSupport::TestCase
     actual   = escape_control_chars(string)
 
     assert_equal expected, actual
-    deny actual.object_id == string.object_id, 'should not have modified in place'
+    refute actual.object_id == string.object_id, 'should not have modified in place'
   end
 
   test 'escape_control_chars! with unprintable control characters' do

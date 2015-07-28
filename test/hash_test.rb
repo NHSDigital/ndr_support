@@ -1,7 +1,7 @@
 require 'test_helper'
 
 # This tests our Hash extension
-class HashTest < ActiveSupport::TestCase
+class HashTest < Minitest::Test
   test 'value_by_path' do
     my_hash = { 'one' => '1', 'two' => { 'twopointone' => '2.1', 'twopointtwo' => '2.2' } }
     assert_equal my_hash['one'], my_hash.value_by_path('one')
@@ -37,7 +37,7 @@ class HashTest < ActiveSupport::TestCase
   test 'rawtext_merge with prevent_overwrite on rawtext' do
     first_hash = { :a => 1, :b => :two, :rawtext => { 'x' => 'apples', 'y' => 'pears' } }
     second_hash = { 'c' => '3', :rawtext => { 'y' => 'pears', 'z' => 'oranges' } }
-    assert_raise RuntimeError do
+    assert_raises RuntimeError do
       first_hash.rawtext_merge(second_hash, true)
     end
     # Ensure original hashes are preserved
@@ -50,7 +50,7 @@ class HashTest < ActiveSupport::TestCase
   test 'rawtext_merge with prevent_overwrite on non-rawtext' do
     first_hash = { :a => 1, :b => :two, :rawtext => { 'x' => 'apples' } }
     second_hash = { :b => 2, 'c' => '3', :rawtext => { 'y' => 'pears', 'z' => 'oranges' } }
-    assert_raise RuntimeError do
+    assert_raises RuntimeError do
       first_hash.rawtext_merge(second_hash, true)
     end
     # Ensure original hashes are preserved

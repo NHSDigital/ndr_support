@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class String::CleaningTest < ActiveSupport::TestCase
+class String::CleaningTest < Minitest::Test
   # squash
 
   test 'postcodeize' do
@@ -28,10 +28,10 @@ class String::CleaningTest < ActiveSupport::TestCase
 
   test 'xml_unsafe?' do
     without_control = 'hello world!'
-    deny without_control.xml_unsafe?
+    refute without_control.xml_unsafe?
 
     with_safe_control = "increase: 100\045"
-    deny with_safe_control.xml_unsafe?
+    refute with_safe_control.xml_unsafe?
 
     with_unsafe_control = "Lorem \000Ipsum\000"
     assert with_unsafe_control.xml_unsafe?

@@ -1,7 +1,7 @@
 require 'test_helper'
 
 # This tests our Daterange class
-class DaterangeTest < ActiveSupport::TestCase
+class DaterangeTest < Minitest::Test
   def test_basic_creation
     dr = Daterange.new
     assert_equal '', dr.to_s
@@ -15,9 +15,9 @@ class DaterangeTest < ActiveSupport::TestCase
     d = Date.today
     dr = Daterange.new d, d
     assert_nil dr.source
-    assert_not_nil dr.date1
-    assert_not_nil dr.date2
-    assert !dr.empty?
+    refute_nil dr.date1
+    refute_nil dr.date2
+    refute dr.empty?
     assert_equal d.to_s, dr.to_s # because just one day
     # assert_match(/\d\d\.\d\d\.\d\d\d\d/, dr.to_s) # default format
     # dr = Daterange.new d, d + 1
@@ -36,8 +36,8 @@ class DaterangeTest < ActiveSupport::TestCase
     assert_equal '', dr.to_s
     assert_nil dr.date1
     assert_nil dr.date2
-    assert !dr.empty?  # Illegal dates do not count as empty / blank,
-    assert_not_nil dr.source # but the illegal string is preserved
+    refute dr.empty?  # Illegal dates do not count as empty / blank,
+    refute_nil dr.source # but the illegal string is preserved
   end
 
   def test_out_of_range
@@ -126,8 +126,8 @@ class DaterangeTest < ActiveSupport::TestCase
   def test_year_intersection
     dr1 = Daterange.new('2001')
     dr2 = Daterange.new('2002')
-    deny dr1.intersects?(dr2)
-    deny dr2.intersects?(dr1)
+    refute dr1.intersects?(dr2)
+    refute dr2.intersects?(dr1)
 
     dr1 = Daterange.new('2001')
     dr2 = Daterange.new('2001')
@@ -164,27 +164,27 @@ class DaterangeTest < ActiveSupport::TestCase
   def test_disjointed_intersection
     dr1 = Daterange.new('02.05.2000 to 31.05.2000')
     dr2 = Daterange.new('01.04.2000 to 01.05.2000')
-    deny dr1.intersects?(dr2)
-    deny dr2.intersects?(dr1)
+    refute dr1.intersects?(dr2)
+    refute dr2.intersects?(dr1)
   end
 
   def test_real_empty_intersection
     dr1 = Daterange.new
     dr2 = Daterange.new('01.04.2000 to 01.05.2000')
-    deny dr1.intersects?(dr2)
-    deny dr2.intersects?(dr1)
+    refute dr1.intersects?(dr2)
+    refute dr2.intersects?(dr1)
 
     dr1 = Daterange.new('01.04.2000 to 01.05.2000')
     dr2 = Daterange.new
-    deny dr1.intersects?(dr2)
-    deny dr2.intersects?(dr1)
+    refute dr1.intersects?(dr2)
+    refute dr2.intersects?(dr1)
   end
 
   def test_empty_empty_intersection
     dr1 = Daterange.new
     dr2 = Daterange.new
-    deny dr1.intersects?(dr2)
-    deny dr2.intersects?(dr1)
+    refute dr1.intersects?(dr2)
+    refute dr2.intersects?(dr1)
   end
 
   def test_merge

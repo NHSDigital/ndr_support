@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class SerializationTest < ActiveSupport::TestCase
+class SerializationTest < Minitest::Test
   include NdrSupport::YAML::SerializationMigration
   extend  NdrSupport::YAML::EngineSelector
   extend  UTF8Encoding
@@ -70,22 +70,20 @@ class SerializationTest < ActiveSupport::TestCase
   end
 
   def assert_times
-    assert_nothing_raised do # Dumped by 1.9.3 syck, within era.
-      loaded = YAML.load("--- !timestamp 2014-03-01\n")
-      assert [Date, Time].include?(loaded.class), '1.9.3 era timestamp class'
-      assert_equal 2014, loaded.year,  '1.9.3 era timestamp year'
-      assert_equal 3,    loaded.month, '1.9.3 era timestamp month'
-      assert_equal 1,    loaded.day,   '1.9.3 era timestamp day'
-    end
+    # Dumped by 1.9.3 syck, within era.
+    loaded = YAML.load("--- !timestamp 2014-03-01\n")
+    assert [Date, Time].include?(loaded.class), '1.9.3 era timestamp class'
+    assert_equal 2014, loaded.year,  '1.9.3 era timestamp year'
+    assert_equal 3,    loaded.month, '1.9.3 era timestamp month'
+    assert_equal 1,    loaded.day,   '1.9.3 era timestamp day'
   end
 
   def assert_dates
     date = Date.new(2014, 3, 1)
 
-    assert_nothing_raised do # Dumped by 1.8.7 syck, within era.
-      loaded = YAML.load("--- 2014-03-01\n")
-      assert_equal date, loaded, '1.8.7 era date'
-    end
+    # Dumped by 1.8.7 syck, within era.
+    loaded = YAML.load("--- 2014-03-01\n")
+    assert_equal date, loaded, '1.8.7 era date'
   end
 
   def assert_datetimes
@@ -134,7 +132,7 @@ class SerializationTest < ActiveSupport::TestCase
     yaml = "--- \nname: Dr. Doctor\000\000\000 \ndiagnosis: \"CIN 1 \\xE2\\x80\\x93 CIN 2\"\n"
     hash = {}
 
-    assert_nothing_raised { hash = load_yaml(yaml) }
+    hash = load_yaml(yaml)
 
     # The null chars should be escaped:
     assert_equal 'Dr. Doctor0x000x000x00', hash['name']
@@ -159,9 +157,7 @@ class SerializationTest < ActiveSupport::TestCase
     assert_raises(UTF8Encoding::UTF8CoercionError) { load_yaml(yaml) }
 
     # With the optional second argument, we can force an escape:
-    assert_nothing_raised do
-      hash = load_yaml(yaml, true)
-      assert_equal 'Here is a weird 0x9d char', hash['fulltextreport']
-    end
+    hash = load_yaml(yaml, true)
+    assert_equal 'Here is a weird 0x9d char', hash['fulltextreport']
   end
 end

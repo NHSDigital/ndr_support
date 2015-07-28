@@ -1,7 +1,7 @@
 require 'test_helper'
 
 # This tests our Ourtime class
-class OurtimeTest < ActiveSupport::TestCase
+class OurtimeTest < Minitest::Test
   def test_initialize_with_local_format_string
     # Creating an Ourtime from a local-format String (with seconds)
     ot = Ourtime.new('01.02.1993 04:05:06')

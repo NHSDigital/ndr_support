@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class String::ConversionsTest < ActiveSupport::TestCase
+class String::ConversionsTest < Minitest::Test
   test 'soundex' do
     assert_equal 'C460', 'colour'.soundex
     assert_equal 'color'.soundex, 'colour'.soundex
@@ -234,8 +234,8 @@ class String::ConversionsTest < ActiveSupport::TestCase
     assert_equal Ourdate.build_datetime(1998, 02, 13), '1998-02-13'.to_date('%Y-%m-%d')
     assert_equal Ourdate.build_datetime(1998, 05, 03), '1998-05-03'.to_date('%Y-%m-%d')
 
-    assert_blank ''.to_date('%Y-%m-%d')
-    assert_blank '  '.to_date('%Y-%m-%d')
+    assert ''.to_date('%Y-%m-%d').blank?
+    assert '  '.to_date('%Y-%m-%d').blank?
   end
 
   test '%d-%m-%Y string to_date' do
@@ -335,7 +335,7 @@ class String::ConversionsTest < ActiveSupport::TestCase
     assert_equal false, 'false'.to_boolean
     assert_equal false, 'no'.to_boolean
     assert_equal false, '0'.to_boolean
-    assert_raise ArgumentError do
+    assert_raises ArgumentError do
       'meaningless'.to_boolean
     end
   end
