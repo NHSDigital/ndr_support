@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class EngineSelectorTest < ActiveSupport::TestCase
+class EngineSelectorTest < Minitest::Test
   include NdrSupport::YAML::EngineSelector
 
   # TODO: this is a temporary test, until everything

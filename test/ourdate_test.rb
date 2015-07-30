@@ -1,7 +1,7 @@
 require 'test_helper'
 
 # This tests our Ourdate class
-class OurdateTest < ActiveSupport::TestCase
+class OurdateTest < Minitest::Test
   def test_date_and_time
     d = Ourdate.build_datetime(2003, 11, 30)
     assert_equal '30 November 2003', d.to_verbose

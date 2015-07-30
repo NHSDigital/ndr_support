@@ -1,7 +1,7 @@
 require 'test_helper'
 
 # This tests our RegexpRange class
-class RegexpRangeTest < ActiveSupport::TestCase
+class RegexpRangeTest < Minitest::Test
   include NdrSupport::YAML::SerializationMigration
   extend  NdrSupport::YAML::EngineSelector
 
@@ -58,10 +58,10 @@ class RegexpRangeTest < ActiveSupport::TestCase
     assert_equal @lines[Range.new(2, 3, false)],
                  @lines[RegexpRange.new(2, /^3Ut/, false).to_range(@lines)]
 
-    assert_raise RegexpRange::PatternMatchError do
+    assert_raises RegexpRange::PatternMatchError do
       RegexpRange.new(2, /^NO_MATCH$/, true).to_range(@lines)
     end
-    assert_raise RegexpRange::PatternMatchError do
+    assert_raises RegexpRange::PatternMatchError do
       RegexpRange.new(2, /^NO_MATCH$/, false).to_range(@lines)
     end
   end
@@ -77,10 +77,10 @@ class RegexpRangeTest < ActiveSupport::TestCase
     assert_equal @lines[Range.new(1, -1, false)],
                  @lines[RegexpRange.new(/^1consec/, -1, false).to_range(@lines)]
 
-    assert_raise RegexpRange::PatternMatchError do
+    assert_raises RegexpRange::PatternMatchError do
       RegexpRange.new(/^NO_MATCH$/, 5, true).to_range(@lines)
     end
-    assert_raise RegexpRange::PatternMatchError do
+    assert_raises RegexpRange::PatternMatchError do
       RegexpRange.new(/^NO_MATCH$/, 5, false).to_range(@lines)
     end
   end
@@ -96,10 +96,10 @@ class RegexpRangeTest < ActiveSupport::TestCase
     assert_equal @lines[Range.new(1, 3, false)],
                  @lines[RegexpRange.new(/^1consec/, /^3Ut/, false).to_range(@lines)]
 
-    assert_raise RegexpRange::PatternMatchError do
+    assert_raises RegexpRange::PatternMatchError do
       RegexpRange.new(/^NO_MATCH$/, /^NO_MATCH$/, true).to_range(@lines)
     end
-    assert_raise RegexpRange::PatternMatchError do
+    assert_raises RegexpRange::PatternMatchError do
       RegexpRange.new(/^NO_MATCH$/, /^NO_MATCH$/, false).to_range(@lines)
     end
   end

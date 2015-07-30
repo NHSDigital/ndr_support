@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class Utf8EncodingTest < ActiveSupport::TestCase
+class Utf8EncodingTest < Minitest::Test
   extend UTF8Encoding
   include UTF8Encoding
 
@@ -10,7 +10,7 @@ class Utf8EncodingTest < ActiveSupport::TestCase
     string1 = 'hello'
     string2 = ensure_utf8(string1)
 
-    deny string1.object_id == string2.object_id
+    refute string1.object_id == string2.object_id
   end
 
   test 'ensure_utf8! should return the same string' do
@@ -64,7 +64,7 @@ class Utf8EncodingTest < ActiveSupport::TestCase
     string1 = 'hello'
     string2 = coerce_utf8(string1)
 
-    deny string1.object_id == string2.object_id
+    refute string1.object_id == string2.object_id
   end
 
   test 'coerce_utf8! should return the same string' do
@@ -135,21 +135,19 @@ class Utf8EncodingTest < ActiveSupport::TestCase
   end
 
   test 'ensure_utf8 should fail if unable to derive encoding' do
-    assert_raise(UTF8Encoding::UTF8CoercionError) do
+    assert_raises(UTF8Encoding::UTF8CoercionError) do
       # Not going to work with UTF-8 or Windows-1252:
       ensure_utf8("rubbish \x90 rubbish")
     end
   end
 
   test 'coerce_utf8 should escape unmappable values' do
-    assert_nothing_raised do
-      expected = 'rubbish 0x90 rubbish'
-      actual   = coerce_utf8("rubbish \x90 rubbish")
+    expected = 'rubbish 0x90 rubbish'
+    actual   = coerce_utf8("rubbish \x90 rubbish")
 
-      assert_equal expected, actual
-      assert actual.valid_encoding?
-      assert_equal Encoding.find('UTF-8'), actual.encoding
-    end
+    assert_equal expected, actual
+    assert actual.valid_encoding?
+    assert_equal Encoding.find('UTF-8'), actual.encoding
   end
 
   test 'coerce_utf8 should use given source encoding' do
@@ -157,20 +155,16 @@ class Utf8EncodingTest < ActiveSupport::TestCase
     win_expected = 'maybe À rubbish'
     utf_expected = 'maybe 0xc0 rubbish'
 
-    assert_nothing_raised do
-      win_actual = coerce_utf8(input, 'Windows-1252')
+    win_actual = coerce_utf8(input, 'Windows-1252')
 
-      assert_equal win_expected, win_actual
-      assert win_actual.valid_encoding?
-      assert_equal Encoding.find('UTF-8'), win_actual.encoding
-    end
+    assert_equal win_expected, win_actual
+    assert win_actual.valid_encoding?
+    assert_equal Encoding.find('UTF-8'), win_actual.encoding
 
-    assert_nothing_raised do
-      utf_actual = coerce_utf8(input, 'UTF-8')
+    utf_actual = coerce_utf8(input, 'UTF-8')
 
-      assert_equal utf_expected, utf_actual
-      assert utf_actual.valid_encoding?
-      assert_equal Encoding.find('UTF-8'), utf_actual.encoding
-    end
+    assert_equal utf_expected, utf_actual
+    assert utf_actual.valid_encoding?
+    assert_equal Encoding.find('UTF-8'), utf_actual.encoding
   end
 end
