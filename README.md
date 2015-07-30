@@ -82,6 +82,8 @@ For more details of the tasks available, execute:
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
+Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms.
+
 ## Test Data
 
 All test data in this repository is fictitious. Any resemblance to real persons, living or dead, is purely coincidental.
