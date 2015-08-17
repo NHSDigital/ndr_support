@@ -51,7 +51,7 @@ class Ourdate
     else
       # Only supports fake GMT time -- needs improvement
       # Maybe use Time.zone.local or Time.local_time(year, month, day)
-      Time.utc_time(year, month, day, hour, min, sec, usec).to_datetime
+      Time.utc(year, month, day, hour, min, sec, usec).to_datetime
     end
   end
 
