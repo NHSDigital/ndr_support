@@ -15,7 +15,7 @@ module NdrSupport
         fix_encoding!(string, coerce_invalid_chars)
 
         # Achieve same behaviour using `syck` and `psych`:
-        handle_special_characters!(string)
+        handle_special_characters!(string, coerce_invalid_chars)
         fix_encoding!(string, coerce_invalid_chars)
 
         loader = yaml_loader_for(string)
@@ -46,9 +46,14 @@ module NdrSupport
       # Within double quotes, YAML allows special characters.
       # While `psych` emits UTF-8 YAML, `syck` double escapes
       # higher characters. We need to unescape any we find:
-      def handle_special_characters!(string)
+      def handle_special_characters!(string, coerce_invalid_chars)
         # Replace any encoded hex chars with their actual value:
-        string.gsub!(/\\x([0-9A-F]{2})/) { [$1].pack('H2') }
+        string.gsub!(/((?:\\x[0-9A-F]{2})+)/) do
+          byte_sequence = $1.scan(/[0-9A-F]{2}/)
+          byte_sequence.pack('H2' * byte_sequence.length).tap do |sequence|
+            fix_encoding!(sequence, coerce_invalid_chars)
+          end
+        end
 
         # Escape any null chars, as they can confuse YAML:
         string.gsub!(/\x00/) { UTF8Encoding::REPLACEMENT_SCHEME[0] }

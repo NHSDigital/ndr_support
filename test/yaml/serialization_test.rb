@@ -130,8 +130,6 @@ class SerializationTest < Minitest::Test
 
   def assert_syck_1_8_yaml_loads_correctly
     yaml = "--- \nname: Dr. Doctor\000\000\000 \ndiagnosis: \"CIN 1 \\xE2\\x80\\x93 CIN 2\"\n"
-    hash = {}
-
     hash = load_yaml(yaml)
 
     # The null chars should be escaped:
@@ -151,13 +149,15 @@ class SerializationTest < Minitest::Test
   end
 
   def assert_yaml_coercion_behaviour
-    yaml = "---\nfulltextreport: \"Here is a weird \\x9D char\"\n"
+    # UTF-8, with an unmappable byte too:
+    yaml = "---\nfulltextreport: \"Here is \\xE2\\x80\\x93 a weird \\x9D char\"\n"
 
     # By default, we'd expect the (serialised) \x9D
     assert_raises(UTF8Encoding::UTF8CoercionError) { load_yaml(yaml) }
 
     # With the optional second argument, we can force an escape:
     hash = load_yaml(yaml, true)
-    assert_equal 'Here is a weird 0x9d char', hash['fulltextreport']
+    assert_equal 'Here is – a weird 0x9d char', hash['fulltextreport']
+    assert_equal 'UTF-8', hash['fulltextreport'].encoding.name
   end
 end
