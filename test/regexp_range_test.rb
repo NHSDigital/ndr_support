@@ -2,9 +2,6 @@ require 'test_helper'
 
 # This tests our RegexpRange class
 class RegexpRangeTest < Minitest::Test
-  include NdrSupport::YAML::SerializationMigration
-  extend  NdrSupport::YAML::EngineSelector
-
   def setup
     @lines = [
       '0Lorem ipsum dolor sit amet',
@@ -15,22 +12,11 @@ class RegexpRangeTest < Minitest::Test
     ]
   end
 
-  test 'to_yaml with syck' do
+  test 'to_yaml' do
     regexp_range = RegexpRange.new(0, /^3Ut/)
 
     # Don't test YAML serialisation directly, but make it can be loaded:
-    deserialized_regexp_range = SYCK.load(regexp_range.to_yaml)
-    assert_instance_of RegexpRange, deserialized_regexp_range
-    assert_equal regexp_range.begin, deserialized_regexp_range.begin
-    assert_equal regexp_range.end, deserialized_regexp_range.end
-    assert_equal regexp_range.excl, deserialized_regexp_range.excl
-  end if syck_available?
-
-  test 'to_yaml with psych' do
-    regexp_range = RegexpRange.new(0, /^3Ut/)
-
-    # Don't test YAML serialisation directly, but make it can be loaded:
-    deserialized_regexp_range = PSYCH.load(regexp_range.to_yaml)
+    deserialized_regexp_range = YAML.load(regexp_range.to_yaml)
     assert_instance_of RegexpRange, deserialized_regexp_range
     assert_equal regexp_range.begin, deserialized_regexp_range.begin
     assert_equal regexp_range.end, deserialized_regexp_range.end

@@ -1,9 +1,11 @@
-require File.join(File.dirname(__FILE__), 'utf8_encoding', 'control_characters')
-require File.join(File.dirname(__FILE__), 'utf8_encoding', 'object_support')
+require 'ndr_support/utf8_encoding/control_characters'
+require 'ndr_support/utf8_encoding/force_binary'
+require 'ndr_support/utf8_encoding/object_support'
 
 # Provides encoding support to be used for file / rawtext handling.
 module UTF8Encoding
   include ControlCharacters
+  include ForceBinary
   include ObjectSupport
 
   # Raised when we cannot ensure a string is valid UTF-8

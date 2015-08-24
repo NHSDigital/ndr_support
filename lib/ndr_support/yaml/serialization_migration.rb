@@ -1,6 +1,5 @@
 require 'yaml'
 require 'ndr_support/utf8_encoding'
-require 'ndr_support/yaml/engine_selector'
 
 module NdrSupport
   module YAML
@@ -8,7 +7,6 @@ module NdrSupport
     # necessary support for YAML engines and string encodings.
     module SerializationMigration
       include UTF8Encoding
-      include EngineSelector
 
       # Wrapper around: YAML.load(string)
       def load_yaml(string, coerce_invalid_chars = false)
@@ -18,8 +16,7 @@ module NdrSupport
         handle_special_characters!(string, coerce_invalid_chars)
         fix_encoding!(string, coerce_invalid_chars)
 
-        loader = yaml_loader_for(string)
-        object = loader.load(string)
+        object = Psych.load(string)
 
         # Ensure that any string related to the object
         # we've loaded is also valid UTF-8.
@@ -31,7 +28,11 @@ module NdrSupport
 
       # Wrapper around: YAML.dump(object)
       def dump_yaml(object)
-        yaml_emitter.dump(object)
+        # Psych produces UTF-8 encoded output; we'd rather
+        # have YAML that can be safely stored in stores with
+        # other encodings. If #load_yaml is used, the binary
+        # encoding of the object will be reversed on load.
+        Psych.dump binary_encode_any_high_ascii(object)
       end
 
       private
@@ -55,8 +56,9 @@ module NdrSupport
           end
         end
 
-        # Escape any null chars, as they can confuse YAML:
-        string.gsub!(/\x00/) { UTF8Encoding::REPLACEMENT_SCHEME[0] }
+        # Re-escape any non-printing control characters,
+        # as they can break the YAML parser:
+        escape_control_chars_in_object!(string)
       end
     end
   end
