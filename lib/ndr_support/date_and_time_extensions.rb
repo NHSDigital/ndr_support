@@ -1,6 +1,6 @@
 require 'yaml'
 
-require File.expand_path('../concerns/working_days', __FILE__)
+require 'ndr_support/concerns/working_days'
 [Time, Date, DateTime].each { |klass| klass.send(:include, WorkingDays) }
 
 class Date
