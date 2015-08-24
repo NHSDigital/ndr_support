@@ -11,6 +11,14 @@ require 'yaml'
 # Until then, we continue to emit with syck, and
 # only read with psych if it is available
 #
+# ================================================================
+# TODO: This logic is likely redudant now:
+#       The transition to Ruby 2.0+ is likely to be smoothest
+#       if we move directly to using `psych`, and start using
+#       immediately a rbenv-driven fallback mechanism for handling
+#       unparseable YAML.
+# ================================================================
+#
 module NdrSupport
   module YAML
     module EngineSelector
@@ -33,48 +41,25 @@ module NdrSupport
 
       # Returns the YAML engine we should use
       # to load the given `string`.
-      def yaml_loader_for(string)
-        return PSYCH unless syck_available?
-
-        # Only if both engines are available can we choose:
-        emitted_by_psych?(string) ? PSYCH : SYCK
+      def yaml_loader_for(_string)
+        PSYCH
       end
 
       # Returns the YAML engine that should be used
       # for emitting new YAML.
       def yaml_emitter
-        # Until all platforms have psych available,
-        # we must continue to emit using syck.
-        universal_psych_support? ? PSYCH : SYCK
+        PSYCH
       end
 
       private
 
-      # TODO: code out once true.
-      # !syck_available? forces this to be true for ruby 2.0 and above
-      def universal_psych_support?
-        false || !syck_available?
-      end
-
-      # We can make an educated guess as to whether it was psych
-      # that created the given YAML string. These rules aren't
-      # universally true (it is possible to engineer objects
-      # that are dumped differently), but is a reasonable indicator.
-      #
-      # * Psych:
-      #    starts with: '---\n'
-      #    ends with:   '\n...\n'
-      # * Syck:
-      #    starts with: '--- \n'
-      #    ends with:   '\n'
-      #
-      def emitted_by_psych?(string)
-        (string =~ /\A---\n/) || (string =~ /\n[.]{3}\n\z/)
-      end
-
       # TODO: code out once we're on 2.0+ everywhere.
       def syck_available?
         !SYCK.nil?
+      end
+
+      def psych_available?
+        !PSYCH.nil?
       end
     end
   end

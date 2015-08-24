@@ -22,7 +22,6 @@ class SerializationTest < Minitest::Test
   end if syck_available?
 
   test 'should handle syck-encoded characters with psych' do
-    stubs(:yaml_loader_for => PSYCH)
     assert_syck_1_8_yaml_loads_correctly
   end
 
@@ -42,7 +41,6 @@ class SerializationTest < Minitest::Test
   end if syck_available?
 
   test 'load_yaml should not coerce to UTF-8 be default when using psych' do
-    stubs(:yaml_loader_for => PSYCH)
     assert_yaml_coercion_behaviour
   end
 
@@ -65,13 +63,12 @@ class SerializationTest < Minitest::Test
     stubs(:yaml_loader_for => SYCK)
     reloaded_object = load_yaml(yaml_produced)
     assert_equal original_object, reloaded_object
-  end if psych_available?
+  end if syck_available?
 
   test 'encoding-portable YAML should be readable with psych' do
     original_object = { :basic => 'manana', :complex => 'mañana' }
     yaml_produced   = dump_yaml(original_object)
 
-    stubs(:yaml_loader_for => PSYCH)
     reloaded_object = load_yaml(yaml_produced)
     assert_equal original_object, reloaded_object
   end
