@@ -35,6 +35,13 @@ class SerializationTest < Minitest::Test
     assert_equal({ :fulltext => "¡null 0x00 characters \r\n suck!" }, load_yaml(yamled_hash))
   end
 
+  # Psych doesn't always base64-encode control characters:
+  test 'should handle non-binary yaml with control chars' do
+    #irb> Psych.dump("control \x01 char \n whoops!")
+    chr_1_yaml = "--- ! \"control \\x01 char \\n whoops!\"\n"
+    assert_equal "control 0x01 char \n whoops!", load_yaml(chr_1_yaml)
+  end
+
   test 'load_yaml should not coerce to UTF-8 be default when using syck' do
     stubs(:yaml_loader_for => SYCK)
     assert_yaml_coercion_behaviour
