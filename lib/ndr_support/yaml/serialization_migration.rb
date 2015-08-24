@@ -31,7 +31,7 @@ module NdrSupport
 
       # Wrapper around: YAML.dump(object)
       def dump_yaml(object)
-        yaml_emitter.dump(object)
+        yaml_emitter.dump binary_encode_any_high_ascii(object)
       end
 
       private

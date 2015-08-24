@@ -5,7 +5,6 @@ require 'test_helper'
 class SerializationTest < Minitest::Test
   include NdrSupport::YAML::SerializationMigration
   extend  NdrSupport::YAML::EngineSelector
-  extend  UTF8Encoding
 
   test 'should serialize then deserialize an object correctly' do
     hash = { :a => 1 }
@@ -17,11 +16,12 @@ class SerializationTest < Minitest::Test
     assert_equal [1, 2, 3], SYCK.load(SYCK.dump([1, 2, 3]))
   end if syck_available?
 
-  test 'should handle syck-encoded data' do
+  test 'should handle syck-encoded data with syck' do
+    stubs(:yaml_loader_for => SYCK)
     assert_syck_1_8_yaml_loads_correctly
-  end
+  end if syck_available?
 
-  test 'should handle syck-encoded characters with psych too' do
+  test 'should handle syck-encoded characters with psych' do
     stubs(:yaml_loader_for => PSYCH)
     assert_syck_1_8_yaml_loads_correctly
   end
@@ -44,6 +44,36 @@ class SerializationTest < Minitest::Test
   test 'load_yaml should not coerce to UTF-8 be default when using psych' do
     stubs(:yaml_loader_for => PSYCH)
     assert_yaml_coercion_behaviour
+  end
+
+  test 'dump_yaml should produce encoding-portable YAML' do
+    original_object = { :basic => 'manana', :complex => 'mañana' }
+    yaml_produced   = dump_yaml(original_object)
+    reloaded_object = load_yaml(yaml_produced)
+
+    assert yaml_produced =~ /basic: manana/, 'binary-encoded more than was necessary'
+
+    refute yaml_produced.bytes.detect { |byte| byte > 127 }, 'yaml has high-ascii'
+    assert reloaded_object.inspect.bytes.detect { |byte| byte > 127 }
+    assert_equal original_object, reloaded_object
+  end
+
+  test 'encoding-portable YAML should be readable with syck' do
+    original_object = { :basic => 'manana', :complex => 'mañana' }
+    yaml_produced   = dump_yaml(original_object)
+
+    stubs(:yaml_loader_for => SYCK)
+    reloaded_object = load_yaml(yaml_produced)
+    assert_equal original_object, reloaded_object
+  end if psych_available?
+
+  test 'encoding-portable YAML should be readable with psych' do
+    original_object = { :basic => 'manana', :complex => 'mañana' }
+    yaml_produced   = dump_yaml(original_object)
+
+    stubs(:yaml_loader_for => PSYCH)
+    reloaded_object = load_yaml(yaml_produced)
+    assert_equal original_object, reloaded_object
   end
 
   if syck_available?
