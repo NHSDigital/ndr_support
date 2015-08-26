@@ -48,4 +48,18 @@ class RegexpRange
 
     Range.new(start_line_number, end_line_number, @excl)
   end
+
+  # `other` is equal to self if it is a RegexpRange with the same state.
+  def ==(other)
+    other.is_a?(RegexpRange) && other.state == state
+  end
+  alias_method :eql?, :==
+
+  protected
+
+  # Used by other RegexpRange objects, as well as Hashes, during equality checks:
+  def state
+    [@begin, @end, @excl]
+  end
+  delegate :hash, :to => :state # Used for Hash key lookup
 end

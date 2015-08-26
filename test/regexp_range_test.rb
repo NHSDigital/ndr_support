@@ -103,4 +103,47 @@ class RegexpRangeTest < Minitest::Test
       RegexpRange.new(/^NO_MATCH$/, /^NO_MATCH$/, false).to_range(@lines)
     end
   end
+
+  test 'comparison to self' do
+    rr1 = RegexpRange.new(/start/, /end/, false)
+    assert_equal rr1, rr1
+  end
+
+  test 'comparison to identical regexprange' do
+    rr1 = RegexpRange.new(/start/, /end/, false)
+    rr2 = RegexpRange.new(/start/, /end/, false)
+    assert_equal rr1, rr2
+  end
+
+  test 'comparison to different regexprange' do
+    rr1 = RegexpRange.new(/start/, /end/, false)
+    rr2 = RegexpRange.new(/start/, /end/, true)
+    refute_equal rr1, rr2
+
+    rr3 = RegexpRange.new(/start/, /end/, false)
+    rr4 = RegexpRange.new(/start/, /finish/, false)
+    refute_equal rr3, rr4
+
+    rr5 = RegexpRange.new(/start/, /end/, true)
+    rr6 = RegexpRange.new(/begin/, /end/, true)
+    refute_equal rr5, rr6
+  end
+
+  test 'hash key comparison' do
+    rr1 = RegexpRange.new(/start/, /end/, false)
+    rr2 = RegexpRange.new(/start/, /end/, false)
+    rr3 = RegexpRange.new(/start/, /end/, true)
+
+    hash = Hash.new { |h, k| h[k] = 0 }
+
+    hash[rr1] += 1
+    hash[rr2] += 1
+    hash[rr3] += 1
+
+    assert_equal 2, hash.keys.length
+
+    assert_equal 2, hash[rr1]
+    assert_equal 2, hash[rr2]
+    assert_equal 1, hash[rr3]
+  end
 end
