@@ -4,24 +4,13 @@ require 'test_helper'
 
 class SerializationTest < Minitest::Test
   include NdrSupport::YAML::SerializationMigration
-  extend  NdrSupport::YAML::EngineSelector
 
   test 'should serialize then deserialize an object correctly' do
     hash = { :a => 1 }
     assert_equal hash, load_yaml(dump_yaml(hash))
   end
 
-  test 'syck should be available properly, or not at all' do
-    # See note 1 on Plan.io issue #1970.
-    assert_equal [1, 2, 3], SYCK.load(SYCK.dump([1, 2, 3]))
-  end if syck_available?
-
-  test 'should handle syck-encoded data with syck' do
-    stubs(:yaml_loader_for => SYCK)
-    assert_syck_1_8_yaml_loads_correctly
-  end if syck_available?
-
-  test 'should handle syck-encoded characters with psych' do
+  test 'should handle syck-encoded characters' do
     assert_syck_1_8_yaml_loads_correctly
   end
 
@@ -42,12 +31,7 @@ class SerializationTest < Minitest::Test
     assert_equal "control 0x01 char \n whoops!", load_yaml(chr_1_yaml)
   end
 
-  test 'load_yaml should not coerce to UTF-8 be default when using syck' do
-    stubs(:yaml_loader_for => SYCK)
-    assert_yaml_coercion_behaviour
-  end if syck_available?
-
-  test 'load_yaml should not coerce to UTF-8 be default when using psych' do
+  test 'load_yaml should not coerce to UTF-8 by default' do
     assert_yaml_coercion_behaviour
   end
 
@@ -63,16 +47,7 @@ class SerializationTest < Minitest::Test
     assert_equal original_object, reloaded_object
   end
 
-  test 'encoding-portable YAML should be readable with syck' do
-    original_object = { :basic => 'manana', :complex => 'mañana' }
-    yaml_produced   = dump_yaml(original_object)
-
-    stubs(:yaml_loader_for => SYCK)
-    reloaded_object = load_yaml(yaml_produced)
-    assert_equal original_object, reloaded_object
-  end if syck_available?
-
-  test 'encoding-portable YAML should be readable with psych' do
+  test 'encoding-portable YAML should be loadable' do
     original_object = { :basic => 'manana', :complex => 'mañana' }
     yaml_produced   = dump_yaml(original_object)
 
@@ -80,18 +55,8 @@ class SerializationTest < Minitest::Test
     assert_equal original_object, reloaded_object
   end
 
-  if syck_available?
-    test 'time-like objects should serialise correctly with psych' do
-      YAML::ENGINE.yamler = 'psych'
-      NdrSupport.apply_era_date_formats! # Need applying after swapping yamler
-      assert_timey_wimey_stuff
-    end
-
-    test 'time-like objects should serialise correctly with syck' do
-      YAML::ENGINE.yamler = 'syck'
-      NdrSupport.apply_era_date_formats! # Need applying after swapping yamler
-      assert_timey_wimey_stuff
-    end
+  test 'time-like objects should serialise correctly with psych' do
+    assert_timey_wimey_stuff
   end
 
   private
