@@ -27,10 +27,10 @@ class String
   def soundex(census = true)
     str = upcase.delete(SOUNDEX_CHARS_DEL).squeeze
 
-    str[0 .. 0] + str[1 .. -1].
+    str[0..0] + str[1..-1].
       delete(SOUNDEX_CHARS_EX).
-      tr(SOUNDEX_CHARS, SOUNDEX_NUMS)[0 .. (census ? 2 : -1)].
-      squeeze[0 .. (census ? 2 : -1)].
+      tr(SOUNDEX_CHARS, SOUNDEX_NUMS)[0..(census ? 2 : -1)].
+      squeeze[0..(census ? 2 : -1)].
       ljust(3, '0') rescue ''
   end
 
@@ -55,27 +55,27 @@ class String
   end
 
   # Convert "SMITH JD" into "Smith JD"
-	def surname_and_initials
-		a = split
-		initials = a.pop
-		a.collect {|x| x.capitalize}.join(' ') + ' ' + initials
-	end
+  def surname_and_initials
+    a = split
+    initials = a.pop
+    a.collect(&:capitalize).join(' ') + ' ' + initials
+  end
 
   # Like titleize but copes with Scottish and Irish names.
   def surnameize
-    s = slice(0,2).upcase
+    s = slice(0, 2).upcase
     if s == 'MC' || s == "O'"
-      s.titleize + slice(2 .. -1).titleize
+      s.titleize + slice(2..-1).titleize
     else
       titleize
     end
   end
 
   # Show NHS numbers with spaces
-	def nhs_numberize
+  def nhs_numberize
     return self unless length == 10
-		self[0..2] + ' ' + self[3..5] + ' ' + self[6..9]
-	end
+    self[0..2] + ' ' + self[3..5] + ' ' + self[6..9]
+  end
 
   # truncate a string, with a HTML &hellip; at the end
   def truncate_hellip(n)

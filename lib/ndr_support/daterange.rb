@@ -43,7 +43,7 @@ class Daterange
   end
 
   # If we have a valid date range, return a string representation of it
-  # TODO - possibly add support for to_s(format) e.g. to_s(:short)
+  # TODO: possibly add support for to_s(format) e.g. to_s(:short)
   def to_s
     return '' unless @date1 && @date2
     if @date1 == @date2 # single date

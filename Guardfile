@@ -3,7 +3,7 @@
 
 # directories %(app lib config test spec feature)
 guard :rubocop, :all_on_start => false, :keep_failed => false do
-  watch(%r{.+\.rb$})
+  watch(/.+\.(gemspec|rake|rb)$/)
   watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
 end
 

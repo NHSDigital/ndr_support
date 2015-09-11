@@ -7,7 +7,7 @@ class Hash
   # => {:a => 1, 'c' => '3'}
   def &(*keys)
     h = {}
-    self.each { |k, v| h[k] = v if keys.flatten.map(&:to_s).include?(k.to_s) }
+    each { |k, v| h[k] = v if keys.flatten.map(&:to_s).include?(k.to_s) }
     h
   end
 
@@ -39,13 +39,13 @@ class Hash
       unless non_unique_rawtext_keys.empty?
         fail("Non-unique rawtext keys: #{non_unique_rawtext_keys.inspect}")
       end
-      non_unique_non_rawtext_keys = (self.keys & hash2.keys) - [:rawtext]
+      non_unique_non_rawtext_keys = (keys & hash2.keys) - [:rawtext]
       unless non_unique_non_rawtext_keys.empty?
         fail("Non-unique non-rawtext keys: #{non_unique_non_rawtext_keys.inspect}")
       end
     end
 
-    self.merge(hash2).merge(
+    merge(hash2).merge(
       :rawtext => hash1_rawtext.merge(hash2_rawtext)
     )
   end

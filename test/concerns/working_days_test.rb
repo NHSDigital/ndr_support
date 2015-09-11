@@ -51,7 +51,7 @@ class WorkingDaysTest < Minitest::Test
   test 'should be zero working days between same normal day' do
     assert_equal 0, @normal_date.working_days_until(@normal_date)
     assert_equal 0, @normal_time.working_days_until(@normal_time + 6.hours)
-    assert_equal 0, @normal_date_time.working_days_until(@normal_date_time+ 6.hours)
+    assert_equal 0, @normal_date_time.working_days_until(@normal_date_time + 6.hours)
   end
 
   test 'Monday -> Friday should be 4 working days' do
