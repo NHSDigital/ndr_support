@@ -89,57 +89,25 @@ class SerializationTest < Minitest::Test
     datetime = DateTime.new(2014, 3, 1, 12, 45, 15)
     loaded   = YAML.load(datetime.to_yaml)
 
-    # Datetimes serialized with Syck are loaded as Time objects...
     assert [DateTime, Time].include?(loaded.class), 'datetime class'
-    assert_equal 2014, loaded.year,  'datetime year'
-    assert_equal 3,    loaded.month, 'datetime month'
-    assert_equal 1,    loaded.day,   'datetime day'
-    assert_equal 12,   loaded.hour,  'datetime hour'
-    assert_equal 45,   loaded.min,   'datetime minute'
-    assert_equal 15,   loaded.sec,   'datetime second'
+    assert_equal datetime, loaded.to_datetime
+    assert_equal datetime.to_time, loaded.to_time
   end
 
   def assert_datetimes_with_zones
     bst_datetime = DateTime.new(2014, 4, 1, 0, 0, 0, '+1')
     bst_loaded   = load_yaml(bst_datetime.to_yaml)
 
-    puts
-    puts "======TRAVIS DEBUG======"
-    puts "ActiveSupport version: #{Gem::Specification.detect { |spec| spec.name == 'activesupport' }.version.to_s}"
-    puts YAML.inspect
-    puts
-    puts bst_datetime.class.inspect
-    puts bst_datetime.inspect
-    puts
-    puts bst_datetime.to_yaml.inspect
-    puts bst_datetime.to_s(:yaml).inspect
-    puts
-    puts bst_loaded.class.inspect
-    puts bst_loaded.inspect
-    puts "========================"
-
     assert [DateTime, Time].include?(bst_loaded.class), 'bst datetime class'
-    assert_equal 2014, bst_loaded.year,  'bst datetime year'
-    assert_equal 4,    bst_loaded.month, 'bst datetime month'
-    assert_equal 1,    bst_loaded.day,   'bst datetime day'
-    assert_equal 0,    bst_loaded.hour,  'bst datetime hour'
-    assert_equal 0,    bst_loaded.min,   'bst datetime minute'
-    assert_equal 0,    bst_loaded.sec,   'bst datetime second'
-
-    assert_equal '01.04.2014', bst_loaded.to_s
+    assert_equal bst_datetime, bst_loaded.to_datetime
+    assert_equal bst_datetime.to_time, bst_loaded.to_time
 
     gmt_datetime = DateTime.new(2014, 3, 1, 0, 0, 0, '+0')
     gmt_loaded   = load_yaml(gmt_datetime.to_yaml)
 
     assert [DateTime, Time].include?(gmt_loaded.class), 'gmt datetime class'
-    assert_equal 2014, gmt_loaded.year,  'gmt datetime year'
-    assert_equal 3,    gmt_loaded.month, 'gmt datetime month'
-    assert_equal 1,    gmt_loaded.day,   'gmt datetime day'
-    assert_equal 0,    gmt_loaded.hour,  'gmt datetime hour'
-    assert_equal 0,    gmt_loaded.min,   'gmt datetime minute'
-    assert_equal 0,    gmt_loaded.sec,   'gmt datetime second'
-
-    assert_equal '01.03.2014', gmt_loaded.to_s
+    assert_equal gmt_datetime, gmt_loaded.to_datetime
+    assert_equal gmt_datetime.to_time, gmt_loaded.to_time
   end
 
   def assert_syck_1_8_yaml_loads_correctly
