@@ -1,4 +1,4 @@
-# NdrSupport
+# NdrSupport [![Build Status](https://travis-ci.org/PublicHealthEngland/ndr_support.svg?branch=master)](https://travis-ci.org/PublicHealthEngland/ndr_support)
 
 This is the Public Health England (PHE) National Disease Registers (NDR) Support ruby gem, providing:
 
