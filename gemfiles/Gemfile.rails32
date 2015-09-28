@@ -1,4 +1,4 @@
-eval(File.read(File.expand_path('../Gemfile', __FILE__)))
+gemspec path: '..'
 
 gem 'activerecord',  '~> 3.2.18'
 gem 'activesupport', '~> 3.2.18'

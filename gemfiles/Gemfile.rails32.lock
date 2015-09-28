@@ -1,7 +1,7 @@
 PATH
-  remote: .
+  remote: ..
   specs:
-    ndr_support (2.0.1)
+    ndr_support (3.0.0)
       activerecord (>= 3.2.18, < 5.0.0)
       activesupport (>= 3.2.18, < 5.0.0)
 
