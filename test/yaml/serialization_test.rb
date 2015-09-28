@@ -103,6 +103,21 @@ class SerializationTest < Minitest::Test
     bst_datetime = DateTime.new(2014, 4, 1, 0, 0, 0, '+1')
     bst_loaded   = load_yaml(bst_datetime.to_yaml)
 
+    puts
+    puts "======TRAVIS DEBUG======"
+    puts "ActiveSupport version: #{Gem::Specification.detect { |spec| spec.name == 'activesupport' }.version.to_s}"
+    puts YAML.inspect
+    puts
+    puts bst_datetime.class.inspect
+    puts bst_datetime.inspect
+    puts
+    puts bst_datetime.to_yaml.inspect
+    puts bst_datetime.to_s(:yaml).inspect
+    puts
+    puts bst_loaded.class.inspect
+    puts bst_loaded.inspect
+    puts "========================"
+
     assert [DateTime, Time].include?(bst_loaded.class), 'bst datetime class'
     assert_equal 2014, bst_loaded.year,  'bst datetime year'
     assert_equal 4,    bst_loaded.month, 'bst datetime month'
