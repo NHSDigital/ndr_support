@@ -1,4 +1,6 @@
-# NdrSupport
+# NdrSupport [![Build Status](https://travis-ci.org/PublicHealthEngland/ndr_support.svg?branch=master)](https://travis-ci.org/PublicHealthEngland/ndr_support)
+
+[![Join the chat at https://gitter.im/PublicHealthEngland/ndr_support](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/PublicHealthEngland/ndr_support?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 This is the Public Health England (PHE) National Disease Registers (NDR) Support ruby gem, providing:
 
@@ -81,6 +83,8 @@ For more details of the tasks available, execute:
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms.
 
 ## Test Data
 
