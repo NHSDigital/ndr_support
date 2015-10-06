@@ -62,7 +62,7 @@ It provides rake tasks to help manage the process of persisting the state of sec
 
 Once files have been reviewed as secure, the revision number for that file is stored in code_safety.yml. If used within a Rails app, this file is stored in the config/ folder, otherwise it is kept in the project's root folder.
 
-Note: This feature currently only supports a subversion repository, either by using svn directly or through git svn.
+Note: This feature works with svn and git repositories and svn, git-svn and git working copies.
 
 To add code auditing to your project add this line to your application's Rakefile:
 
