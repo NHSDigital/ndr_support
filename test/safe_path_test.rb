@@ -30,7 +30,7 @@ class SafePathTest < Minitest::Test
     assert_equal %w(w r), @sp.permissions
 
     # The class shouldn't keep duplicates and should flattent the arrays
-    @sp.permissions = ['w', 'r', 'x', 'w', 'r', ['x', 'r']]
+    @sp.permissions = ['w', 'r', 'x', 'w', 'r', %w(x r)]
     assert_equal %w(w r x), @sp.permissions
   end
 
