@@ -6,7 +6,7 @@ class ControlCharactersTest < Minitest::Test
 
   test 'control char identification' do
     (0..255).each do |code|
-      expected = code > 31 || [9, 10, 13].include?(code) ? 1 : 4
+      expected = code == 127 || (code < 32 && [9, 10, 13].exclude?(code)) ? 4 : 1
       actual   = escape_control_chars(code.chr).length
 
       assert_equal expected, actual, "unexpected escaping for value: #{code} (#{code.chr})"
@@ -32,8 +32,8 @@ class ControlCharactersTest < Minitest::Test
   end
 
   test 'escape_control_chars with unprintable control characters' do
-    string   = "null \x00 characters suck"
-    expected = 'null 0x00 characters suck'
+    string   = "null \x00 \x7F characters suck"
+    expected = 'null 0x00 0x7f characters suck'
     actual   = escape_control_chars(string)
 
     assert_equal expected, actual

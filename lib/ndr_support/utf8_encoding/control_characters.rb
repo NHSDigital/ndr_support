@@ -5,7 +5,7 @@ module UTF8Encoding
   # escaped, using standard replacement scheme.
   module ControlCharacters
     # The range of characters we consider:
-    CONTROL_CHARACTERS = /[\x00-\x1f]/
+    CONTROL_CHARACTERS = /[\x00-\x1f]|\x7f/
     # Exceptions that are allowed:
     ALLOWED_CONTROL_CHARACTERS = %W( \x09 \x0a \x0d )
 
