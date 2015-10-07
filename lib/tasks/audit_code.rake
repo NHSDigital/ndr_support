@@ -49,12 +49,11 @@ EOT
 
   if ignore_new
     puts "Not checking for new files in #{safety_repo}"
-    new_files = file_safety.keys
   else
     puts "Checking for new files in #{safety_repo}"
     new_files = get_new_files(safety_repo)
-    # Ignore subdirectories
-    new_files.delete_if{|f| f =~ /[\/\\]$/}
+    # Ignore subdirectories, and exclude code_safety.yml by default.
+    new_files.delete_if{|f| f =~ /[\/\\]$/ || f == SAFETY_FILE}
     new_files.each{|f|
       unless file_safety.has_key?(f)
         file_safety[f] = {
@@ -69,8 +68,8 @@ EOT
       YAML.dump(safety_cfg, file) # Save changes before checking latest revisions
     end
   end
-  puts "Updating latest revisions for #{new_files.size} files"
-  set_last_changed_revision(trunk_repo, file_safety, new_files)
+  puts "Updating latest revisions for #{file_safety.size} files"
+  set_last_changed_revision(trunk_repo, file_safety, file_safety.keys)
   puts "\nSummary:"
   puts "Number of files originally in #{SAFETY_FILE}: #{orig_count}"
   puts "Number of new files added: #{file_safety.size - orig_count}"
@@ -231,11 +230,12 @@ end
 # (Don't write this data to the YAML file, as it is intrinsic to the SVN
 # repository.)
 def set_last_changed_revision(repo, file_safety, fnames)
+  dot_freq = (file_safety.size / 40.0).ceil # Print up to 40 progress dots
   case repository_type
   when 'git'
     fnames = file_safety.keys if fnames.nil?
 
-    fnames.each do |f|
+    fnames.each_with_index do |f, i|
       info = %x[git log -n 1 #{f}].split("\n").first[7..-1]
       if info.nil? || info.empty?
         file_safety[f]["last_changed_rev"] = -1
@@ -243,13 +243,13 @@ def set_last_changed_revision(repo, file_safety, fnames)
         file_safety[f]["last_changed_rev"] = info
       end
       # Show progress
-      print '.'
+      print '.' if (i % dot_freq) == 0
     end
     puts
   when 'git-svn', 'svn'
     fnames = file_safety.keys if fnames.nil?
 
-    fnames.each do |f|
+    fnames.each_with_index do |f, i|
       last_revision = get_last_changed_revision(repo, f)
       if last_revision.nil? || last_revision.empty?
         file_safety[f]['last_changed_rev'] = -1
@@ -257,7 +257,7 @@ def set_last_changed_revision(repo, file_safety, fnames)
         file_safety[f]['last_changed_rev'] = last_revision
       end
       # Show progress
-      print '.'
+      print '.' if (i % dot_freq) == 0
     end
     puts
     # NOTE: Do we need the following for retries?

@@ -34,16 +34,12 @@ file safety:
     safe_revision: c752769b91c0e782be0acf44e56bbc066a275365
   README.md:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 4b2508aff71ac069512dc8a79bb0c17160642d83
+    reviewed_by: brian.shand
+    safe_revision: 63cff701a1740a3bfa04330c21f1262dd49a7c31
   Rakefile:
     comments: 
     reviewed_by: timgentry
     safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
-  code_safety.yml:
-    comments: 
-    reviewed_by: 
-    safe_revision: 
   gemfiles/Gemfile.rails32:
     comments: 
     reviewed_by: 
