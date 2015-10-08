@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = []
   spec.summary       = 'NDR Support library'
   spec.description   = 'Provides NDR classes and class extensions'
-  spec.homepage      = ''
+  spec.homepage      = 'https://github.com/PublicHealthEngland/ndr_support'
   spec.license       = 'MIT'
 
   # Exclude older versions of this gem from the package.
