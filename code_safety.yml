@@ -42,88 +42,88 @@ file safety:
     safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
   gemfiles/Gemfile.rails32:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: pauleves
+    safe_revision: f76ad0fe72d42b1ff37553c8194935a8b93a6848
   gemfiles/Gemfile.rails32.lock:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: pauleves
+    safe_revision: 0455a5dd9685aff2e3ce56963932b132067afc71
   gemfiles/Gemfile.rails41:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: pauleves
+    safe_revision: f76ad0fe72d42b1ff37553c8194935a8b93a6848
   gemfiles/Gemfile.rails41.lock:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: pauleves
+    safe_revision: 0455a5dd9685aff2e3ce56963932b132067afc71
   gemfiles/Gemfile.rails42:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: pauleves
+    safe_revision: f76ad0fe72d42b1ff37553c8194935a8b93a6848
   gemfiles/Gemfile.rails42.lock:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: pauleves
+    safe_revision: 0455a5dd9685aff2e3ce56963932b132067afc71
   lib/ndr_support.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: pauleves
+    safe_revision: 92652deb1e16e6023408633648bd955d7936dbf4
   lib/ndr_support/array.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: pauleves
+    safe_revision: 4a4ed24d2cfe7e1736baadf4cf6e0fece6823be1
   lib/ndr_support/concerns/working_days.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: pauleves
+    safe_revision: 5f9c98dcad6f6889d2431eb98cf07b1f5c3e57be
   lib/ndr_support/date_and_time_extensions.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: pauleves
+    safe_revision: 29595e6431587ff9b7db6e3ad3abbb3577bff99c
   lib/ndr_support/daterange.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: pauleves
+    safe_revision: 506a317e59d0ccb5b32d813b74d822f35a55cea9
   lib/ndr_support/fixnum/calculations.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: pauleves
+    safe_revision: f7dbfe2acd1b067858867d58c77e49b03ea78a1d
   lib/ndr_support/fixnum/julian_date_conversions.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: pauleves
+    safe_revision: 51b80457875c3916be6c8d6f5dab026143033d53
   lib/ndr_support/hash.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: pauleves
+    safe_revision: 506a317e59d0ccb5b32d813b74d822f35a55cea9
   lib/ndr_support/integer.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: pauleves
+    safe_revision: 4a4ed24d2cfe7e1736baadf4cf6e0fece6823be1
   lib/ndr_support/nil.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: pauleves
+    safe_revision: 4a4ed24d2cfe7e1736baadf4cf6e0fece6823be1
   lib/ndr_support/ourdate.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: pauleves
+    safe_revision: a18fb5c6c360806a177a9c5584458586e90b3530
   lib/ndr_support/ourtime.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: pauleves
+    safe_revision: 4a4ed24d2cfe7e1736baadf4cf6e0fece6823be1
   lib/ndr_support/regexp_range.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: pauleves
+    safe_revision: f9341d1c7f797f9fe81af937c383d41c23872b2f
   lib/ndr_support/safe_file.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: pauleves
+    safe_revision: 506a317e59d0ccb5b32d813b74d822f35a55cea9
   lib/ndr_support/safe_path.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: pauleves
+    safe_revision: 506a317e59d0ccb5b32d813b74d822f35a55cea9
   lib/ndr_support/string/cleaning.rb:
     comments: 
     reviewed_by: 
