@@ -126,40 +126,40 @@ file safety:
     safe_revision: 506a317e59d0ccb5b32d813b74d822f35a55cea9
   lib/ndr_support/string/cleaning.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: ba7da080c89d26d2f1472588250d7b705048aeb1
   lib/ndr_support/string/conversions.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 506a317e59d0ccb5b32d813b74d822f35a55cea9
   lib/ndr_support/tasks.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 62337584a32e5c30c2e9af7cd998a9df684885cc
   lib/ndr_support/time/conversions.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 92652deb1e16e6023408633648bd955d7936dbf4
   lib/ndr_support/utf8_encoding.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 29595e6431587ff9b7db6e3ad3abbb3577bff99c
   lib/ndr_support/utf8_encoding/control_characters.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: d210b982841611381a0df02d8f2db9c13e41e42f
   lib/ndr_support/utf8_encoding/force_binary.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 29595e6431587ff9b7db6e3ad3abbb3577bff99c
   lib/ndr_support/utf8_encoding/object_support.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: f7adf44fc2772e1926df37abfd9041d41c303328
   lib/ndr_support/version.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 4bb6a2dc2e82d1e2188047c24f098c7811a98edb
   lib/ndr_support/yaml/serialization_migration.rb:
     comments: 
     reviewed_by: 
@@ -170,89 +170,89 @@ file safety:
     safe_revision: 
   ndr_support.gemspec:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 1e99e60a1ed93c293ba57ab0f90535c3b3ff8469
   test/array_test.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
   test/concerns/working_days_test.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 506a317e59d0ccb5b32d813b74d822f35a55cea9
   test/daterange_test.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
   test/fixnum/calculations_test.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
   test/hash_test.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
   test/integer_test.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
   test/nil_test.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
   test/ourdate_test.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
   test/ourtime_test.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
   test/regexp_range_test.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 29595e6431587ff9b7db6e3ad3abbb3577bff99c
   test/resources/filesystem_paths.yml:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 81061f85ccdf8933adc7f104d7eeaef1e2d71e26
   test/safe_file_test.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 506a317e59d0ccb5b32d813b74d822f35a55cea9
   test/safe_path_test.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: b562d0c15ff1b1d565522a47e6bae47ea09706f0
   test/string/cleaning_test.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
   test/string/conversions_test.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
   test/test_helper.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 506a317e59d0ccb5b32d813b74d822f35a55cea9
   test/time/conversions_test.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
   test/utf8_encoding/control_characters_test.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: d210b982841611381a0df02d8f2db9c13e41e42f
   test/utf8_encoding/force_binary_test.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 29595e6431587ff9b7db6e3ad3abbb3577bff99c
   test/utf8_encoding_test.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
   test/yaml/serialization_test.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 862d95310b59b38d3dad1b906253981049a854bd
