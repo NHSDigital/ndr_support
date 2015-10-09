@@ -14,13 +14,9 @@ require 'yaml'
 # Parameter max_print is number of entries to print before truncating output
 # (negative value => print all)
 def audit_code_safety(max_print = 20, ignore_new = false, show_diffs = false, show_in_priority = false, user_name = 'usr')
+  puts 'Running source code safety audit script.'
+  puts
 
-  puts <<EOT
-Running source code safety audit script.
-This currently takes about 3 minutes to run.
-We seem to have issues with Apache on deepthought rate limiting svn requests.
-
-EOT
   max_print = 1_000_000 if max_print < 0
   safety_cfg = File.exist?(SAFETY_FILE) ? YAML.load_file(SAFETY_FILE) : {}
   file_safety = safety_cfg["file safety"]
