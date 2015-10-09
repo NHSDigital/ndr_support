@@ -162,12 +162,12 @@ file safety:
     safe_revision: 4bb6a2dc2e82d1e2188047c24f098c7811a98edb
   lib/ndr_support/yaml/serialization_migration.rb:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 29595e6431587ff9b7db6e3ad3abbb3577bff99c
   lib/tasks/audit_code.rake:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: timgentry
+    safe_revision: 2665e780ba942e7f0d92f6fd8d0b979e327d1edb
   ndr_support.gemspec:
     comments: 
     reviewed_by: timgentry
