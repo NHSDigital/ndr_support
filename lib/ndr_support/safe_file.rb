@@ -155,7 +155,7 @@ class SafeFile
       prms = nil
 
     when 2
-      fail ArgimentError if args[1].class != Fixnum and args[1].class != String
+      fail ArgumentError if args[1].class != Fixnum and args[1].class != String
 
       if args[1].class == Fixnum
         verify_mode(args[0], 'r')
@@ -170,7 +170,7 @@ class SafeFile
       fname = args[0]
 
     when 3
-      fail ArgimentError if args[1].class != String or args[2].class != Fixnum
+      fail ArgumentError if args[1].class != String or args[2].class != Fixnum
       verify_mode(args[0], args[1])
 
       fname = args[0]

@@ -25,9 +25,12 @@ class SafeFileTest < Minitest::Test
   # .new
 
   test 'constructor should accept safe_path only' do
-    assert_raises ArgumentError do
-      SafeFile.new('example_file', 'rw')
-    end
+    assert_raises(ArgumentError) { SafeFile.new }
+    assert_raises(ArgumentError) { SafeFile.new('example_file', 'rw') }
+  end
+
+  test 'constructor should only allow string or numeric second argument' do
+    assert_raises(ArgumentError) { SafeFile.new(@not_empty_fpath, {}) }
   end
 
   test 'should raise exception if try to write in read-only space' do
