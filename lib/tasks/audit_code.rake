@@ -100,6 +100,9 @@ def audit_code_safety(max_print = 20, ignore_new = false, show_diffs = false, sh
       print_file_diffs(file_safety, trunk_repo, f, user_name)
     end
   end
+
+  # Returns `true` unless there are pending reviews:
+  unsafe.length.zero? && unknown.length.zero?
 end
 
 # Print summary details of a file's known safety
@@ -386,12 +389,15 @@ files which have changed since they were last verified as safe."
     show_diffs = (ENV['show_diffs'].to_s =~ /\Atrue\Z/i)
     show_in_priority = (ENV['show_in_priority'].to_s =~ /\Atrue\Z/i)
     max_print = ENV['max_print'] =~ /\A-?[0-9][0-9]*\Z/ ? ENV['max_print'].to_i : 20
+    reviewer  = ENV['reviewed_by']
 
-    audit_code_safety(max_print, ignore_new, show_diffs, show_in_priority, ENV['reviewed_by'])
+    all_safe = audit_code_safety(max_print, ignore_new, show_diffs, show_in_priority, reviewer)
 
     unless show_diffs
       puts 'To show file diffs, run:  rake audit:code max_print=-1 show_diffs=true'
     end
+
+    exit(1) unless all_safe
   end
 
   desc "Flag a source file as safe.
@@ -418,4 +424,28 @@ Usage:
     release = get_release
     flag_file_as_safe(release, ENV['reviewed_by'], ENV['comments'], ENV['file'])
   end
+
+  desc 'Wraps audit:code, and stops if any review is pending/stale.'
+  task(:ensure_safe) do
+    begin
+      puts 'Checking code safety...'
+
+      begin
+        $stdout = $stderr = StringIO.new
+        Rake::Task['audit:code'].invoke
+      ensure
+        $stdout, $stderr = STDOUT, STDERR
+      end
+    rescue SystemExit => ex
+      puts '=============================================================='
+      puts 'Code safety review of some files are not up-to-date; aborting!'
+      puts '  - to review the files in question, run:  rake audit:code'
+      puts '=============================================================='
+
+      raise ex
+    end
+  end
 end
+
+# Prevent building of un-reviewed gems:
+task :build => :'audit:ensure_safe'
