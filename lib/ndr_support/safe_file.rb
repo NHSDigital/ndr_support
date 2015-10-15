@@ -38,6 +38,12 @@ class SafeFile
     @file.write(data)
   end
 
+  def each(*args, &block)
+    verify @file_name, 'r'
+    @file.each(*args, &block)
+  end
+  alias_method :each_line, :each
+
   def path
     @file_name.clone
   end

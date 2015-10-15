@@ -315,6 +315,76 @@ class SafeFileTest < Minitest::Test
   end
 
   ################################################################################
+  # .each / .each_line
+
+  test '#each should check pathspace permissions when called with a block' do
+    p = SafePath.new('test_space_w').join('test_file_rw_not_empty')
+
+    f = SafeFile.new(p, 'w')
+    assert_raises(SecurityError) { f.each { |line| line } }
+    assert_raises(SecurityError) { f.each_line { |line| line } }
+    f.close
+  end
+
+  test '#each should check pathspace permissions when called without a block' do
+    p = SafePath.new('test_space_w').join('test_file_rw_not_empty')
+
+    f = SafeFile.new(p, 'w')
+    assert_raises(SecurityError) { f.each }
+    assert_raises(SecurityError) { f.each_line }
+    f.close
+  end
+
+  test '#each should return an enumerator in read-only namespace' do
+    p = SafePath.new('test_space_r').join('test_file_rw_not_empty')
+
+    f = SafeFile.new(p, 'r')
+    assert f.each.is_a?(Enumerator)
+    assert f.each_line.is_a?(Enumerator)
+    f.close
+  end
+
+  test '#each should read lines from read-only namespace' do
+    p = SafePath.new('test_space_r').join('test_file_rw_not_empty')
+
+    f = SafeFile.new(p, 'r')
+    assert_equal ['I am not empty'], f.each.to_a
+    f.close
+  end
+
+  test '#each handles separator argument when in read-only namespace' do
+    p = SafePath.new('test_space_r').join('test_file_rw_not_empty')
+
+    f = SafeFile.new(p, 'r')
+    assert_equal ['I am', ' not em', 'pty'], f.each('m').to_a
+    f.close
+  end
+
+  test '#each handles limit argument when in read-only namespace' do
+    p = SafePath.new('test_space_r').join('test_file_rw_not_empty')
+
+    f = SafeFile.new(p, 'r')
+    assert_equal ['I a', 'm n', 'ot ', 'emp', 'ty'], f.each(3).to_a
+    f.close
+  end
+
+  test '#each handles separator and limit argument when in read-only namespace' do
+    p = SafePath.new('test_space_r').join('test_file_rw_not_empty')
+
+    f = SafeFile.new(p, 'r')
+    assert_equal ['I am', ' not ', 'em', 'pty'], f.each('m', 5).to_a
+    f.close
+  end
+
+  test '#each_line handles separator and limit argument when in read-only namespace' do
+    p = SafePath.new('test_space_r').join('test_file_rw_not_empty')
+
+    f = SafeFile.new(p, 'r')
+    assert_equal ['I am', ' not ', 'em', 'pty'], f.each_line('m', 5).to_a
+    f.close
+  end
+
+  ################################################################################
   # .path
 
   test '#path should return instance of SafePath' do
