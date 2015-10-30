@@ -182,10 +182,15 @@ end
 
 # Determine the type of repository
 def repository_type
-  return 'svn' if Dir.exist?('.svn')
-  return 'git-svn' if Dir.exist?('.git') && open('.git/config').grep(/svn/).any?
-  return 'git' if Dir.exist?('.git') && open('.git/config').grep(/git/).any?
-  'not known'
+  @repository_type ||= if Dir.exist?('.svn') || system("svn info . > /dev/null 2>&1")
+                         'svn'
+                       elsif Dir.exist?('.git') && open('.git/config').grep(/svn/).any?
+                         'git-svn' 
+                       elsif Dir.exist?('.git') && open('.git/config').grep(/git/).any?
+                         'git'
+                       else
+                         'not known'
+                       end
 end
 
 def get_trunk_repo
@@ -333,13 +338,18 @@ def set_safe_revision
 end
 
 def print_repo_file_diffs(repolatest, repo, fname, user_name, safe_revision)
+  require 'open3'
+  cmd = nil
   case repository_type
   when 'git'
-    puts %[git --no-pager diff -b #{safe_revision}..#{repolatest} #{fname}]
-    puts %x[git --no-pager diff -b #{safe_revision}..#{repolatest} #{fname}]
+    cmd = ['git', '--no-pager', 'diff', '-b', "#{safe_revision}..#{repolatest}", fname]
   when 'git-svn', 'svn'
-    puts %[svn diff -r #{safe_revision.to_i}:#{repolatest.to_i} -x -b #{repo}/#{fname}]
-    puts %x[svn diff -r #{safe_revision.to_i}:#{repolatest.to_i} -x -b #{repo}/#{fname}]
+    cmd = ['svn', 'diff', '-r', "#{safe_revision.to_i}:#{repolatest.to_i}", '-x', '-b', "#{repo}/#{fname}"]
+  end
+  if cmd
+    puts(cmd.join(' '))
+    stdout_and_err_str, status = Open3.capture2e(*cmd)
+    puts(stdout_and_err_str)
   else
     puts 'Unknown repo'
   end
