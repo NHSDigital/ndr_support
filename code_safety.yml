@@ -118,8 +118,8 @@ file safety:
     safe_revision: f9341d1c7f797f9fe81af937c383d41c23872b2f
   lib/ndr_support/safe_file.rb:
     comments: 
-    reviewed_by: pauleves
-    safe_revision: 506a317e59d0ccb5b32d813b74d822f35a55cea9
+    reviewed_by: josh.pencheon
+    safe_revision: 24ba08d3a8f4b284678244aaffa2aaa347256900
   lib/ndr_support/safe_path.rb:
     comments: 
     reviewed_by: pauleves
@@ -166,8 +166,8 @@ file safety:
     safe_revision: 29595e6431587ff9b7db6e3ad3abbb3577bff99c
   lib/tasks/audit_code.rake:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 2665e780ba942e7f0d92f6fd8d0b979e327d1edb
+    reviewed_by: josh.pencheon
+    safe_revision: 7f0e16404f65ad531109e7bf8da3663351aabeb5
   ndr_support.gemspec:
     comments: 
     reviewed_by: timgentry
@@ -218,8 +218,8 @@ file safety:
     safe_revision: 81061f85ccdf8933adc7f104d7eeaef1e2d71e26
   test/safe_file_test.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 506a317e59d0ccb5b32d813b74d822f35a55cea9
+    reviewed_by: josh.pencheon
+    safe_revision: 24ba08d3a8f4b284678244aaffa2aaa347256900
   test/safe_path_test.rb:
     comments: 
     reviewed_by: timgentry
