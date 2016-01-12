@@ -6,8 +6,8 @@ file safety:
     safe_revision: 2590c1c28a8ca9cfb20ad3fe3ee65a12190a5810
   ".rubocop.yml":
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 506a317e59d0ccb5b32d813b74d822f35a55cea9
+    reviewed_by: josh.pencheon
+    safe_revision: 02f0647891dc0f9efa30860c5d2c8ec2fc696347
   ".travis.yml":
     comments: 
     reviewed_by: timgentry
@@ -163,7 +163,7 @@ file safety:
   lib/tasks/audit_code.rake:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 7f0e16404f65ad531109e7bf8da3663351aabeb5
+    safe_revision: e80060e256c848801ea526675cb30367003293b9
   ndr_support.gemspec:
     comments: 
     reviewed_by: timgentry
