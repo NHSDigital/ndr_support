@@ -386,6 +386,15 @@ def get_release
   release
 end
 
+def clean_working_copy?
+ case repository_type
+ when 'svn'
+   system('svn status | grep -q [^AMCDG]')
+ when 'git', 'git-svn'
+   system('git diff --quiet HEAD')
+ end
+end
+
 namespace :audit do
   desc "Audit safety of source code.
 Usage: audit:code [max_print=n] [ignore_new=false|true] [show_diffs=false|true] [reviewed_by=usr]
@@ -440,9 +449,11 @@ Usage:
 
   desc 'Wraps audit:code, and stops if any review is pending/stale.'
   task(:ensure_safe) do
-    begin
-      puts 'Checking code safety...'
+    abort('You have local changes, cannot verify code safety!') unless clean_working_copy?
 
+    puts 'Checking code safety...'
+
+    begin
       begin
         $stdout = $stderr = StringIO.new
         Rake::Task['audit:code'].invoke
@@ -461,4 +472,4 @@ Usage:
 end
 
 # Prevent building of un-reviewed gems:
-task :build => :'audit:ensure_safe'
+task build: :'audit:ensure_safe'
