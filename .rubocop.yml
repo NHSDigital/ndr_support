@@ -21,7 +21,9 @@ LineLength:
   Max: 99
 
 # Relax some of the cops for tests
-Metrics/ClassLength: &exclude_tests
+Metrics/ClassLength:
   Exclude:
     - test/**/*.rb
-Metrics/MethodLength: *exclude_tests
+Metrics/MethodLength:
+  Exclude:
+    - test/**/*.rb

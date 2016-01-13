@@ -1,5 +1,7 @@
 SAFETY_FILE =
-  if defined?(Rails)
+  if File.exist?('code_safety.yml')
+    'code_safety.yml'
+  elsif defined?(Rails)
     Rails.root.join('config', 'code_safety.yml')
   else
     'code_safety.yml'
@@ -359,12 +361,12 @@ def print_repo_file_diffs(repolatest, repo, fname, user_name, safe_revision)
   puts
 end
 
-def release_valid?
+def release_valid?(release)
   case repository_type
   when 'svn', 'git-svn'
-    ENV['release'] =~ /\A[0-9][0-9]*\Z/
+    release =~ /\A[0-9][0-9]*\Z/
   when 'git'
-    ENV['release'] =~ /\A[0-9a-f]{40}\Z/
+    release =~ /\A[0-9a-f]{40}\Z/
   else
     false
   end
@@ -382,6 +384,15 @@ def get_release
     ''
   end
   release
+end
+
+def clean_working_copy?
+ case repository_type
+ when 'svn'
+   system('svn status | grep -q [^AMCDG]')
+ when 'git', 'git-svn'
+   system('git diff --quiet HEAD')
+ end
 end
 
 namespace :audit do
@@ -416,8 +427,10 @@ Usage:
   Flag as safe:   rake audit:safe release=revision reviewed_by=usr [comments=...] file=f
   Needs review:   rake audit:safe release=0 [comments=...] file=f"
   task(:safe) do
+    release = get_release
+
     required_fields = %w(release file)
-    required_fields << 'reviewed_by' unless ENV['release'] == '0'
+    required_fields << 'reviewed_by' if release # 'Needs review' doesn't need a reviewer
     missing = required_fields.collect { |f| (f if ENV[f].to_s.empty? || (f == 'reviewed_by' && ENV[f] == 'usr')) }.compact # Avoid accidental missing username
     unless missing.empty?
       puts 'Usage: rake audit:safe release=revision reviewed_by=usr [comments=...] file=f'
@@ -425,21 +438,22 @@ Usage:
       abort("Error: Missing required argument(s): #{missing.join(', ')}")
     end
 
-    unless release_valid?
+    unless release.nil? || release_valid?(release)
       puts 'Usage: rake audit:safe release=revision reviewed_by=usr [comments=...] file=f'
       puts 'or, to flag a file for review: rake audit:safe release=0 [comments=...] file=f'
       abort("Error: Invalid release: #{ENV['release']}")
     end
 
-    release = get_release
     flag_file_as_safe(release, ENV['reviewed_by'], ENV['comments'], ENV['file'])
   end
 
   desc 'Wraps audit:code, and stops if any review is pending/stale.'
   task(:ensure_safe) do
-    begin
-      puts 'Checking code safety...'
+    abort('You have local changes, cannot verify code safety!') unless clean_working_copy?
 
+    puts 'Checking code safety...'
+
+    begin
       begin
         $stdout = $stderr = StringIO.new
         Rake::Task['audit:code'].invoke
@@ -458,4 +472,4 @@ Usage:
 end
 
 # Prevent building of un-reviewed gems:
-task :build => :'audit:ensure_safe'
+task build: :'audit:ensure_safe'
