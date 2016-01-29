@@ -168,6 +168,13 @@ class String::CleaningTest < Minitest::Test
     assert_equal 'X', 'tX'.clean(:tnmcategory)
   end
 
+  test 'clean upcase' do
+    assert_equal '', ''.clean(:upcase)
+    assert_equal 'DOWNCASE', 'downcase'.clean(:upcase)
+    assert_equal 'MIXEDCASE', 'mIxEdCaSe'.clean(:upcase)
+    assert_equal 'UPCASE', 'UPCASE'.clean(:upcase)
+  end
+
   test 'clean fallback' do
     assert_equal 'UN KNOWN', 'UN ?KNOWN'.clean(:somethingorother)
     assert_equal 'UNKNOWN', 'UNKNOWN'.clean(:somethingorother)

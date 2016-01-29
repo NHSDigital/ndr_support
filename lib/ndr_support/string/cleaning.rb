@@ -108,6 +108,8 @@ class String
       else
         self.downcase
       end
+    when :upcase
+      upcase
     else
       self.gsub(' ?', ' ')
     end
