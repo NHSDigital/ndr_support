@@ -1,17 +1,21 @@
 ---
 file safety:
-  ".gitignore":
+  .gitignore:
     comments: 
     reviewed_by: timgentry
     safe_revision: 2590c1c28a8ca9cfb20ad3fe3ee65a12190a5810
-  ".rubocop.yml":
-    comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 02f0647891dc0f9efa30860c5d2c8ec2fc696347
-  ".travis.yml":
+  .hound.yml:
     comments: 
     reviewed_by: timgentry
-    safe_revision: d82f4f2fc0d720607ca5c25f068370757d3466e5
+    safe_revision: 9605fa85dca3d70c85927d3f1f5818c20ad922f0
+  .rubocop.yml:
+    comments: 
+    reviewed_by: timgentry
+    safe_revision: bd7dbaf2c72eb4a8f74db498f4dea67e02c8cb60
+  .travis.yml:
+    comments: 
+    reviewed_by: timgentry
+    safe_revision: 41cea330c8de42e4080c40143eaa15a225be7c5a
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -27,7 +31,7 @@ file safety:
   LICENSE.txt:
     comments: 
     reviewed_by: timgentry
-    safe_revision: c752769b91c0e782be0acf44e56bbc066a275365
+    safe_revision: 90328cca8494539257e192a63b240a91c89f0616
   README.md:
     comments: 
     reviewed_by: brian.shand
@@ -123,7 +127,7 @@ file safety:
   lib/ndr_support/string/cleaning.rb:
     comments: 
     reviewed_by: timgentry
-    safe_revision: ba7da080c89d26d2f1472588250d7b705048aeb1
+    safe_revision: 9ede99853b487b6ebd5271dcf14ff6ab5152044d
   lib/ndr_support/string/conversions.rb:
     comments: 
     reviewed_by: timgentry
@@ -154,8 +158,8 @@ file safety:
     safe_revision: f7adf44fc2772e1926df37abfd9041d41c303328
   lib/ndr_support/version.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: cbf10e1b385db80851875e95d9d0afb648ce52d7
+    reviewed_by: timgentry
+    safe_revision: f625404bd69bb1b233f7a7b1a043d52e916da743
   lib/ndr_support/yaml/serialization_migration.rb:
     comments: 
     reviewed_by: timgentry
@@ -167,7 +171,7 @@ file safety:
   ndr_support.gemspec:
     comments: 
     reviewed_by: timgentry
-    safe_revision: 1e99e60a1ed93c293ba57ab0f90535c3b3ff8469
+    safe_revision: 41cea330c8de42e4080c40143eaa15a225be7c5a
   test/array_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -223,7 +227,7 @@ file safety:
   test/string/cleaning_test.rb:
     comments: 
     reviewed_by: timgentry
-    safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
+    safe_revision: 9ede99853b487b6ebd5271dcf14ff6ab5152044d
   test/string/conversions_test.rb:
     comments: 
     reviewed_by: timgentry
