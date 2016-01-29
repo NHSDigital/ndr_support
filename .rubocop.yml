@@ -1,11 +1,11 @@
-# By default, would enforce { key: value } rather than { :key => value }.
-AllCops:
-  RunRailsCops: true
+Rails:
+  Enabled: true
 
 # Multi-line method chaining should be done with trailing dots.
 Style/DotPosition:
   EnforcedStyle: trailing
 
+# By default, would enforce { key: value } rather than { :key => value }.
 HashSyntax:
   EnforcedStyle: hash_rockets
   SupportedStyles:
