@@ -164,10 +164,6 @@ file safety:
     comments: 
     reviewed_by: timgentry
     safe_revision: 29595e6431587ff9b7db6e3ad3abbb3577bff99c
-  lib/tasks/audit_code.rake:
-    comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 20cde082ee86a547de7b21a97a695bb307ac9f64
   ndr_support.gemspec:
     comments: 
     reviewed_by: timgentry

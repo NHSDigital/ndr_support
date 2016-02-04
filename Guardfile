@@ -1,16 +1,24 @@
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
-# directories %(app lib config test spec feature)
-guard :rubocop, :all_on_start => false, :keep_failed => false do
-  watch(/.+\.(gemspec|rake|rb)$/)
-  watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
-end
+# This group allows to skip running rubocop when tests fail.
+group :red_green_refactor, halt_on_fail: true do
+  guard :minitest do
+    watch(%r{^test/.+_test\.rb$})
+    watch('test/test_helper.rb')  { 'test' }
 
-guard :minitest do
-  watch(%r{^test/.+_test\.rb$})
-  watch('test/test_helper.rb')  { 'test' }
+    # Non-rails
+    watch(%r{^lib/ndr_support/(.+)\.rb$}) { |m| "test/#{m[1]}_test.rb" }
+  end
 
-  # Non-rails
-  watch(%r{^lib/ndr_support/(.+)\.rb$}) { |m| "test/#{m[1]}_test.rb" }
+  # automatically check Ruby code style with Rubocop when files are modified
+  guard :shell do
+    watch(/.+\.(rb|rake)$/) do |m|
+      unless system("bundle exec rake rubocop:diff #{m[0]}")
+        Notifier.notify "#{File.basename(m[0])} inspected, offenses detected",
+                        title: 'RuboCop results (partial)', image: :failed
+      end
+      nil
+    end
+  end
 end

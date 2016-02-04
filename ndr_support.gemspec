@@ -31,8 +31,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'minitest', '>= 5.0.0'
   spec.add_development_dependency 'mocha', '~> 1.1'
 
+  spec.add_development_dependency 'ndr_dev_support', '~> 1.1', '>= 1.1.1'
   spec.add_development_dependency 'guard'
   spec.add_development_dependency 'guard-rubocop'
+  spec.add_development_dependency 'guard-shell'
   spec.add_development_dependency 'guard-minitest'
   spec.add_development_dependency 'terminal-notifier-guard' if RUBY_PLATFORM =~ /darwin/
   spec.add_development_dependency 'simplecov'

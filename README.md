@@ -3,8 +3,7 @@
 This is the Public Health England (PHE) National Disease Registers (NDR) Support ruby gem, providing:
 
 1. core ruby class extensions;
-2. additional time, regular expression, file security and encoding classes; and
-3. rake tasks to manage code auditing of ruby based projects.
+2. additional time, regular expression, file security and encoding classes.
 
 ## Installation
 
@@ -53,26 +52,6 @@ To enable this add the following line to your code:
 ```ruby
 include NdrSupport::YAML::SerializationMigration
 ```
-
-### Code Auditing Rake Tasks
-
-ndr_support also provides a mechanism to manage the state of routine code quality and security peer reviews. It should be used as part of wider quality and security policies.
-
-It provides rake tasks to help manage the process of persisting the state of security reviews.
-
-Once files have been reviewed as secure, the revision number for that file is stored in code_safety.yml. If used within a Rails app, this file is stored in the config/ folder, otherwise it is kept in the project's root folder.
-
-Note: This feature works with svn and git repositories and svn, git-svn and git working copies.
-
-To add code auditing to your project add this line to your application's Rakefile:
-
-```ruby
-require 'ndr_support/tasks'
-```
-
-For more details of the tasks available, execute:
-
-    $ rake -T audit
 
 ## Contributing
 
