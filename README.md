@@ -10,7 +10,7 @@ This is the Public Health England (PHE) National Disease Registers (NDR) Support
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'ndr_support', :git => 'https://github.com/PublicHealthEngland/ndr_support.git'
+gem 'ndr_support'
 ```
 
 And then execute:
