@@ -35,7 +35,7 @@ file safety:
   README.md:
     comments: 
     reviewed_by: timgentry
-    safe_revision: e33e9dae7f38bc449ce9276515a539836dbbbd53
+    safe_revision: 874d5d63763769a65bba7336099d10b030794b75
   Rakefile:
     comments: 
     reviewed_by: timgentry
@@ -118,12 +118,12 @@ file safety:
     safe_revision: f9341d1c7f797f9fe81af937c383d41c23872b2f
   lib/ndr_support/safe_file.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 24ba08d3a8f4b284678244aaffa2aaa347256900
+    reviewed_by: timgentry
+    safe_revision: 033819a6ada448551c71a72bbbef4652be3d9c40
   lib/ndr_support/safe_path.rb:
     comments: 
-    reviewed_by: pauleves
-    safe_revision: 506a317e59d0ccb5b32d813b74d822f35a55cea9
+    reviewed_by: timgentry
+    safe_revision: 4492da77f6a8b678c40dd571fdd46fd936052cca
   lib/ndr_support/string/cleaning.rb:
     comments: 
     reviewed_by: timgentry
@@ -159,7 +159,7 @@ file safety:
   lib/ndr_support/version.rb:
     comments: 
     reviewed_by: timgentry
-    safe_revision: 04c7617a6cc63d614e53cd6bc053dec46cc15786
+    safe_revision: 921931ed866da64264ccef52248fa460bd7ab37d
   lib/ndr_support/yaml/serialization_migration.rb:
     comments: 
     reviewed_by: timgentry
@@ -167,7 +167,7 @@ file safety:
   ndr_support.gemspec:
     comments: 
     reviewed_by: timgentry
-    safe_revision: e33e9dae7f38bc449ce9276515a539836dbbbd53
+    safe_revision: a6685b972e64c61c62ba1f82883b149b0c4181c2
   test/array_test.rb:
     comments: 
     reviewed_by: timgentry
