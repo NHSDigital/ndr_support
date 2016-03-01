@@ -1,3 +1,5 @@
+require 'ndr_support/safe_path'
+
 class SafeFile
   def initialize(*args)
     a = self.class.get_fname_mode_prms(*args)
