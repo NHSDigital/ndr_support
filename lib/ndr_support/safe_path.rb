@@ -1,3 +1,5 @@
+require 'active_support/core_ext/object/blank'
+require 'yaml'
 require 'erb'
 
 # Ruby has a built-in SecurityError class
