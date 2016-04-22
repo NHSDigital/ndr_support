@@ -127,7 +127,7 @@ file safety:
   lib/ndr_support/string/cleaning.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 0f2ba63edf73284d26709c129027bc27dcc1d3a3
+    safe_revision: 3d9cb572458ab1b9ae88fe9aba36a160c881694c
   lib/ndr_support/string/conversions.rb:
     comments: 
     reviewed_by: timgentry
@@ -159,7 +159,7 @@ file safety:
   lib/ndr_support/version.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 2b774fbbf72907439f8f9ba893030b9d9c314c04
+    safe_revision: 2d147b3de8c8819feb278fa44328878370ace124
   lib/ndr_support/yaml/serialization_migration.rb:
     comments: 
     reviewed_by: timgentry
