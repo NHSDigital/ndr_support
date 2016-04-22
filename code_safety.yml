@@ -1,18 +1,18 @@
 ---
 file safety:
-  .gitignore:
+  ".gitignore":
     comments: 
     reviewed_by: timgentry
     safe_revision: 2590c1c28a8ca9cfb20ad3fe3ee65a12190a5810
-  .hound.yml:
+  ".hound.yml":
     comments: 
     reviewed_by: timgentry
     safe_revision: 9605fa85dca3d70c85927d3f1f5818c20ad922f0
-  .rubocop.yml:
+  ".rubocop.yml":
     comments: 
     reviewed_by: timgentry
     safe_revision: bd7dbaf2c72eb4a8f74db498f4dea67e02c8cb60
-  .travis.yml:
+  ".travis.yml":
     comments: 
     reviewed_by: timgentry
     safe_revision: 41cea330c8de42e4080c40143eaa15a225be7c5a
@@ -126,8 +126,8 @@ file safety:
     safe_revision: 4492da77f6a8b678c40dd571fdd46fd936052cca
   lib/ndr_support/string/cleaning.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 9ede99853b487b6ebd5271dcf14ff6ab5152044d
+    reviewed_by: josh.pencheon
+    safe_revision: 0f2ba63edf73284d26709c129027bc27dcc1d3a3
   lib/ndr_support/string/conversions.rb:
     comments: 
     reviewed_by: timgentry
@@ -158,8 +158,8 @@ file safety:
     safe_revision: f7adf44fc2772e1926df37abfd9041d41c303328
   lib/ndr_support/version.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 921931ed866da64264ccef52248fa460bd7ab37d
+    reviewed_by: josh.pencheon
+    safe_revision: 2b774fbbf72907439f8f9ba893030b9d9c314c04
   lib/ndr_support/yaml/serialization_migration.rb:
     comments: 
     reviewed_by: timgentry
@@ -222,8 +222,8 @@ file safety:
     safe_revision: b562d0c15ff1b1d565522a47e6bae47ea09706f0
   test/string/cleaning_test.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 9ede99853b487b6ebd5271dcf14ff6ab5152044d
+    reviewed_by: josh.pencheon
+    safe_revision: 0f2ba63edf73284d26709c129027bc27dcc1d3a3
   test/string/conversions_test.rb:
     comments: 
     reviewed_by: timgentry
