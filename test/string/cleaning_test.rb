@@ -138,6 +138,13 @@ class String
       # TODO
     end
 
+    test 'clean icd' do
+      assert_equal 'C509', '  c50.9; '.clean(:icd)
+      assert_equal 'C50 C509', ' C50X, c50.9; '.clean(:icd)
+      assert_equal 'D04', 'd04'.clean(:icd)
+      assert_equal 'C32', ';C32.X'.clean(:icd)
+    end
+
     test 'clean code_opcs' do
       assert_equal 'B274 Z943', ' b27.4,Z94.3;'.clean(:code_opcs)
       assert_equal 'B274 Z943', 'B27.4 Z94.3'.clean(:code_opcs)
