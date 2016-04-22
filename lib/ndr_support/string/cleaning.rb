@@ -31,11 +31,11 @@ class String
   def clean(what)
     case what
     when :nhsnumber
-      self.delete('^0-9')[0..9]
+      delete('^0-9')[0..9]
     when :postcode, :get_postcode
-      self.postcodeize(:db)
+      postcodeize(:db)
     when :lpi
-      self.upcase.delete('^0-9A-Z')
+      upcase.delete('^0-9A-Z')
     when :sex
       # SECURE: BNS 2012-10-09: But may behave oddly for multi-line input
       if self =~ /^M|1/i
@@ -60,7 +60,7 @@ class String
         /\s{2,}/ => ' ',
         '`'      => '\''
       }
-      substitutions.inject(self.upcase) { |str, scheme| str.gsub(*scheme) }.strip
+      substitutions.inject(upcase) { |a, e| a.gsub(*e) }.strip
     when :ethniccategory
       replace_ethniccategory = {
         '0' => '0',
@@ -75,14 +75,15 @@ class String
         ' ' => 'X',
         '99' => 'X'
       }
-      replace_ethniccategory[self] || self.upcase
+      replace_ethniccategory[self] || upcase
     when :code
-      self.split(/ |,|;/).map do |code|
-        code.blank? ? next : code.gsub('.', '')
+      split_on_separators.map do |code|
+        code.blank? ? next : code.delete('.')
       end.compact.join(' ')
     when :code_icd
+      warn '[DEPRECATION] clean(:code_icd) is deprecated - consider using clean(:icd) instead.'
       # regexp = /[A-Z][0-9]{2}(\.(X|[0-9]{1,2})|[0-9]?)( *(D|A)( |,|;|$))/
-      codes = self.upcase.split(/ |,|;/).delete_if { |x| x.squash.blank? }
+      codes = upcase.split_on_separators.delete_if { |x| x.squash.blank? }
       cleaned_codes = []
       codes.each do |code|
         if code == 'D' || code == 'A'
@@ -97,42 +98,45 @@ class String
     when :hospitalnumber
       self[-1..-1] =~ /\d/ ? self : self[0..-2]
     when :xmlsafe, :make_xml_safe
-      self.strip_xml_unsafe_characters
+      strip_xml_unsafe_characters
     when :roman5
       # This deromanises roman numerals between 1 and 5
-      self.gsub(/[IV]+/i) { |match| ROMAN_ONE_TO_FIVE_MAPPING[match.upcase] }
+      gsub(/[IV]+/i) { |match| ROMAN_ONE_TO_FIVE_MAPPING[match.upcase] }
     when :tnmcategory
-      self.sub!(/\A[tnm]/i, '')
+      sub!(/\A[tnm]/i, '')
       if self =~ /\Ax\z/i
-        self.upcase
+        upcase
       else
-        self.downcase
+        downcase
       end
     when :upcase
       upcase
     else
-      self.gsub(' ?', ' ')
+      gsub(' ?', ' ')
     end
   end
 
   def strip_xml_unsafe_characters
-    self.gsub(String::INVALID_CONTROL_CHARS, '')
+    gsub(String::INVALID_CONTROL_CHARS, '')
   end
 
   def xml_unsafe?
     self =~ String::INVALID_CONTROL_CHARS
   end
 
+  protected
+
+  def split_on_separators(regexp = / |,|;/)
+    split(regexp)
+  end
+
   private
 
   def clean_code_opcs
-    split(/ |,|;/).map do |code|
+    split_on_separators.map do |code|
       db_code = code.squash
-      if 4 == db_code.length || db_code =~ /CZ00[12]/
-        db_code
-      else
-        next
-      end
+      next unless 4 == db_code.length || db_code =~ /CZ00[12]/
+      db_code
     end.compact.join(' ')
   end
 end
