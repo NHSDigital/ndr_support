@@ -9,6 +9,7 @@ class String
       assert_equal 'CB2 2QQ', 'CB22QQ'.postcodeize
       assert_equal 'CB2 2QQ', 'CB22QQ  '.postcodeize
       assert_equal 'CB2 2QQ', 'C   B   22QQ  '.postcodeize
+      assert_equal 'CB2 2QQ', "CB2\u00a02QQ".postcodeize # Unicode non-breaking space
       assert_equal 'CB22QQ', 'CB2 2QQ'.postcodeize(:compact)
       assert_equal 'CB2 2QQ', 'CB22QQ  '.postcodeize(:db)
       assert_equal 'CB2A2QQ', 'CB2A 2QQ  '.postcodeize(:db)

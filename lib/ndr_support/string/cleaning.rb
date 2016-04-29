@@ -12,7 +12,7 @@ class String
   # Show postcode in various formats.
   # Parameter "option" can be :user, :compact, :db
   def postcodeize(option = :user)
-    nspce = delete(' ').upcase
+    nspce = gsub(/[[:space:]]/, '').upcase
     unless nspce.blank? || /([A-Z][0-9]|[A-Z][0-9][0-9]|[A-Z][0-9][A-Z]|[A-Z][A-Z][0-9]|[A-Z][A-Z][0-9][0-9]|[A-Z][A-Z][0-9][A-Z])[0-9][A-Z][A-Z]$/ =~ nspce
       return self  # Don't change old-style or malformed postcodes
     end
