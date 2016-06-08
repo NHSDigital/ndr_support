@@ -33,6 +33,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'ndr_dev_support', '~> 1.1', '>= 1.1.3'
   spec.add_development_dependency 'guard'
+  spec.add_development_dependency 'listen', '< 3.1' # Bundle 1.12 should be (but isn't) resolving Ruby 2.1 issue
   spec.add_development_dependency 'guard-rubocop'
   spec.add_development_dependency 'guard-shell'
   spec.add_development_dependency 'guard-minitest'
