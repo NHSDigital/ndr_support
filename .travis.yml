@@ -14,6 +14,8 @@ sudo: false
 
 cache: bundler
 
+bundler_args: --without development
+
 before_install: "rm ${BUNDLE_GEMFILE}.lock"
 
 before_script: "bundle update"
