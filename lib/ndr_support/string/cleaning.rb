@@ -4,6 +4,18 @@ class String
   INVALID_CONTROL_CHARS = /[\x00-\x08\x0b-\x0c\x0e-\x1f]/
   ROMAN_ONE_TO_FIVE_MAPPING = { 'I' => '1', 'II' => '2', 'III' => '3', 'IIII' => '4', 'IV' => '4', 'V' => '5' }
 
+  POSTCODE_REGEXP = /
+    ^(
+      [A-Z][0-9]           |
+      [A-Z][0-9][0-9]      |
+      [A-Z][0-9][A-Z]      |
+      [A-Z][A-Z][0-9]      |
+      [A-Z][A-Z][0-9][0-9] |
+      [A-Z][A-Z][0-9][A-Z]
+    )
+    [0-9][A-Z][A-Z]
+  $/x
+
   # Used for comparing addresses
   def squash
     upcase.delete('^A-Z0-9')
@@ -13,8 +25,8 @@ class String
   # Parameter "option" can be :user, :compact, :db
   def postcodeize(option = :user)
     nspce = gsub(/[[:space:]]/, '').upcase
-    unless nspce.blank? || /([A-Z][0-9]|[A-Z][0-9][0-9]|[A-Z][0-9][A-Z]|[A-Z][A-Z][0-9]|[A-Z][A-Z][0-9][0-9]|[A-Z][A-Z][0-9][A-Z])[0-9][A-Z][A-Z]$/ =~ nspce
-      return self  # Don't change old-style or malformed postcodes
+    unless nspce.blank? || POSTCODE_REGEXP =~ nspce
+      return self # Don't change old-style or malformed postcodes
     end
     case option
     when :compact

@@ -6,6 +6,7 @@ class String
 
     test 'postcodeize' do
       assert_equal 'CB22 3AD', 'CB223AD'.postcodeize
+      assert_equal 'NOTCB223AD', 'NOTCB223AD'.postcodeize
       assert_equal 'CB2 2QQ', 'CB22QQ'.postcodeize
       assert_equal 'CB2 2QQ', 'CB22QQ  '.postcodeize
       assert_equal 'CB2 2QQ', 'C   B   22QQ  '.postcodeize
