@@ -44,26 +44,14 @@ file safety:
     comments: 
     reviewed_by: pauleves
     safe_revision: f76ad0fe72d42b1ff37553c8194935a8b93a6848
-  gemfiles/Gemfile.rails32.lock:
-    comments: 
-    reviewed_by: pauleves
-    safe_revision: 0455a5dd9685aff2e3ce56963932b132067afc71
   gemfiles/Gemfile.rails41:
     comments: 
     reviewed_by: pauleves
     safe_revision: f76ad0fe72d42b1ff37553c8194935a8b93a6848
-  gemfiles/Gemfile.rails41.lock:
-    comments: 
-    reviewed_by: pauleves
-    safe_revision: 0455a5dd9685aff2e3ce56963932b132067afc71
   gemfiles/Gemfile.rails42:
     comments: 
     reviewed_by: pauleves
     safe_revision: f76ad0fe72d42b1ff37553c8194935a8b93a6848
-  gemfiles/Gemfile.rails42.lock:
-    comments: 
-    reviewed_by: pauleves
-    safe_revision: 0455a5dd9685aff2e3ce56963932b132067afc71
   lib/ndr_support.rb:
     comments: 
     reviewed_by: pauleves
