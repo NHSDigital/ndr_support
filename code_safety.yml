@@ -2,8 +2,8 @@
 file safety:
   ".gitignore":
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 2590c1c28a8ca9cfb20ad3fe3ee65a12190a5810
+    reviewed_by: josh.pencheon
+    safe_revision: 412c86abb7b5fa545c1d4895aad4fe50cbc41faf
   ".hound.yml":
     comments: 
     reviewed_by: timgentry
@@ -13,9 +13,9 @@ file safety:
     reviewed_by: timgentry
     safe_revision: bd7dbaf2c72eb4a8f74db498f4dea67e02c8cb60
   ".travis.yml":
-    comments: 
-    reviewed_by: timgentry
-    safe_revision: 41cea330c8de42e4080c40143eaa15a225be7c5a
+    comments: diff failed; reviewed whole file
+    reviewed_by: josh.pencheon
+    safe_revision: e22a3dd275ef7e9416c30e75679237053ec474d9
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -115,7 +115,7 @@ file safety:
   lib/ndr_support/string/cleaning.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 3d9cb572458ab1b9ae88fe9aba36a160c881694c
+    safe_revision: 4958fb683115a5941e34a52410ef33d17ff75579
   lib/ndr_support/string/conversions.rb:
     comments: 
     reviewed_by: timgentry
@@ -147,15 +147,15 @@ file safety:
   lib/ndr_support/version.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 2d147b3de8c8819feb278fa44328878370ace124
+    safe_revision: 0cab8a5b04539914556d3aef0d863ff4e051638b
   lib/ndr_support/yaml/serialization_migration.rb:
     comments: 
     reviewed_by: timgentry
     safe_revision: 29595e6431587ff9b7db6e3ad3abbb3577bff99c
   ndr_support.gemspec:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: a6685b972e64c61c62ba1f82883b149b0c4181c2
+    reviewed_by: josh.pencheon
+    safe_revision: 74d414793e914a45cbfd409357913ebfc9d99853
   test/array_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -211,7 +211,7 @@ file safety:
   test/string/cleaning_test.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 0f2ba63edf73284d26709c129027bc27dcc1d3a3
+    safe_revision: 4958fb683115a5941e34a52410ef33d17ff75579
   test/string/conversions_test.rb:
     comments: 
     reviewed_by: timgentry
