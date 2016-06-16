@@ -145,6 +145,8 @@ class String
       assert_equal 'C50 C509', ' C50X, c50.9; '.clean(:icd)
       assert_equal 'D04', 'd04'.clean(:icd)
       assert_equal 'C32', ';C32.X'.clean(:icd)
+      assert_equal 'C32', ';C32X'.clean(:icd)
+      assert_equal 'X32 X901A', ';X32.X;x90.1.a'.clean(:icd)
     end
 
     test 'clean code_opcs' do

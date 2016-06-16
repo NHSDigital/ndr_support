@@ -109,7 +109,7 @@ class String
       cleaned_codes.join(' ')
     when :icd
       codes = upcase.squish.split_on_separators.reject(&:blank?)
-      codes.map { |code| code.gsub(/[.X]/, '') }.join(' ')
+      codes.map { |code| code.gsub(/(?<=\d)(\.?X?)/, '') }.join(' ')
     when :code_opcs
       clean_code_opcs
     when :hospitalnumber
