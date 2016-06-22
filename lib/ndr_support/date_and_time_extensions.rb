@@ -81,6 +81,3 @@ module NdrSupport
     end
   end
 end
-
-# Maintain API:
-NdrSupport.attempt_date_patch!
