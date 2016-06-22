@@ -69,10 +69,10 @@ class Daterange
   def verbose
     return 'Bad date(s)' unless @date1 && @date2
     if @date1 == @date2 # single date
-      @date1.to_verbose
+      _verbose(@date1)
     else # range
-      'The period ' + @date1.to_verbose + ' to ' + @date2.to_verbose +
-        ' inclusive (' + (@date2 - @date1 + 1).to_s + ' days)'
+      'The period ' + _verbose(@date1) + ' to ' + _verbose(@date2) +
+        ' inclusive (' + (@date2 - @date1 + 1).to_i.to_s + ' days)'
     end
   end
 
@@ -116,6 +116,10 @@ class Daterange
   end
 
   private
+
+  def _verbose(date)
+    date.strftime('%d %B %Y')
+  end
 
   def tidy_string_if_midnight(datetime)
     if datetime.hour == 0 && datetime.min == 0 && datetime.sec == 0

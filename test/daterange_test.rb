@@ -123,6 +123,16 @@ class DaterangeTest < Minitest::Test
     assert_equal '03.2010', dr.to_s # Ideally '03.2010'
   end
 
+  def test_verbose
+    dr = Daterange.new('01.03.2010')
+    assert_equal '01 March 2010', dr.verbose
+  end
+
+  def test_verbose_range
+    dr = Daterange.new('03.2010 to 2014')
+    assert_equal 'The period 01 March 2010 to 31 December 2014 inclusive (1767 days)', dr.verbose
+  end
+
   def test_year_intersection
     dr1 = Daterange.new('2001')
     dr2 = Daterange.new('2002')
