@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+
+gemspec path: '..'
+
+gem 'activerecord',  '5.0.0rc1'
+gem 'activesupport', '5.0.0rc1'
