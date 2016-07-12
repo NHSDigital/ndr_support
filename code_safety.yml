@@ -15,7 +15,7 @@ file safety:
   ".travis.yml":
     comments: diff failed; reviewed whole file
     reviewed_by: josh.pencheon
-    safe_revision: e22a3dd275ef7e9416c30e75679237053ec474d9
+    safe_revision: a832dfb2a9c96a46520a8b120632961fb8794aaf
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -52,10 +52,14 @@ file safety:
     comments: 
     reviewed_by: pauleves
     safe_revision: f76ad0fe72d42b1ff37553c8194935a8b93a6848
+  gemfiles/Gemfile.rails50:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 55ed1c2a18b9cc4d1d996ee69419f5ee38f87746
   lib/ndr_support.rb:
     comments: 
-    reviewed_by: pauleves
-    safe_revision: 92652deb1e16e6023408633648bd955d7936dbf4
+    reviewed_by: josh.pencheon
+    safe_revision: 7c32f5a80c1fb7aaf6e850d4b0651a7b47640e15
   lib/ndr_support/array.rb:
     comments: 
     reviewed_by: pauleves
@@ -66,12 +70,12 @@ file safety:
     safe_revision: 5f9c98dcad6f6889d2431eb98cf07b1f5c3e57be
   lib/ndr_support/date_and_time_extensions.rb:
     comments: 
-    reviewed_by: pauleves
-    safe_revision: 29595e6431587ff9b7db6e3ad3abbb3577bff99c
+    reviewed_by: josh.pencheon
+    safe_revision: 779e05742a473b06ce1301507b04337a7bb1e36b
   lib/ndr_support/daterange.rb:
     comments: 
-    reviewed_by: pauleves
-    safe_revision: 506a317e59d0ccb5b32d813b74d822f35a55cea9
+    reviewed_by: josh.pencheon
+    safe_revision: 7c32f5a80c1fb7aaf6e850d4b0651a7b47640e15
   lib/ndr_support/fixnum/calculations.rb:
     comments: 
     reviewed_by: pauleves
@@ -124,10 +128,6 @@ file safety:
     comments: 
     reviewed_by: timgentry
     safe_revision: 62337584a32e5c30c2e9af7cd998a9df684885cc
-  lib/ndr_support/time/conversions.rb:
-    comments: 
-    reviewed_by: timgentry
-    safe_revision: 92652deb1e16e6023408633648bd955d7936dbf4
   lib/ndr_support/utf8_encoding.rb:
     comments: 
     reviewed_by: timgentry
@@ -155,7 +155,7 @@ file safety:
   ndr_support.gemspec:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 74d414793e914a45cbfd409357913ebfc9d99853
+    safe_revision: 9a2ce0c2cdefd4726df33199ca8f1a5ece6f3042
   test/array_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -166,8 +166,8 @@ file safety:
     safe_revision: 506a317e59d0ccb5b32d813b74d822f35a55cea9
   test/daterange_test.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
+    reviewed_by: josh.pencheon
+    safe_revision: 7c32f5a80c1fb7aaf6e850d4b0651a7b47640e15
   test/fixnum/calculations_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -186,8 +186,8 @@ file safety:
     safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
   test/ourdate_test.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
+    reviewed_by: josh.pencheon
+    safe_revision: 7c32f5a80c1fb7aaf6e850d4b0651a7b47640e15
   test/ourtime_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -220,10 +220,6 @@ file safety:
     comments: 
     reviewed_by: timgentry
     safe_revision: 506a317e59d0ccb5b32d813b74d822f35a55cea9
-  test/time/conversions_test.rb:
-    comments: 
-    reviewed_by: timgentry
-    safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
   test/utf8_encoding/control_characters_test.rb:
     comments: 
     reviewed_by: timgentry
