@@ -147,7 +147,7 @@ file safety:
   lib/ndr_support/version.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 0cab8a5b04539914556d3aef0d863ff4e051638b
+    safe_revision: 65f01fdc12e3de67b7e486d43ac4931932fcd22c
   lib/ndr_support/yaml/serialization_migration.rb:
     comments: 
     reviewed_by: timgentry
