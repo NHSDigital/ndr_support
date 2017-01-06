@@ -50,6 +50,14 @@ class String
       postcodeize(:db)
     when :lpi
       upcase.delete('^0-9A-Z')
+    when :gender
+      if self =~ /\AM(ale)?/i
+        '1'
+      elsif self =~ /\AF(emale)?/i
+        '2'
+      else
+        self
+      end
     when :sex
       # SECURE: BNS 2012-10-09: But may behave oddly for multi-line input
       if self =~ /^M|1/i

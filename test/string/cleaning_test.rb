@@ -94,6 +94,19 @@ class String
       assert_equal '', ''.clean(:lpi)
     end
 
+    test 'clean gender' do
+      assert_equal '1', 'M'.clean(:gender)
+      assert_equal '1', 'male'.clean(:gender)
+      assert_equal '1', '1'.clean(:gender)
+      assert_equal '2', 'F'.clean(:gender)
+      assert_equal '2', 'Female'.clean(:gender)
+      assert_equal '2', '2'.clean(:gender)
+      assert_equal '4000', '4000'.clean(:gender)
+      assert_equal '9', '9'.clean(:gender)
+      assert_equal 'UNK', 'UNK'.clean(:gender)
+      assert_equal '', ''.clean(:gender)
+    end
+
     test 'clean sex' do
       assert_equal '1', 'male'.clean(:sex)
       assert_equal '1', '1'.clean(:sex)
