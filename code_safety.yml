@@ -34,8 +34,8 @@ file safety:
     safe_revision: 90328cca8494539257e192a63b240a91c89f0616
   README.md:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 874d5d63763769a65bba7336099d10b030794b75
+    reviewed_by: ollietulloch
+    safe_revision: d9690e3ebcd35c55ee65a8163e80988c1c140428
   Rakefile:
     comments: 
     reviewed_by: timgentry
