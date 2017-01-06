@@ -34,8 +34,8 @@ file safety:
     safe_revision: 90328cca8494539257e192a63b240a91c89f0616
   README.md:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 874d5d63763769a65bba7336099d10b030794b75
+    reviewed_by: josh.pencheon
+    safe_revision: 764eca3766b00dbd105f4deb33181ea3d7235056
   Rakefile:
     comments: 
     reviewed_by: timgentry
@@ -119,7 +119,7 @@ file safety:
   lib/ndr_support/string/cleaning.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 4958fb683115a5941e34a52410ef33d17ff75579
+    safe_revision: d30717902e767bd63a35c0482b9a3ee52b0cdc73
   lib/ndr_support/string/conversions.rb:
     comments: 
     reviewed_by: timgentry
@@ -147,7 +147,7 @@ file safety:
   lib/ndr_support/version.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 65f01fdc12e3de67b7e486d43ac4931932fcd22c
+    safe_revision: 6a0de6c085dc9b6f996f06dd6233f80ac6a1757d
   lib/ndr_support/yaml/serialization_migration.rb:
     comments: 
     reviewed_by: timgentry
@@ -211,7 +211,7 @@ file safety:
   test/string/cleaning_test.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 4958fb683115a5941e34a52410ef33d17ff75579
+    safe_revision: d30717902e767bd63a35c0482b9a3ee52b0cdc73
   test/string/conversions_test.rb:
     comments: 
     reviewed_by: timgentry
