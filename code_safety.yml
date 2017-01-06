@@ -15,7 +15,7 @@ file safety:
   ".travis.yml":
     comments: diff failed; reviewed whole file
     reviewed_by: josh.pencheon
-    safe_revision: e22a3dd275ef7e9416c30e75679237053ec474d9
+    safe_revision: 9d1e8fd6d0e443cbe1a35fedc6d8efda653fb816
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -115,7 +115,7 @@ file safety:
   lib/ndr_support/string/cleaning.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 4958fb683115a5941e34a52410ef33d17ff75579
+    safe_revision: 9eeed313d57206901bfe1bc0e2ec9c25dad0c996
   lib/ndr_support/string/conversions.rb:
     comments: 
     reviewed_by: timgentry
@@ -147,7 +147,7 @@ file safety:
   lib/ndr_support/version.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 0cab8a5b04539914556d3aef0d863ff4e051638b
+    safe_revision: 1325c04ab8f3bb6633e067bfbe81daef22238527
   lib/ndr_support/yaml/serialization_migration.rb:
     comments: 
     reviewed_by: timgentry
@@ -211,7 +211,7 @@ file safety:
   test/string/cleaning_test.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 4958fb683115a5941e34a52410ef33d17ff75579
+    safe_revision: 9eeed313d57206901bfe1bc0e2ec9c25dad0c996
   test/string/conversions_test.rb:
     comments: 
     reviewed_by: timgentry
