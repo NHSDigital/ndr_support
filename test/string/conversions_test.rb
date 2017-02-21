@@ -169,9 +169,9 @@ class String::ConversionsTest < Minitest::Test
 
     # ONS wildcard date formats
     # (cannot convert to a Date, but need to parse into EBaseRecord date fields)
-    assert_equal nil, '19450000'.to_date('yyyymmdd')
-    assert_equal nil, '19450300'.to_date('yyyymmdd')
-    assert_equal nil, '19450013'.to_date('yyyymmdd')
+    assert_nil '19450000'.to_date('yyyymmdd')
+    assert_nil '19450300'.to_date('yyyymmdd')
+    assert_nil '19450013'.to_date('yyyymmdd')
 
     # parse our own date format correctly, regardless of format specification
     assert_equal Ourdate.build_datetime(1998, 02, 13), '13.02.1998'.to_date('yyyymmdd')
