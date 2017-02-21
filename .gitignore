@@ -13,3 +13,7 @@
 *.o
 *.a
 mkmf.log
+
+# Ignore RuboCop's cache.
+.rubocop-https---raw-githubusercontent-com-PublicHealthEngland-ndr-dev-support-master--rubocop-yml
+
