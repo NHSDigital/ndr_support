@@ -73,7 +73,7 @@ module NdrSupport
         # at least as effectively: [#6950#note-12]
         next if slugify(pattern).length <= 2
 
-        string.gsub!(pattern) { |word| word.first + word.last }
+        string.gsub!(pattern) { |word| word.chars.first + word.chars.last }
       end
 
       string
