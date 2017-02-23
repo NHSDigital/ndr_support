@@ -31,7 +31,7 @@ file safety:
   README.md:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 764eca3766b00dbd105f4deb33181ea3d7235056
+    safe_revision: 799d9fe4d76759958926c0385fc7f5d8e405d0d0
   Rakefile:
     comments: 
     reviewed_by: timgentry
@@ -55,7 +55,7 @@ file safety:
   lib/ndr_support.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 7c32f5a80c1fb7aaf6e850d4b0651a7b47640e15
+    safe_revision: f5d1ba50d378286c0541f300d73844240e2eb7c1
   lib/ndr_support/array.rb:
     comments: 
     reviewed_by: pauleves
@@ -101,13 +101,13 @@ file safety:
     reviewed_by: pauleves
     safe_revision: 4a4ed24d2cfe7e1736baadf4cf6e0fece6823be1
   lib/ndr_support/password.rb:
-    comments: 
-    reviewed_by: 
-    safe_revision: 
+    comments: with input from brian.shand
+    reviewed_by: josh.pencheon
+    safe_revision: f5d1ba50d378286c0541f300d73844240e2eb7c1
   lib/ndr_support/password/constants.rb:
-    comments: 
-    reviewed_by: 
-    safe_revision: 
+    comments: with input from brian.shand
+    reviewed_by: josh.pencheon
+    safe_revision: f5d1ba50d378286c0541f300d73844240e2eb7c1
   lib/ndr_support/regexp_range.rb:
     comments: 
     reviewed_by: pauleves
@@ -151,7 +151,7 @@ file safety:
   lib/ndr_support/version.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 6a0de6c085dc9b6f996f06dd6233f80ac6a1757d
+    safe_revision: 802eaa1206e0f179d403aa46c7826b1d4ab7b369
   lib/ndr_support/yaml/serialization_migration.rb:
     comments: 
     reviewed_by: timgentry
@@ -197,9 +197,9 @@ file safety:
     reviewed_by: timgentry
     safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
   test/password_test.rb:
-    comments: 
-    reviewed_by: 
-    safe_revision: 
+    comments: with input from brian.shand
+    reviewed_by: josh.pencheon
+    safe_revision: f5d1ba50d378286c0541f300d73844240e2eb7c1
   test/regexp_range_test.rb:
     comments: 
     reviewed_by: timgentry
