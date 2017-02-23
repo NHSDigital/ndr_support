@@ -3,7 +3,7 @@
 This is the Public Health England (PHE) National Disease Registers (NDR) Support ruby gem, providing:
 
 1. core ruby class extensions;
-2. additional time, regular expression, file security and encoding classes.
+2. additional time, regular expression, file security, password checking/generation, and encoding classes.
 
 ## Installation
 
@@ -36,6 +36,7 @@ ndr_support extends/overrides the following core classes/modules:
 ndr_support adds the following classes:
 
 - Daterange
+- NdrSupport::Password
 - Ourdate
 - Ourtime
 - RegexpRange
