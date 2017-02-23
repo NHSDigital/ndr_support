@@ -3,15 +3,11 @@ file safety:
   ".gitignore":
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 412c86abb7b5fa545c1d4895aad4fe50cbc41faf
-  ".hound.yml":
-    comments: 
-    reviewed_by: timgentry
-    safe_revision: 9605fa85dca3d70c85927d3f1f5818c20ad922f0
+    safe_revision: a02f14cbf1fc36fbaf820365fdedfdc9af326db1
   ".rubocop.yml":
     comments: 
-    reviewed_by: timgentry
-    safe_revision: bd7dbaf2c72eb4a8f74db498f4dea67e02c8cb60
+    reviewed_by: josh.pencheon
+    safe_revision: a02f14cbf1fc36fbaf820365fdedfdc9af326db1
   ".travis.yml":
     comments: diff failed; reviewed whole file
     reviewed_by: josh.pencheon
@@ -104,6 +100,14 @@ file safety:
     comments: 
     reviewed_by: pauleves
     safe_revision: 4a4ed24d2cfe7e1736baadf4cf6e0fece6823be1
+  lib/ndr_support/password.rb:
+    comments: 
+    reviewed_by: 
+    safe_revision: 
+  lib/ndr_support/password/constants.rb:
+    comments: 
+    reviewed_by: 
+    safe_revision: 
   lib/ndr_support/regexp_range.rb:
     comments: 
     reviewed_by: pauleves
@@ -155,7 +159,7 @@ file safety:
   ndr_support.gemspec:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 9a2ce0c2cdefd4726df33199ca8f1a5ece6f3042
+    safe_revision: 7e4f3d4ea1befdf75533b92415f74c9afaca04a3
   test/array_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -192,6 +196,10 @@ file safety:
     comments: 
     reviewed_by: timgentry
     safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
+  test/password_test.rb:
+    comments: 
+    reviewed_by: 
+    safe_revision: 
   test/regexp_range_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -214,8 +222,8 @@ file safety:
     safe_revision: d30717902e767bd63a35c0482b9a3ee52b0cdc73
   test/string/conversions_test.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
+    reviewed_by: josh.pencheon
+    safe_revision: dfb7d1b94fc4d1578ab2129096945d5d1a1094fe
   test/test_helper.rb:
     comments: 
     reviewed_by: timgentry
