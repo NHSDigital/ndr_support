@@ -88,10 +88,6 @@ file safety:
     comments: 
     reviewed_by: pauleves
     safe_revision: 4a4ed24d2cfe7e1736baadf4cf6e0fece6823be1
-  lib/ndr_support/nil.rb:
-    comments: 
-    reviewed_by: pauleves
-    safe_revision: 4a4ed24d2cfe7e1736baadf4cf6e0fece6823be1
   lib/ndr_support/ourdate.rb:
     comments: 
     reviewed_by: pauleves
@@ -181,10 +177,6 @@ file safety:
     reviewed_by: timgentry
     safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
   test/integer_test.rb:
-    comments: 
-    reviewed_by: timgentry
-    safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
-  test/nil_test.rb:
     comments: 
     reviewed_by: timgentry
     safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
