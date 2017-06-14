@@ -134,8 +134,9 @@ class String
       else
         downcase
       end
-    when :upcase
-      upcase
+    when :strip, :upcase
+      # SECURE: 14-06-2017 TPG Fixed list of executable methods (whats)
+      send(what)
     else
       gsub(' ?', ' ')
     end

@@ -200,6 +200,14 @@ class String
       assert_equal 'UPCASE', 'UPCASE'.clean(:upcase)
     end
 
+    test 'clean strip' do
+      assert_equal '', ''.clean(:strip)
+      assert_equal 'no leading or trailing spaces', 'no leading or trailing spaces'.clean(:strip)
+      assert_equal 'leading and trailing spaces', '  leading and trailing spaces  '.clean(:strip)
+      assert_equal 'leading spaces', '    leading spaces'.clean(:strip)
+      assert_equal 'trailing spaces', 'trailing spaces  '.clean(:strip)
+    end
+
     test 'clean fallback' do
       assert_equal 'UN KNOWN', 'UN ?KNOWN'.clean(:somethingorother)
       assert_equal 'UNKNOWN', 'UNKNOWN'.clean(:somethingorother)
