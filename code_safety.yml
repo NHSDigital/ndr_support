@@ -115,15 +115,15 @@ file safety:
   lib/ndr_support/safe_file.rb:
     comments: 
     reviewed_by: timgentry
-    safe_revision: 033819a6ada448551c71a72bbbef4652be3d9c40
+    safe_revision: '033819a6ada448551c71a72bbbef4652be3d9c40'
   lib/ndr_support/safe_path.rb:
     comments: 
     reviewed_by: timgentry
     safe_revision: 4492da77f6a8b678c40dd571fdd46fd936052cca
   lib/ndr_support/string/cleaning.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: d30717902e767bd63a35c0482b9a3ee52b0cdc73
+    reviewed_by: brian.shand
+    safe_revision: 947308c8e3dd8fbb53d38db27f24fff09e7ab295
   lib/ndr_support/string/conversions.rb:
     comments: 
     reviewed_by: timgentry
@@ -150,8 +150,8 @@ file safety:
     safe_revision: f7adf44fc2772e1926df37abfd9041d41c303328
   lib/ndr_support/version.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 802eaa1206e0f179d403aa46c7826b1d4ab7b369
+    reviewed_by: brian.shand
+    safe_revision: 2550a205795bd7931fb4f5f11cded52399c84f08
   lib/ndr_support/yaml/serialization_migration.rb:
     comments: 
     reviewed_by: timgentry
@@ -218,8 +218,8 @@ file safety:
     safe_revision: b562d0c15ff1b1d565522a47e6bae47ea09706f0
   test/string/cleaning_test.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: d30717902e767bd63a35c0482b9a3ee52b0cdc73
+    reviewed_by: brian.shand
+    safe_revision: 947308c8e3dd8fbb53d38db27f24fff09e7ab295
   test/string/conversions_test.rb:
     comments: 
     reviewed_by: josh.pencheon
