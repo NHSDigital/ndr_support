@@ -136,6 +136,8 @@ class String
       end
     when :upcase
       upcase
+    when :itself
+      itself
     else
       gsub(' ?', ' ')
     end
