@@ -134,7 +134,7 @@ class String
       else
         downcase
       end
-    when :strip, :upcase
+    when :strip, :upcase, :itself
       # SECURE: 14-06-2017 TPG Fixed list of executable methods (whats)
       send(what)
     else
