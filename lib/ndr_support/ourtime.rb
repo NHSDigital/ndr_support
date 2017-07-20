@@ -9,7 +9,6 @@ class Ourtime
   def self.zone
     @zone ||= ActiveSupport::TimeZone.new('London')
   end
-  delegate :zone, to: :class
 
   # TODO: deprecate this...
   def initialize(x = nil)
@@ -33,9 +32,14 @@ class Ourtime
     @thetime.nil? && @source.blank?
   end
 
+  private
+
   def source=(s)
     @thetime = zone.parse(s)
   end
 
-  private :source=
+  def zone
+    # `delegate` doesn't work for this on Rails 3.2
+    self.class.zone
+  end
 end
