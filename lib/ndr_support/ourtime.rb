@@ -6,6 +6,11 @@ require 'ndr_support/ourdate'
 class Ourtime
   attr_reader :thetime
 
+  def self.zone
+    @zone ||= ActiveSupport::TimeZone.new('London')
+  end
+  delegate :zone, to: :class
+
   # TODO: deprecate this...
   def initialize(x = nil)
     if x.is_a?(Time)
@@ -29,16 +34,7 @@ class Ourtime
   end
 
   def source=(s)
-    begin
-      # Re-parse our own timestamps [+- seconds] without swapping month / day
-      @thetime = Time.strptime(s, '%d.%m.%Y %H:%M:%S')
-    rescue ArgumentError
-      begin
-        @thetime = Time.strptime(s, '%d.%m.%Y %H:%M')
-      rescue ArgumentError
-        @thetime = Time.parse(s)
-      end
-    end
+    @thetime = zone.parse(s)
   end
 
   private :source=
