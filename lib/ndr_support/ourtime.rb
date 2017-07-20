@@ -6,6 +6,7 @@ require 'ndr_support/ourdate'
 class Ourtime
   attr_reader :thetime
 
+  # TODO: deprecate this...
   def initialize(x = nil)
     if x.is_a?(Time)
       @thetime = x
@@ -30,20 +31,13 @@ class Ourtime
   def source=(s)
     begin
       # Re-parse our own timestamps [+- seconds] without swapping month / day
-      @thetime = DateTime.strptime(s, '%d.%m.%Y %H:%M:%S').to_time
+      @thetime = Time.strptime(s, '%d.%m.%Y %H:%M:%S')
     rescue ArgumentError
       begin
-        @thetime = DateTime.strptime(s, '%d.%m.%Y %H:%M').to_time
+        @thetime = Time.strptime(s, '%d.%m.%Y %H:%M')
       rescue ArgumentError
         @thetime = Time.parse(s)
       end
-    end
-    # Apply timezone correction for daylight saving
-    if @thetime
-      @thetime = Ourdate.build_datetime(@thetime.year, @thetime.month,
-                                        @thetime.day, @thetime.hour,
-                                        @thetime.min, @thetime.sec,
-                                        @thetime.instance_of?(Time) ? @thetime.usec : 0).to_time
     end
   end
 
