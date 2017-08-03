@@ -8,6 +8,8 @@ gemfile:
   - gemfiles/Gemfile.rails32
   - gemfiles/Gemfile.rails41
   - gemfiles/Gemfile.rails42
+  - gemfiles/Gemfile.rails50
+  - gemfiles/Gemfile.rails51
 
 sudo: false
 
