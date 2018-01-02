@@ -81,7 +81,7 @@ class String::ConversionsTest < Minitest::Test
   test 'should convert strings to DateTime correctly' do
     assert_equal 0, '2018-01-02'.to_datetime.utc_offset
     return unless ActiveRecord::Base.default_timezone == :local
-    assert_equal 3600, '2017-09-02'.to_datetime.utc_offset
+    assert_equal Time.new(2017, 9, 2).utc_offset, '2017-09-02'.to_datetime.utc_offset, 'Expect consistent offset'
   end
 
   test 'ParseDate should behave consistently' do
