@@ -127,7 +127,7 @@ class DaterangeTest < Minitest::Test
     dr = Daterange.new(Date.new(2017, 9, 2)) # During daylight saving
     assert_equal '02.09.2017', dr.to_s
     return unless ActiveRecord::Base.default_timezone == :local
-    assert_equal Time.new(2017, 9, 2).utc_offset, dr.date1.utc_offset, 'Expect consistent offset'
+    assert_equal Date.new(2017, 9, 2).in_time_zone.utc_offset, dr.date1.utc_offset, 'Expect consistent offset'
     assert_equal '2017-09-02'.thetime, dr.date1
   end
 
