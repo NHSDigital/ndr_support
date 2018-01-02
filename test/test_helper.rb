@@ -18,6 +18,7 @@ NdrSupport.apply_era_date_formats!
 # Instead, we want to store all times in local time.
 ActiveRecord::Base.default_timezone = :local
 ActiveRecord::Base.time_zone_aware_attributes = false
+Time.zone = 'London'
 
 SafePath.configure! File.dirname(__FILE__) + '/resources/filesystem_paths.yml'
 
