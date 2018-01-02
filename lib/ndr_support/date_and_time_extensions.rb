@@ -1,4 +1,5 @@
 require 'yaml'
+require 'date'
 
 require 'ndr_support/concerns/working_days'
 [Time, Date, DateTime].each { |klass| klass.send(:include, WorkingDays) }
@@ -8,6 +9,14 @@ class Date
   def to_iso
     strftime('%Y-%m-%d')
   end # ISO date format
+
+  alias orig_to_datetime to_datetime
+
+  def to_datetime
+    # Default timezone for Date is GMT, not local timezone
+    return in_time_zone.to_datetime if ActiveRecord::Base.default_timezone == :local
+    orig_to_datetime
+  end
 end
 
 #-------------------------------------------------------------------------------

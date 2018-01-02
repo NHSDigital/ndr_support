@@ -127,6 +127,14 @@ class String
     end
   end
 
+  alias orig_to_datetime to_datetime
+
+  def to_datetime
+    # Default timezone for to_datetime conversion is GMT, not local timezone
+    return to_time.to_datetime if ActiveRecord::Base.default_timezone == :local
+    orig_to_datetime
+  end
+
   # Try to convert the string value into boolean
   def to_boolean
     # SECURE: BNS 2012-10-09: But may behave oddly for multi-line input

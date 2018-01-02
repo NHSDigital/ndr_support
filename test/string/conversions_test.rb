@@ -78,6 +78,12 @@ class String::ConversionsTest < Minitest::Test
     assert_ymd [2014, 3, 2], '2014/03/02 13:02:01'.to_date
   end
 
+  test 'should convert strings to DateTime correctly' do
+    assert_equal 0, '2018-01-02'.to_datetime.utc_offset
+    return unless ActiveRecord::Base.default_timezone == :local
+    assert_equal 3600, '2017-09-02'.to_datetime.utc_offset
+  end
+
   test 'ParseDate should behave consistently' do
     # We use ParseDate (and thus Date._parse) for
     # converting strings to dates. Its behaviour
