@@ -11,7 +11,7 @@ file safety:
   ".travis.yml":
     comments: diff failed; reviewed whole file
     reviewed_by: brian.shand
-    safe_revision: 4e87fd9d64fc0f15b359ba60fc48cda54453c647
+    safe_revision: fb10f9e24cfe0dde8bba65e61ff46d2b9fe2d7fb
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -36,10 +36,6 @@ file safety:
     comments: 
     reviewed_by: timgentry
     safe_revision: e33e9dae7f38bc449ce9276515a539836dbbbd53
-  gemfiles/Gemfile.rails32:
-    comments: 
-    reviewed_by: pauleves
-    safe_revision: f76ad0fe72d42b1ff37553c8194935a8b93a6848
   gemfiles/Gemfile.rails41:
     comments: 
     reviewed_by: pauleves
@@ -167,7 +163,7 @@ file safety:
   ndr_support.gemspec:
     comments: 
     reviewed_by: brian.shand
-    safe_revision: 868f08bfef312b3cc1b203425339e7097fd2fa5c
+    safe_revision: fb10f9e24cfe0dde8bba65e61ff46d2b9fe2d7fb
   test/array_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -179,7 +175,7 @@ file safety:
   test/daterange_test.rb:
     comments: 
     reviewed_by: brian.shand
-    safe_revision: 0a06fed3e7530185497f786decdb77a62d35e101
+    safe_revision: 9a61389244a4e8e271515ab792aa5a9f8674eb1f
   test/fixnum/calculations_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -235,11 +231,11 @@ file safety:
   test/string/conversions_test.rb:
     comments: 
     reviewed_by: brian.shand
-    safe_revision: 0a06fed3e7530185497f786decdb77a62d35e101
+    safe_revision: 1955bf30ffe581610981f0148569e252cba02926
   test/test_helper.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 506a317e59d0ccb5b32d813b74d822f35a55cea9
+    reviewed_by: brian.shand
+    safe_revision: 4533a155924f8a1415dd64e251a7f8311ece3bd8
   test/utf8_encoding/control_characters_test.rb:
     comments: 
     reviewed_by: timgentry
