@@ -52,13 +52,10 @@ module NdrSupport
     private
 
     def apply_date_patch!
-      # With YAML's crazy engine switching, it seems we
-      # can't rely including a module to define this method:
-      Date.module_eval do
-        def to_yaml(opts = {})
-          ::YAML.quick_emit(object_id, opts) do |out|
-            out.scalar('tag:yaml.org,2002:timestamp', to_s(:yaml), :plain)
-          end
+      # Ensure we emit "yaml-formatted" string, instead of the revised default format.
+      Psych::Visitors::YAMLTree.class_eval do
+        def visit_Date o
+          @emitter.scalar o.to_s(:yaml), nil, nil, true, false, Psych::Nodes::Scalar::ANY
         end
       end
     end
