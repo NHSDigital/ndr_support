@@ -1,7 +1,7 @@
 require 'ndr_support/ourdate'
 
-# Extend Fixnum for use in our Daterange class
-class Fixnum
+# Extend Integer for use in our Daterange class
+class Integer
   # Julian date number to Ruby Date
   def jd_to_date
     Date.jd(self)

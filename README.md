@@ -26,7 +26,6 @@ Or install it yourself by cloning the project, then executing:
 ndr_support extends/overrides the following core classes/modules:
 
 - Array
-- Fixnum
 - Hash
 - Integer
 - NilClass

@@ -1,4 +1,4 @@
-class Fixnum
+class Integer
   # Gets binomial coefficients:
   #
   #   4.choose(2) #=> 6

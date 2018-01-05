@@ -163,9 +163,9 @@ class SafeFile
       prms = nil
 
     when 2
-      fail ArgumentError if args[1].class != Fixnum and args[1].class != String
+      fail ArgumentError unless args[1].is_a?(Integer) || args[1].is_a?(String)
 
-      if args[1].class == Fixnum
+      if args[1].is_a?(Integer)
         verify_mode(args[0], 'r')
         mode = 'r'
         prms = args[1]
@@ -178,7 +178,7 @@ class SafeFile
       fname = args[0]
 
     when 3
-      fail ArgumentError if args[1].class != String or args[2].class != Fixnum
+      fail ArgumentError unless args[1].is_a?(String) && args[2].is_a?(Integer)
       verify_mode(args[0], args[1])
 
       fname = args[0]

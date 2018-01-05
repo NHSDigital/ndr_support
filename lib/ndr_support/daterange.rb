@@ -1,5 +1,5 @@
 require 'active_support/time'
-require 'ndr_support/fixnum/julian_date_conversions'
+require 'ndr_support/integer/julian_date_conversions'
 
 # Our "vague date" class, which can represent a single date or a date range.
 class Daterange

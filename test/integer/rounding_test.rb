@@ -1,7 +1,7 @@
 require 'test_helper'
 
-# This tests our Integer extension
-class IntegerTest < Minitest::Test
+# This tests our rounding extension
+class Integer::RoundingTest < Minitest::Test
   def test_rounding
     assert_equal 124_000, 123_221.round_up_to(3)
     assert_equal 123_300, 123_221.round_up_to(4)
