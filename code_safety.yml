@@ -10,8 +10,8 @@ file safety:
     safe_revision: a02f14cbf1fc36fbaf820365fdedfdc9af326db1
   ".travis.yml":
     comments: diff failed; reviewed whole file
-    reviewed_by: brian.shand
-    safe_revision: fb10f9e24cfe0dde8bba65e61ff46d2b9fe2d7fb
+    reviewed_by: josh.pencheon
+    safe_revision: 2787caaeb45bf2d0b21a608f24cbc218c545de0b
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -31,15 +31,11 @@ file safety:
   README.md:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 799d9fe4d76759958926c0385fc7f5d8e405d0d0
+    safe_revision: 2685f35c907af6968a69eabb5ab9424b490d0f40
   Rakefile:
     comments: 
     reviewed_by: timgentry
     safe_revision: e33e9dae7f38bc449ce9276515a539836dbbbd53
-  gemfiles/Gemfile.rails41:
-    comments: 
-    reviewed_by: pauleves
-    safe_revision: f76ad0fe72d42b1ff37553c8194935a8b93a6848
   gemfiles/Gemfile.rails42:
     comments: 
     reviewed_by: pauleves
@@ -54,8 +50,8 @@ file safety:
     safe_revision: 4e87fd9d64fc0f15b359ba60fc48cda54453c647
   lib/ndr_support.rb:
     comments: 
-    reviewed_by: brian.shand
-    safe_revision: 50a4293953f9ae227823c390b069a3ed4825074c
+    reviewed_by: josh.pencheon
+    safe_revision: 2685f35c907af6968a69eabb5ab9424b490d0f40
   lib/ndr_support/array.rb:
     comments: 
     reviewed_by: pauleves
@@ -66,28 +62,28 @@ file safety:
     safe_revision: 5f9c98dcad6f6889d2431eb98cf07b1f5c3e57be
   lib/ndr_support/date_and_time_extensions.rb:
     comments: 
-    reviewed_by: brian.shand
-    safe_revision: 0a06fed3e7530185497f786decdb77a62d35e101
+    reviewed_by: josh.pencheon
+    safe_revision: 3553509e52b3697d361cfa4c6f8a67754ed942d3
   lib/ndr_support/daterange.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 7c32f5a80c1fb7aaf6e850d4b0651a7b47640e15
-  lib/ndr_support/fixnum/calculations.rb:
-    comments: 
-    reviewed_by: pauleves
-    safe_revision: f7dbfe2acd1b067858867d58c77e49b03ea78a1d
-  lib/ndr_support/fixnum/julian_date_conversions.rb:
-    comments: 
-    reviewed_by: pauleves
-    safe_revision: 51b80457875c3916be6c8d6f5dab026143033d53
+    safe_revision: 2685f35c907af6968a69eabb5ab9424b490d0f40
   lib/ndr_support/hash.rb:
     comments: 
     reviewed_by: pauleves
     safe_revision: 506a317e59d0ccb5b32d813b74d822f35a55cea9
-  lib/ndr_support/integer.rb:
+  lib/ndr_support/integer/calculations.rb:
     comments: 
-    reviewed_by: pauleves
-    safe_revision: 4a4ed24d2cfe7e1736baadf4cf6e0fece6823be1
+    reviewed_by: josh.pencheon
+    safe_revision: 2685f35c907af6968a69eabb5ab9424b490d0f40
+  lib/ndr_support/integer/julian_date_conversions.rb:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 2685f35c907af6968a69eabb5ab9424b490d0f40
+  lib/ndr_support/integer/rounding.rb:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 2685f35c907af6968a69eabb5ab9424b490d0f40
   lib/ndr_support/nil.rb:
     comments: 
     reviewed_by: pauleves
@@ -118,8 +114,8 @@ file safety:
     safe_revision: f9341d1c7f797f9fe81af937c383d41c23872b2f
   lib/ndr_support/safe_file.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: '033819a6ada448551c71a72bbbef4652be3d9c40'
+    reviewed_by: josh.pencheon
+    safe_revision: 2685f35c907af6968a69eabb5ab9424b490d0f40
   lib/ndr_support/safe_path.rb:
     comments: 
     reviewed_by: timgentry
@@ -154,8 +150,8 @@ file safety:
     safe_revision: f7adf44fc2772e1926df37abfd9041d41c303328
   lib/ndr_support/version.rb:
     comments: 
-    reviewed_by: brian.shand
-    safe_revision: b27cf809b06814e6c1373e7b069b6537eaae3e15
+    reviewed_by: josh.pencheon
+    safe_revision: 76a88bd80e3553e85d0055dbadde1ca6c4638de8
   lib/ndr_support/yaml/serialization_migration.rb:
     comments: 
     reviewed_by: timgentry
@@ -176,18 +172,18 @@ file safety:
     comments: 
     reviewed_by: brian.shand
     safe_revision: 9a61389244a4e8e271515ab792aa5a9f8674eb1f
-  test/fixnum/calculations_test.rb:
-    comments: 
-    reviewed_by: timgentry
-    safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
   test/hash_test.rb:
     comments: 
     reviewed_by: timgentry
     safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
-  test/integer_test.rb:
+  test/integer/calculations_test.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
+    reviewed_by: josh.pencheon
+    safe_revision: 2685f35c907af6968a69eabb5ab9424b490d0f40
+  test/integer/rounding_test.rb:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 2685f35c907af6968a69eabb5ab9424b490d0f40
   test/nil_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -250,5 +246,5 @@ file safety:
     safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
   test/yaml/serialization_test.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 862d95310b59b38d3dad1b906253981049a854bd
+    reviewed_by: josh.pencheon
+    safe_revision: 4daf43bf8cb48761471b32ad45c4d1cf97aab476
