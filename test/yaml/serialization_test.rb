@@ -83,6 +83,10 @@ class SerializationTest < Minitest::Test
     # Dumped by 1.8.7 syck, within era.
     loaded = YAML.load("--- 2014-03-01\n")
     assert_equal date, loaded, '1.8.7 era date'
+
+    # Check default formatting does not affect serialisation:
+    assert_equal '01.03.2014', date.to_s
+    assert_equal date, YAML.load(date.to_yaml)
   end
 
   def assert_datetimes
