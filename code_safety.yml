@@ -48,6 +48,10 @@ file safety:
     comments: 
     reviewed_by: brian.shand
     safe_revision: 4e87fd9d64fc0f15b359ba60fc48cda54453c647
+  gemfiles/Gemfile.rails52:
+    comments: 
+    reviewed_by: 
+    safe_revision: 
   lib/ndr_support.rb:
     comments: 
     reviewed_by: josh.pencheon
