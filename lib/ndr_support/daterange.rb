@@ -1,3 +1,4 @@
+require 'active_support/core_ext/enumerable'
 require 'active_support/time'
 require 'ndr_support/integer/julian_date_conversions'
 
