@@ -11,7 +11,7 @@ file safety:
   ".travis.yml":
     comments: diff failed; reviewed whole file
     reviewed_by: josh.pencheon
-    safe_revision: 2787caaeb45bf2d0b21a608f24cbc218c545de0b
+    safe_revision: 8a6bedae77d33d0db1b67eaed7972870b6afc993
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -50,8 +50,8 @@ file safety:
     safe_revision: 4e87fd9d64fc0f15b359ba60fc48cda54453c647
   gemfiles/Gemfile.rails52:
     comments: 
-    reviewed_by: 
-    safe_revision: 
+    reviewed_by: josh.pencheon
+    safe_revision: 8a6bedae77d33d0db1b67eaed7972870b6afc993
   lib/ndr_support.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -71,7 +71,7 @@ file safety:
   lib/ndr_support/daterange.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 2685f35c907af6968a69eabb5ab9424b490d0f40
+    safe_revision: e43b6e6fa52c267abf51a9f119b24ca7645d4077
   lib/ndr_support/hash.rb:
     comments: 
     reviewed_by: pauleves
@@ -155,15 +155,15 @@ file safety:
   lib/ndr_support/version.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 76a88bd80e3553e85d0055dbadde1ca6c4638de8
+    safe_revision: f7e1eb75323e5675b532cdef04516cc877d15e9f
   lib/ndr_support/yaml/serialization_migration.rb:
     comments: 
     reviewed_by: timgentry
     safe_revision: 29595e6431587ff9b7db6e3ad3abbb3577bff99c
   ndr_support.gemspec:
     comments: 
-    reviewed_by: brian.shand
-    safe_revision: fb10f9e24cfe0dde8bba65e61ff46d2b9fe2d7fb
+    reviewed_by: josh.pencheon
+    safe_revision: 4cad594a94f334c7928457eb21a53096cdb63d0d
   test/array_test.rb:
     comments: 
     reviewed_by: timgentry
