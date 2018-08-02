@@ -209,4 +209,15 @@ class DaterangeTest < Minitest::Test
     dr = Daterange.merge('2001, 30.04.2005, 2003,,')
     assert_equal '01.01.2001 to 30.04.2005', dr.to_s
   end
+
+  def test_comparison
+    dr1 = Daterange.new('01.04.2000')
+    dr2 = Daterange.new('01.04.2000 to 01.04.2000')
+    assert_equal dr1, dr2
+    assert_equal dr1, dr1.to_s
+    refute_equal nil, dr1
+    refute_equal 0, dr1
+    refute_equal dr1, nil
+    refute_equal dr1, 0
+  end
 end

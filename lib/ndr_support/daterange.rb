@@ -100,7 +100,9 @@ class Daterange
   end
 
   def ==(other)
-    self.date1 == other.date1 && self.date2 == other.date2
+    date1 == other.date1 && date2 == other.date2
+  rescue NoMethodError # Comparing to things that don't work like Dateranges, e.g. nil, integer
+    false
   end
 
   def intersects?(other)
