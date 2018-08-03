@@ -70,8 +70,8 @@ file safety:
     safe_revision: 3553509e52b3697d361cfa4c6f8a67754ed942d3
   lib/ndr_support/daterange.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: e43b6e6fa52c267abf51a9f119b24ca7645d4077
+    reviewed_by: brian.shand
+    safe_revision: c7ed8bc16be8ec803dfaeb3473fbc538b54587ec
   lib/ndr_support/hash.rb:
     comments: 
     reviewed_by: pauleves
@@ -175,7 +175,7 @@ file safety:
   test/daterange_test.rb:
     comments: 
     reviewed_by: brian.shand
-    safe_revision: 9a61389244a4e8e271515ab792aa5a9f8674eb1f
+    safe_revision: c7ed8bc16be8ec803dfaeb3473fbc538b54587ec
   test/hash_test.rb:
     comments: 
     reviewed_by: timgentry
