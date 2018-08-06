@@ -9,9 +9,11 @@ file safety:
     reviewed_by: josh.pencheon
     safe_revision: a02f14cbf1fc36fbaf820365fdedfdc9af326db1
   ".travis.yml":
-    comments: diff failed; reviewed whole file
-    reviewed_by: josh.pencheon
-    safe_revision: 8a6bedae77d33d0db1b67eaed7972870b6afc993
+    comments: 'diff failed; reviewed whole file. Revision c88f5ac8c12fd657bb142144e0d3afaa7f9bc361:
+      Slack notification secret is public/private key encrypted, so not a disclosure
+      risk. As a secondary protection, it''s excluded from the .gem file by ndr_support.gemspec'
+    reviewed_by: brian.shand
+    safe_revision: c88f5ac8c12fd657bb142144e0d3afaa7f9bc361
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -162,8 +164,8 @@ file safety:
     safe_revision: 29595e6431587ff9b7db6e3ad3abbb3577bff99c
   ndr_support.gemspec:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 4cad594a94f334c7928457eb21a53096cdb63d0d
+    reviewed_by: brian.shand
+    safe_revision: e8d08f6466acbdd4cbd6cbf90f1cfa45ffd656ec
   test/array_test.rb:
     comments: 
     reviewed_by: timgentry
