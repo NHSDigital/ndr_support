@@ -5,9 +5,7 @@ module UTF8Encoding
   # escaped, using standard replacement scheme.
   module ControlCharacters
     # The range of characters we consider:
-    CONTROL_CHARACTERS = /[\x00-\x1f]|\x7f/
-    # Exceptions that are allowed:
-    ALLOWED_CONTROL_CHARACTERS = %W( \x09 \x0a \x0d )
+    CONTROL_CHARACTERS = /[\x00-\x08]|[\x0b-\x0c]|[\x0e-\x1f]|\x7f/
 
     # Recursively escape any control characters in `object`.
     def escape_control_chars_in_object!(object)
@@ -31,11 +29,7 @@ module UTF8Encoding
     # Escapes in-place any control characters in `string`, before returning it.
     def escape_control_chars!(string)
       string.gsub!(CONTROL_CHARACTERS) do |character|
-        if ALLOWED_CONTROL_CHARACTERS.include?(character)
-          character
-        else
-          UTF8Encoding::REPLACEMENT_SCHEME[character]
-        end
+        UTF8Encoding::REPLACEMENT_SCHEME[character]
       end
       string
     end

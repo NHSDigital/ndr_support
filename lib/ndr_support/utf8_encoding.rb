@@ -16,6 +16,9 @@ module UTF8Encoding
   # How should unmappable characters be escaped, when forcing encoding?
   REPLACEMENT_SCHEME = lambda { |char| '0x' + char.ord.to_s(16).rjust(2, '0') }
 
+  UTF8   = 'UTF-8'.freeze
+  BINARY = 'BINARY'.freeze
+
   # Returns a new string with valid UTF-8 encoding,
   # or raises an exception if encoding fails.
   def ensure_utf8(string, source_encoding = nil)
@@ -51,7 +54,7 @@ module UTF8Encoding
     ensure_utf8!(string, source_encoding)
   rescue UTF8CoercionError
     # ...before going back-to-basics, and replacing things that don't map:
-    string.encode!('UTF-8', 'BINARY', :fallback => REPLACEMENT_SCHEME)
+    string.encode!(UTF8, BINARY, :fallback => REPLACEMENT_SCHEME)
   end
 
   private
@@ -60,7 +63,7 @@ module UTF8Encoding
     candidates.detect do |encoding|
       begin
         # Attempt to encode as UTF-8 from source `encoding`:
-        string.encode!('UTF-8', encoding)
+        string.encode!(UTF8, encoding)
         # If that worked, we're done; otherwise, move on.
         string.valid_encoding?
       rescue EncodingError
