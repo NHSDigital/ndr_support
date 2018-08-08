@@ -3,7 +3,7 @@ SimpleCov.start
 
 require 'minitest/autorun'
 require 'minitest/unit'
-require 'mocha/mini_test'
+require 'mocha/minitest'
 
 require 'active_record'
 require 'active_support/time'
