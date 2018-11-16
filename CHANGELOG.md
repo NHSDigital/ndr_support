@@ -1,4 +1,7 @@
 ## [Unreleased]
+*no unreleased changes*
+
+## 5.5.0 / 2018-11-16
 ### Added
 * Add `ThreatScanner` to wrap ClamAV for virus detection (#10)
 
