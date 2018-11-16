@@ -7,7 +7,7 @@ class ThreatScannerTest < Minitest::Test
     @scanner  = ThreatScanner.new(@tempfile)
 
     ThreatScanner.stubs(installed?: true)
-    stubs(:`)
+    ThreatScanner.any_instance.stubs(:`)
   end
 
   def teardown
