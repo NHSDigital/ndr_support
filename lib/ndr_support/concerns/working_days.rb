@@ -50,6 +50,33 @@ module WorkingDays
     '2016-08-29', # Monday    - Summer bank holiday
     '2016-12-26', # Monday    - Boxing Day
     '2016-12-27', # Tuesday   - Christmas Day (substitute day)
+    # 2017
+    '2017-01-02', # Monday    - New Year's Day
+    '2017-04-14', # Friday    - Good Friday
+    '2017-04-17', # Monday    - Easter Monday
+    '2017-05-01', # Monday    - Early May bank holiday
+    '2017-05-29', # Monday    - Spring bank holiday
+    '2017-08-28', # Monday    - Summer bank holiday
+    '2017-12-25', # Monday    - Christmas Day
+    '2017-12-26', # Tuesday   - Boxing Day
+    # 2018
+    '2018-01-01', # Monday    - New Year's Day
+    '2018-03-30', # Friday    - Good Friday
+    '2018-04-02', # Monday    - Easter Monday
+    '2018-05-07', # Monday    - Early May bank holiday
+    '2018-05-28', # Monday    - Spring bank holiday
+    '2018-08-27', # Monday    - Summer bank holiday
+    '2018-12-25', # Tuesday   - Christmas Day
+    '2018-12-26', # Wednesday - Boxing Day
+    # 2019
+    '2019-01-01', # Tuesday   - New Year's Day
+    '2019-04-19', # Friday    - Good Friday
+    '2019-04-22', # Monday    - Easter Monday
+    '2019-05-06', # Monday    - Early May bank holiday
+    '2019-05-27', # Monday    - Spring bank holiday
+    '2019-08-26', # Monday    - Summer bank holiday
+    '2019-12-25', # Wednesday - Christmas Day
+    '2019-12-26', # Thursday  - Boxing Day
   ].map { |str| Date.parse(str) }
 
   # How many complete working days there are until the given
