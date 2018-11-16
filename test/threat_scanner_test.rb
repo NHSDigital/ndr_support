@@ -6,6 +6,7 @@ class ThreatScannerTest < Minitest::Test
     @tempfile = Tempfile.new
     @scanner  = ThreatScanner.new(@tempfile)
 
+    ThreatScanner.stubs(installed?: true)
     stubs(:`)
   end
 
