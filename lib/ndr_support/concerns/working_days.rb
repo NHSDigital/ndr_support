@@ -79,6 +79,13 @@ module WorkingDays
     '2019-12-26', # Thursday  - Boxing Day
   ].map { |str| Date.parse(str) }
 
+  def self.check_lookup
+    return true if HOLIDAYS.max >= 1.year.from_now
+
+    warn "NdrSupport's WorkingDays extension has under a year of future data. Check for updates?"
+    false
+  end
+
   # How many complete working days there are until the given
   # `other`. Returns negative number if `other` is earlier.
   def working_days_until(other)

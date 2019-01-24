@@ -1,6 +1,7 @@
 ## [Unreleased]
 ### Fixed
 * Support Ruby 2.6. Minimum Rails version is now 5.x
+* Warn when WorkingDays lookup is getting stale
 
 ## 5.5.0 / 2018-11-16
 ### Added

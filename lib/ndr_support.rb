@@ -21,3 +21,5 @@ require 'ndr_support/yaml/serialization_migration'
 module NdrSupport
   # Your code goes here...
 end
+
+WorkingDays.check_lookup
