@@ -112,12 +112,12 @@ class String
 
       if ['yyyy/dd/mm', 'mm/dd/yyyy'].include?(pattern)
         month, day = day, month
-      elsif 8 == length && self !~ /\d{8}/
+      elsif 8 == length && self =~ /\A\d{2}[^A-Z0-9]\d{2}[^A-Z0-9]\d{2}\z/i
         # dd/mm/yy, rather than yyyymmdd
         year, day = day, year
         year += 100 if year <= Ourdate.today.year % 100
         year += 1900
-      elsif 9 == length
+      elsif 9 == length && self =~ /\A\d{2}[^A-Z0-9][A-Z]{3}[^A-Z0-9]\d{2}\z/i
         # dd/mmm/yy, rare case.
         year += 100 if year <= Ourdate.today.year % 100
         year += 1900

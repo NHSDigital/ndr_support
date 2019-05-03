@@ -58,6 +58,10 @@ class String::ConversionsTest < Minitest::Test
     assert_ymd [2001, 3, 2],  '02/03/2001'.to_date
     assert_ymd [2010, 7, 11], '2010-07-11'.to_date
 
+    assert_ymd [2001, 3, 2],  '2.3.2001'.to_date
+    assert_ymd [2001, 3, 2],  '2/3/2001'.to_date
+    assert_ymd [2010, 7, 11], '2010-7-11'.to_date
+
     assert_ymd [2001, 2, 3], '2001/02/03'.to_date('yyyy/mm/dd')
     assert_ymd [2001, 2, 3], '2001/03/02'.to_date('yyyy/dd/mm')
     assert_ymd [2001, 2, 3], '2001-02-03'.to_date('yyyy-mm-dd')
@@ -332,6 +336,12 @@ class String::ConversionsTest < Minitest::Test
     # post epoch
     assert_equal Ourdate.build_datetime(2008, 02, 13), '13/02/2008 13:38'.to_date
     assert_equal Ourdate.build_datetime(2008, 05, 03), '03/05/2008 13:38'.to_date
+  end
+
+  test 'incorrectly formatted string to_date' do
+    assert_nil '10-1975'.to_date
+    assert_nil '10.1975A'.to_date
+    assert_nil '10.1975AA'.to_date
   end
 
   test 'to_boolean' do
