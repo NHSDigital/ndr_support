@@ -1,6 +1,6 @@
 ## [Unreleased]
 ### Fixed
-* Support Ruby 2.6. Minimum Rails version is now 5.x
+* Support Ruby 2.6, Rails 6.0. Minimum Ruby/Rails versions are now 2.5/5.2
 * Warn when WorkingDays lookup is getting stale
 * Improved date parsing in String#to_date
 

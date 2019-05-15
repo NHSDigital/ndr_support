@@ -20,13 +20,13 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'activerecord',  '>= 4.0.13', '< 5.3'
-  spec.add_dependency 'activesupport', '>= 4.0.13', '< 5.3'
+  spec.add_dependency 'activerecord',  '>= 5.2.0', '< 7'
+  spec.add_dependency 'activesupport', '>= 5.2.0', '< 7'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake', '~> 10.0'
 
-  spec.required_ruby_version = '>= 2.4.0'
+  spec.required_ruby_version = '>= 2.5.0'
 
   # Avoid std-lib minitest (which has different namespace)
   spec.add_development_dependency 'minitest', '>= 5.0.0'
