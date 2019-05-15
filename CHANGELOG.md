@@ -1,4 +1,7 @@
 ## [Unreleased]
+*no unreleased changes*
+
+## 5.5.1 / 2019-05-15
 ### Fixed
 * Support Ruby 2.6, Rails 6.0. Minimum Ruby/Rails versions are now 2.5/5.2
 * Warn when WorkingDays lookup is getting stale
