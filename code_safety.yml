@@ -12,12 +12,12 @@ file safety:
     comments: 'diff failed; reviewed whole file. Revision c88f5ac8c12fd657bb142144e0d3afaa7f9bc361:
       Slack notification secret is public/private key encrypted, so not a disclosure
       risk. As a secondary protection, it''s excluded from the .gem file by ndr_support.gemspec'
-    reviewed_by: brian.shand
-    safe_revision: 459e2cc403dc5ba9b05460ba7bf37c06d5f0c303
+    reviewed_by: josh.pencheon
+    safe_revision: 0cfcfac5ddcd721a67dcd23f04cbf6bc2278b922
   CHANGELOG.md:
     comments: 
-    reviewed_by: brian.shand
-    safe_revision: 44fbdf72f47f4022c7dc9148150ebc18589dac8f
+    reviewed_by: josh.pencheon
+    safe_revision: 1a3b9f3403a81404b0165c0d4ff7dd9a728eb0b5
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -42,22 +42,14 @@ file safety:
     comments: 
     reviewed_by: timgentry
     safe_revision: e33e9dae7f38bc449ce9276515a539836dbbbd53
-  gemfiles/Gemfile.rails42:
-    comments: 
-    reviewed_by: pauleves
-    safe_revision: f76ad0fe72d42b1ff37553c8194935a8b93a6848
-  gemfiles/Gemfile.rails50:
-    comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 55ed1c2a18b9cc4d1d996ee69419f5ee38f87746
-  gemfiles/Gemfile.rails51:
-    comments: 
-    reviewed_by: brian.shand
-    safe_revision: 4e87fd9d64fc0f15b359ba60fc48cda54453c647
   gemfiles/Gemfile.rails52:
     comments: 
     reviewed_by: josh.pencheon
     safe_revision: 8a6bedae77d33d0db1b67eaed7972870b6afc993
+  gemfiles/Gemfile.rails60:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: 0cfcfac5ddcd721a67dcd23f04cbf6bc2278b922
   lib/ndr_support.rb:
     comments: 
     reviewed_by: brian.shand
@@ -165,15 +157,15 @@ file safety:
   lib/ndr_support/version.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: ea1f7dc9a164981570ee2ad7c38197fdb17a6880
+    safe_revision: 1a3b9f3403a81404b0165c0d4ff7dd9a728eb0b5
   lib/ndr_support/yaml/serialization_migration.rb:
     comments: 
     reviewed_by: timgentry
     safe_revision: 29595e6431587ff9b7db6e3ad3abbb3577bff99c
   ndr_support.gemspec:
     comments: 
-    reviewed_by: brian.shand
-    safe_revision: 459e2cc403dc5ba9b05460ba7bf37c06d5f0c303
+    reviewed_by: josh.pencheon
+    safe_revision: 0cfcfac5ddcd721a67dcd23f04cbf6bc2278b922
   test/array_test.rb:
     comments: 
     reviewed_by: timgentry
