@@ -1,8 +1,6 @@
 require 'yaml'
 require 'date'
-
-require 'ndr_support/concerns/working_days'
-[Time, Date, DateTime].each { |klass| klass.send(:include, WorkingDays) }
+require 'ndr_support/working_days'
 
 class Date
   # to_iso output must be SQL safe for security reasons
