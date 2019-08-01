@@ -1,5 +1,6 @@
 ## [Unreleased]
-*no unreleased changes*
+### Added
+* Add `Integer#working_days_since`. (#11)
 
 ## 5.5.1 / 2019-05-15
 ### Fixed
