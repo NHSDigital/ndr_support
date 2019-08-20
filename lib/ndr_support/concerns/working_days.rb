@@ -102,7 +102,7 @@ module WorkingDays
   def working_days_until(other)
     return -other.working_days_until(self) if other < self
 
-    whole_days_to(other).count do |day|
+    count_whole_days_to(other) do |day|
       day.weekday? && !day.public_holiday?
     end
   end
@@ -111,7 +111,7 @@ module WorkingDays
   # `other`. Returns negative number if `other` is earlier.
   def weekdays_until(other)
     return -other.weekdays_until(self) if other < self
-    whole_days_to(other).count(&:weekday?)
+    count_whole_days_to(other, &:weekday?)
   end
 
   # Is this a weekday?
@@ -126,14 +126,15 @@ module WorkingDays
 
   private
 
-  def whole_days_to(other)
-    [self].tap do |days|
-      loop do
-        next_day  = days.last + 1.day
-        next_day <= other ? days.push(next_day) : break
-      end
+  def count_whole_days_to(other, &block)
+    day = self + 1.day
+    count = 0
 
-      days.shift # Drop `self` off the front
+    while day <= other
+      count += 1 if block.call(day)
+      day += 1.day
     end
+
+    count
   end
 end
