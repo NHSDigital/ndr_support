@@ -3,6 +3,8 @@ require 'active_support/time'
 # This module contains logic for #working_days_until, #weekday?, and #public_holiday?.
 module WorkingDays
   WEEK_DAYS = 1..5
+  
+  # TODO: could we use https://github.com/alphagov/gds-api-adapters ?
   HOLIDAYS  = [ # Sourced from https://www.gov.uk/bank-holidays
     # 2012
     '2012-01-02', # Monday    - New Year's Day (substitute day)
