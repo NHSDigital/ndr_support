@@ -17,7 +17,7 @@ file safety:
   CHANGELOG.md:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 1a3b9f3403a81404b0165c0d4ff7dd9a728eb0b5
+    safe_revision: 1f67d8d27b697d51069ea9d3df27ae44db86c694
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -60,12 +60,12 @@ file safety:
     safe_revision: 4a4ed24d2cfe7e1736baadf4cf6e0fece6823be1
   lib/ndr_support/concerns/working_days.rb:
     comments: 
-    reviewed_by: brian.shand
-    safe_revision: a64c2c4616317240faec2db7a84761947ae844a3
+    reviewed_by: josh.pencheon
+    safe_revision: a5afad784e1e28a76e3907f5d742dc221ce8a235
   lib/ndr_support/date_and_time_extensions.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 3553509e52b3697d361cfa4c6f8a67754ed942d3
+    safe_revision: c1158eccb843b637b4dd82815dc7c081f12b93e4
   lib/ndr_support/daterange.rb:
     comments: 
     reviewed_by: brian.shand
@@ -86,6 +86,10 @@ file safety:
     comments: 
     reviewed_by: josh.pencheon
     safe_revision: 2685f35c907af6968a69eabb5ab9424b490d0f40
+  lib/ndr_support/integer/working_days.rb:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: c1158eccb843b637b4dd82815dc7c081f12b93e4
   lib/ndr_support/nil.rb:
     comments: 
     reviewed_by: pauleves
@@ -157,7 +161,11 @@ file safety:
   lib/ndr_support/version.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 1a3b9f3403a81404b0165c0d4ff7dd9a728eb0b5
+    safe_revision: 1f67d8d27b697d51069ea9d3df27ae44db86c694
+  lib/ndr_support/working_days.rb:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: c1158eccb843b637b4dd82815dc7c081f12b93e4
   lib/ndr_support/yaml/serialization_migration.rb:
     comments: 
     reviewed_by: timgentry
@@ -165,7 +173,7 @@ file safety:
   ndr_support.gemspec:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 0cfcfac5ddcd721a67dcd23f04cbf6bc2278b922
+    safe_revision: c685e94ddb1cf2814eb145e87a4c8bc6bced59fb
   test/array_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -190,6 +198,10 @@ file safety:
     comments: 
     reviewed_by: josh.pencheon
     safe_revision: 2685f35c907af6968a69eabb5ab9424b490d0f40
+  test/integer/working_days_test.rb:
+    comments: 
+    reviewed_by: josh.pencheon
+    safe_revision: c1158eccb843b637b4dd82815dc7c081f12b93e4
   test/nil_test.rb:
     comments: 
     reviewed_by: timgentry
