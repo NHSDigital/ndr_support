@@ -83,11 +83,11 @@ module WorkingDays
     '2020-01-01', # Wednesday - New Year's Day
     '2020-04-10', # Friday    - Good Friday
     '2020-04-13', # Monday    - Easter Monday
-    '2020-05-04', # Monday    - Early May bank holiday
+    '2020-05-08', # Friday    - Early May bank holiday (moved from Monday)
     '2020-05-25', # Monday    - Spring bank holiday
     '2020-08-31', # Monday    - Summer bank holiday
     '2020-12-25', # Friday    - Christmas Day
-    '2020-12-26', # Monday    - Boxing Day
+    '2020-12-28', # Monday    - Boxing Day (substitute day)
   ].map { |str| Date.parse(str) }
 
   def self.check_lookup
