@@ -85,7 +85,6 @@ class String
   # Try to convert the string value into a date.
   # If given a pattern, use it to parse date, otherwise use default setting to parse it
   def to_date(pattern = nil)
-    return ''  if empty? # TODO: check if this is used... :/
     return nil if blank?
 
     pattern = '%d%m%Y' if 'ddmmyyyy' == pattern

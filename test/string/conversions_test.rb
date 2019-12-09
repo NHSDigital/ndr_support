@@ -244,8 +244,8 @@ class String::ConversionsTest < Minitest::Test
     assert_equal Ourdate.build_datetime(1998, 02, 13), '1998-02-13'.to_date('%Y-%m-%d')
     assert_equal Ourdate.build_datetime(1998, 05, 03), '1998-05-03'.to_date('%Y-%m-%d')
 
-    assert ''.to_date('%Y-%m-%d').blank?
-    assert '  '.to_date('%Y-%m-%d').blank?
+    assert_nil ''.to_date('%Y-%m-%d') # Should behave like Rails-defined to_date
+    assert_nil '  '.to_date('%Y-%m-%d')
   end
 
   test '%d-%m-%Y string to_date' do
