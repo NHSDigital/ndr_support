@@ -88,6 +88,15 @@ module WorkingDays
     '2020-08-31', # Monday    - Summer bank holiday
     '2020-12-25', # Friday    - Christmas Day
     '2020-12-28', # Monday    - Boxing Day (substitute day)
+    # 2021
+    '2021-01-01', # Friday - New Year’s Day
+    '2021-04-02', # Friday - Good Friday
+    '2021-04-05', # Monday - Easter Monday
+    '2021-05-03', # Monday - Early May bank holiday
+    '2021-05-31', # Monday - Spring bank holiday
+    '2021-08-30', # Monday - Summer bank holiday
+    '2021-12-27', # Monday - Christmas Day
+    '2021-12-28', # Tuesday - Boxing Day
   ].map { |str| Date.parse(str) }
 
   def self.check_lookup
