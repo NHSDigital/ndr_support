@@ -119,4 +119,22 @@ class WorkingDaysTest < Minitest::Test
     assert_equal 253, @normal_time.working_days_until(@normal_time + 1.year)
     assert_equal 253, @normal_date_time.working_days_until(@normal_date_time + 1.year)
   end
+
+  test 'against GOV.UK holidays' do
+    require 'net/http'
+    require 'json'
+
+    url = 'https://www.gov.uk/bank-holidays/england-and-wales.json'
+    response = Net::HTTP.get(URI(url))
+
+    events = JSON.parse(response)['events']
+    events.each do |event|
+      event_date = event['date']
+      parsed_date = Date.parse(event_date)
+
+      assert parsed_date.public_holiday?, "#{event_date} should be a public holiday"
+      # next if parsed_date.public_holiday?
+      # puts "'#{event_date}', # #{parsed_date.strftime('%A')} - #{event['title']}"
+    end
+  end
 end
