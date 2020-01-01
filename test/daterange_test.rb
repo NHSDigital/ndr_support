@@ -63,6 +63,12 @@ class DaterangeTest < Minitest::Test
     assert_equal '1880 2020', dr.source
   end
 
+  def test_year_range_future
+    s = 2.years.from_now.strftime('%Y')
+    dr = Daterange.new(s)
+    assert_equal s, dr.to_s, "Daterange should support future years up to #{s}"
+  end
+
   def test_hyphen_month_input_style
     dr = Daterange.new('2000-05')
     assert_equal '05.2000', dr.to_s

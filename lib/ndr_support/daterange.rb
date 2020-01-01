@@ -6,7 +6,7 @@ require 'ndr_support/integer/julian_date_conversions'
 class Daterange
   attr_reader :date1, :date2, :source
 
-  OKYEARS = 1880..2020
+  OKYEARS = 1880..2030
 
   def self.extract(dates_string)
     dates_string.to_s.split(',').map { |str| new(str) }
