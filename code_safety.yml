@@ -17,7 +17,7 @@ file safety:
   CHANGELOG.md:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 1f67d8d27b697d51069ea9d3df27ae44db86c694
+    safe_revision: 6d47e4cec0d8384a2bbbf36c544bb386f69f5273
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -61,15 +61,15 @@ file safety:
   lib/ndr_support/concerns/working_days.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: a5afad784e1e28a76e3907f5d742dc221ce8a235
+    safe_revision: fe6c3beff445e3c84ed0c89f08e1ab10bfb00587
   lib/ndr_support/date_and_time_extensions.rb:
     comments: 
     reviewed_by: josh.pencheon
     safe_revision: c1158eccb843b637b4dd82815dc7c081f12b93e4
   lib/ndr_support/daterange.rb:
     comments: 
-    reviewed_by: brian.shand
-    safe_revision: c7ed8bc16be8ec803dfaeb3473fbc538b54587ec
+    reviewed_by: josh.pencheon
+    safe_revision: 8f18bbaa2cd5dbbf6e40eae2e403e47b589d5e9b
   lib/ndr_support/hash.rb:
     comments: 
     reviewed_by: pauleves
@@ -132,8 +132,8 @@ file safety:
     safe_revision: 60cc69774d5aff92252558feae9604544def7583
   lib/ndr_support/string/conversions.rb:
     comments: 
-    reviewed_by: brian.shand
-    safe_revision: 1692170e1d07e3b6ba95e88d6c15510a7b3c2fe6
+    reviewed_by: josh.pencheon
+    safe_revision: 4a26fe1677b99f8da3a6928c36d6c4c8d6de0cb8
   lib/ndr_support/tasks.rb:
     comments: 
     reviewed_by: timgentry
@@ -161,7 +161,7 @@ file safety:
   lib/ndr_support/version.rb:
     comments: 
     reviewed_by: josh.pencheon
-    safe_revision: 1f67d8d27b697d51069ea9d3df27ae44db86c694
+    safe_revision: 6d47e4cec0d8384a2bbbf36c544bb386f69f5273
   lib/ndr_support/working_days.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -180,12 +180,12 @@ file safety:
     safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
   test/concerns/working_days_test.rb:
     comments: 
-    reviewed_by: timgentry
-    safe_revision: 506a317e59d0ccb5b32d813b74d822f35a55cea9
+    reviewed_by: josh.pencheon
+    safe_revision: fe6c3beff445e3c84ed0c89f08e1ab10bfb00587
   test/daterange_test.rb:
     comments: 
-    reviewed_by: brian.shand
-    safe_revision: c7ed8bc16be8ec803dfaeb3473fbc538b54587ec
+    reviewed_by: josh.pencheon
+    safe_revision: 8f18bbaa2cd5dbbf6e40eae2e403e47b589d5e9b
   test/hash_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -244,8 +244,8 @@ file safety:
     safe_revision: 60cc69774d5aff92252558feae9604544def7583
   test/string/conversions_test.rb:
     comments: 
-    reviewed_by: brian.shand
-    safe_revision: 1692170e1d07e3b6ba95e88d6c15510a7b3c2fe6
+    reviewed_by: josh.pencheon
+    safe_revision: 4a26fe1677b99f8da3a6928c36d6c4c8d6de0cb8
   test/test_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
