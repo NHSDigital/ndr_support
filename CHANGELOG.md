@@ -1,6 +1,12 @@
 ## [Unreleased]
 *no unreleased changes*
 
+## 5.6.1 / 2020-01-02
+## Fixed
+* Fix issue with 2020 public holiday
+* Support 2021 public holidays
+* Ensure dateranges up to 2030 are supported
+
 ## 5.6.0 / 2019-08-29
 ### Added
 * Add `Integer#working_days_since`. (#11)
@@ -9,7 +15,7 @@
 ### Fixed
 * Support Ruby 2.6, Rails 6.0. Minimum Ruby/Rails versions are now 2.5/5.2
 * Warn when WorkingDays lookup is getting stale
-* Improved date parsing in String#to_date
+* Improved date parsing in `String#to_date`
 
 ## 5.5.0 / 2018-11-16
 ### Added
