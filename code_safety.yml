@@ -16,8 +16,8 @@ file safety:
     safe_revision: 0cfcfac5ddcd721a67dcd23f04cbf6bc2278b922
   CHANGELOG.md:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 6d47e4cec0d8384a2bbbf36c544bb386f69f5273
+    reviewed_by: ollietulloch
+    safe_revision: ce582c10aa4ddddcd22f907d6228cc7bb324a280
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -68,8 +68,8 @@ file safety:
     safe_revision: c1158eccb843b637b4dd82815dc7c081f12b93e4
   lib/ndr_support/daterange.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 8f18bbaa2cd5dbbf6e40eae2e403e47b589d5e9b
+    reviewed_by: ollietulloch
+    safe_revision: 9a4b8e53f477725c2c2be5000b3c9e66f07d7389
   lib/ndr_support/hash.rb:
     comments: 
     reviewed_by: pauleves
@@ -132,8 +132,8 @@ file safety:
     safe_revision: 60cc69774d5aff92252558feae9604544def7583
   lib/ndr_support/string/conversions.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 4a26fe1677b99f8da3a6928c36d6c4c8d6de0cb8
+    reviewed_by: ollietulloch
+    safe_revision: 9a4b8e53f477725c2c2be5000b3c9e66f07d7389
   lib/ndr_support/tasks.rb:
     comments: 
     reviewed_by: timgentry
@@ -160,8 +160,8 @@ file safety:
     safe_revision: f7adf44fc2772e1926df37abfd9041d41c303328
   lib/ndr_support/version.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 6d47e4cec0d8384a2bbbf36c544bb386f69f5273
+    reviewed_by: ollietulloch
+    safe_revision: ce582c10aa4ddddcd22f907d6228cc7bb324a280
   lib/ndr_support/working_days.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -184,8 +184,8 @@ file safety:
     safe_revision: fe6c3beff445e3c84ed0c89f08e1ab10bfb00587
   test/daterange_test.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 8f18bbaa2cd5dbbf6e40eae2e403e47b589d5e9b
+    reviewed_by: ollietulloch
+    safe_revision: 9a4b8e53f477725c2c2be5000b3c9e66f07d7389
   test/hash_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -244,8 +244,8 @@ file safety:
     safe_revision: 60cc69774d5aff92252558feae9604544def7583
   test/string/conversions_test.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: 4a26fe1677b99f8da3a6928c36d6c4c8d6de0cb8
+    reviewed_by: ollietulloch
+    safe_revision: 9a4b8e53f477725c2c2be5000b3c9e66f07d7389
   test/test_helper.rb:
     comments: 
     reviewed_by: josh.pencheon
