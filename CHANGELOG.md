@@ -1,5 +1,10 @@
 ## [Unreleased]
+*no unreleased changes*
+
+## 5.7.0 / 2020-06-30
+## Added
 * Handle three char months in Daterange
+
 ## 5.6.1 / 2020-01-02
 ## Fixed
 * Fix issue with 2020 public holiday
