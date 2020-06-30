@@ -135,12 +135,12 @@ class Daterange
 
   # Update our attribute values using a string representation of the date(s).
   # +s+ consists of one or more dates separated with spaces.
-  # Each date can be in various formats, e.g. d/m/yyyy, ddmmyyyy, yyyy-mm-dd.
-  # Each date can omit days or months, e.g. yyyy, dd/yyyy, yyyy-mm
+  # Each date can be in various formats, e.g. d/m/yyyy, ddmmyyyy, yyyy-mm-dd, dd-mmm-yyyy
+  # Each date can omit days or months, e.g. yyyy, dd/yyyy, yyyy-mm, mmm-yyyy
   def source=(s)
     @source = s
     ss = s.upcase.sub(/TO/, ' ') # accept default _to_s format
-    if ss =~ /[^0-9\-\/\. ]/ # only allow digits, hyphen, slash, dot, space
+    if ss =~ /[^\w0-9\-\/\. ]/i # only allow letters, digits, hyphen, slash, dot, space
       @date1 = @date2 = nil
     else
       da = [] # temporary array of arrays of dates
@@ -184,7 +184,9 @@ class Daterange
   # e.g year only or year/month only) and return an array of 1..3 integers
   # representing the year, month and day
   def date_string_parts(ds)
-    if ds =~ /([\/\.\-])/ # find a slash or dot or hyphen
+    if ds =~ /\A(\d{1,2}[\/\.\-])?\w{3}[\/\.\-]\d{4}\z/i # dd[-/.]mmm[-/.]yyyy or mmm[-/.]yyyy
+      result = handle_three_char_months(ds)
+    elsif ds =~ /([\/\.\-])/ # find a slash or dot or hyphen
       delimiter = $1
       result = ds.split(delimiter)
     elsif ds.length == 8 # ddmmyyyy
@@ -199,5 +201,22 @@ class Daterange
     return nil unless (1..3) === result.length
     result.reverse! unless delimiter == '-' # change to YMD if not ISO format
     result.collect(&:to_i)
+  end
+
+  def handle_three_char_months(datestring)
+    delimiter  = datestring.match(%r{[\/\.\-]})[0]
+    components = datestring.split(delimiter)
+
+    if datestring =~ /\A\d{1,2}#{delimiter}\w{3}#{delimiter}\d{4}\z/i
+      month = abbreviated_month_index_for(components[1])
+      month.nil? ? [] : [components.first, month, components.last]
+    elsif datestring =~ /\A\w{3}#{delimiter}\d{4}\z/i
+      month = abbreviated_month_index_for(components.first)
+      month.nil? ? [] : [month, components.last]
+    end
+  end
+
+  def abbreviated_month_index_for(string)
+    Date::ABBR_MONTHNAMES.index(string.capitalize)
   end
 end

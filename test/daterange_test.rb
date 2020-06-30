@@ -226,4 +226,42 @@ class DaterangeTest < Minitest::Test
     refute_equal dr1, nil
     refute_equal dr1, 0
   end
+
+  def test_three_char_months
+    dr1 = Daterange.new('01-APR-2020')
+    assert_equal '01.04.2020', dr1.date1.to_s
+    assert_equal '01.04.2020', dr1.date2.to_s
+
+    dr2 = Daterange.new('APR-2020')
+    assert_equal '01.04.2020', dr2.date1.to_s
+    assert_equal '30.04.2020', dr2.date2.to_s
+
+    dr3 = Daterange.new('JAN-2020 TO apr-2020')
+    assert_equal '01.01.2020', dr3.date1.to_s
+    assert_equal '30.04.2020', dr3.date2.to_s
+
+    dr4 = Daterange.new('20-JAN-2020 TO 12-Apr-2020')
+    assert_equal '20.01.2020', dr4.date1.to_s
+    assert_equal '12.04.2020', dr4.date2.to_s
+
+    dr5 = Daterange.new('01-BOB-2020')
+    assert_nil dr5.date1
+    assert_nil dr5.date2
+
+    dr6 = Daterange.new('01/APR/2020')
+    assert_equal '01.04.2020', dr6.date1.to_s
+    assert_equal '01.04.2020', dr6.date2.to_s
+
+    dr7 = Daterange.new('APR/2020')
+    assert_equal '01.04.2020', dr7.date1.to_s
+    assert_equal '30.04.2020', dr7.date2.to_s
+
+    dr8 = Daterange.new('JAN/2020 TO apr.2020')
+    assert_equal '01.01.2020', dr8.date1.to_s
+    assert_equal '30.04.2020', dr8.date2.to_s
+
+    dr9 = Daterange.new('20.JAN.2020 TO 12/Apr/2020')
+    assert_equal '20.01.2020', dr9.date1.to_s
+    assert_equal '12.04.2020', dr9.date2.to_s
+  end
 end
