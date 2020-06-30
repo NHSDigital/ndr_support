@@ -311,7 +311,7 @@ class String::ConversionsTest < Minitest::Test
     assert_equal Ourdate.build_datetime(2008, 05, 03), '03/05/08'.to_date
   end
 
-  test 'inferred dd/mmm/yy string to_date' do
+  test 'inferred dd/mon/yy string to_date' do
     # pre_epoch
     assert_equal Ourdate.build_datetime(1945, 02, 13), '13/FEB/45'.to_date
     assert_equal Ourdate.build_datetime(1945, 06, 03), '03/JUN/45'.to_date

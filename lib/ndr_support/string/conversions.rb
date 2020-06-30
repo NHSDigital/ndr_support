@@ -117,7 +117,7 @@ class String
         year += 100 if year <= Ourdate.today.year % 100
         year += 1900
       elsif 9 == length && self =~ /\A\d{2}[^A-Z0-9][A-Z]{3}[^A-Z0-9]\d{2}\z/i
-        # dd/mmm/yy, rare case.
+        # dd/mon/yy, rare case.
         year += 100 if year <= Ourdate.today.year % 100
         year += 1900
       end

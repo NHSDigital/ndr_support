@@ -135,8 +135,8 @@ class Daterange
 
   # Update our attribute values using a string representation of the date(s).
   # +s+ consists of one or more dates separated with spaces.
-  # Each date can be in various formats, e.g. d/m/yyyy, ddmmyyyy, yyyy-mm-dd, dd-mmm-yyyy
-  # Each date can omit days or months, e.g. yyyy, dd/yyyy, yyyy-mm, mmm-yyyy
+  # Each date can be in various formats, e.g. d/m/yyyy, ddmmyyyy, yyyy-mm-dd, dd-mon-yyyy
+  # Each date can omit days or months, e.g. yyyy, dd/yyyy, yyyy-mm, mon-yyyy
   def source=(s)
     @source = s
     ss = s.upcase.sub(/TO/, ' ') # accept default _to_s format
@@ -184,7 +184,7 @@ class Daterange
   # e.g year only or year/month only) and return an array of 1..3 integers
   # representing the year, month and day
   def date_string_parts(ds)
-    if ds =~ /\A(\d{1,2}[\/\.\-])?\w{3}[\/\.\-]\d{4}\z/i # dd[-/.]mmm[-/.]yyyy or mmm[-/.]yyyy
+    if ds =~ /\A(\d{1,2}[\/\.\-])?\w{3}[\/\.\-]\d{4}\z/i # dd[-/.]mon[-/.]yyyy or mon[-/.]yyyy
       result = handle_three_char_months(ds)
     elsif ds =~ /([\/\.\-])/ # find a slash or dot or hyphen
       delimiter = $1
