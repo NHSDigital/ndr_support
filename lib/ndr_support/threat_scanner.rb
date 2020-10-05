@@ -1,4 +1,5 @@
 require 'English'
+require 'shellwords'
 
 # Runs a virus/malware check against the given path, using ClamAV.
 #
