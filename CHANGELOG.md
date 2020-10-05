@@ -1,6 +1,7 @@
 ## [Unreleased]
 ## Fixed
 * Postcodeize old Newport postcodes
+* Bump rake version
 
 ## 5.7.0 / 2020-06-30
 ## Added
