@@ -23,6 +23,9 @@ class String
       assert_equal 'AA9 9AA', 'AA9 9AA'.postcodeize(:db)
       assert_equal 'AA999AA', 'AA99 9AA'.postcodeize(:db)
       assert_equal 'AA9A9AA', 'AA9A 9AA'.postcodeize(:db)
+      # Old Newport postcodes until end 1984
+      assert_equal 'NPT 1AA' , 'NPT  1AA'.postcodeize(:db)
+      assert_equal 'NPT 1AA' , 'NPT 1AA'.postcodeize(:db)
       # Examples of legacy postcodes, that should be unchanged
       assert_equal 'IP222', 'IP222'.postcodeize(:db)
       assert_equal 'IP222E', 'IP222E'.postcodeize(:db)
