@@ -16,8 +16,8 @@ file safety:
     safe_revision: 0cfcfac5ddcd721a67dcd23f04cbf6bc2278b922
   CHANGELOG.md:
     comments: 
-    reviewed_by: ollietulloch
-    safe_revision: ce582c10aa4ddddcd22f907d6228cc7bb324a280
+    reviewed_by: brianshand
+    safe_revision: befa1d4f27448d5be4e133f442c2b5fbac7d8f25
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -60,8 +60,8 @@ file safety:
     safe_revision: 4a4ed24d2cfe7e1736baadf4cf6e0fece6823be1
   lib/ndr_support/concerns/working_days.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: fe6c3beff445e3c84ed0c89f08e1ab10bfb00587
+    reviewed_by: brianshand
+    safe_revision: b72baa322dc58820ccd615a178371c2e5dab113c
   lib/ndr_support/date_and_time_extensions.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -128,8 +128,8 @@ file safety:
     safe_revision: 4492da77f6a8b678c40dd571fdd46fd936052cca
   lib/ndr_support/string/cleaning.rb:
     comments: 
-    reviewed_by: brian.shand
-    safe_revision: 60cc69774d5aff92252558feae9604544def7583
+    reviewed_by: brianshand
+    safe_revision: b7b033ad9773cc9037c408a7763b113d31cbf191
   lib/ndr_support/string/conversions.rb:
     comments: 
     reviewed_by: ollietulloch
@@ -140,8 +140,8 @@ file safety:
     safe_revision: 62337584a32e5c30c2e9af7cd998a9df684885cc
   lib/ndr_support/threat_scanner.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: ed8ff421cc9353456af13a37049a07ce2545aac1
+    reviewed_by: brianshand
+    safe_revision: befa1d4f27448d5be4e133f442c2b5fbac7d8f25
   lib/ndr_support/utf8_encoding.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -172,8 +172,8 @@ file safety:
     safe_revision: 29595e6431587ff9b7db6e3ad3abbb3577bff99c
   ndr_support.gemspec:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: c685e94ddb1cf2814eb145e87a4c8bc6bced59fb
+    reviewed_by: brianshand
+    safe_revision: befa1d4f27448d5be4e133f442c2b5fbac7d8f25
   test/array_test.rb:
     comments: 
     reviewed_by: timgentry
@@ -240,8 +240,8 @@ file safety:
     safe_revision: b562d0c15ff1b1d565522a47e6bae47ea09706f0
   test/string/cleaning_test.rb:
     comments: 
-    reviewed_by: brian.shand
-    safe_revision: 60cc69774d5aff92252558feae9604544def7583
+    reviewed_by: brianshand
+    safe_revision: b7b033ad9773cc9037c408a7763b113d31cbf191
   test/string/conversions_test.rb:
     comments: 
     reviewed_by: ollietulloch

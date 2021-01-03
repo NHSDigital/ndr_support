@@ -1,7 +1,11 @@
 ## [Unreleased]
+*no unreleased changes*
+
+## 5.7.1 / 2021-01-03
 ## Fixed
 * Postcodeize old Newport postcodes
 * Bump rake version
+* Support 2022 public holidays
 
 ## 5.7.0 / 2020-06-30
 ## Added
