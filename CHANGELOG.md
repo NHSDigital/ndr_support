@@ -1,5 +1,6 @@
 ## [Unreleased]
-*no unreleased changes*
+## Fixed
+* Support Ruby 2.6-3.0.
 
 ## 5.7.1 / 2021-01-03
 ## Fixed
