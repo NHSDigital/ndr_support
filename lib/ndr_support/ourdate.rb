@@ -31,6 +31,8 @@ class Ourdate
   # with strings arguments only after the 1970 epoch; before, it returns nil.
   #++
   def self.build_datetime(year, month = 1, day = 1, hour = 0, min = 0, sec = 0, usec = 0)
+    return nil if year.nil?
+
     if ActiveRecord::Base.default_timezone == :local
       # Time.local_time(year, month, day, hour, min, sec, usec).to_datetime
       # Behave like oracle_adapter.rb
@@ -72,8 +74,8 @@ class Ourdate
   end
 
   def empty?
-    # An unspecified date will be empty. A valid or invalid date will not.
-    @thedate.nil? && @source.blank?
+    # An unspecified date will be empty. A valid date will not.
+    @thedate.nil?
   end
 
   def source=(s)

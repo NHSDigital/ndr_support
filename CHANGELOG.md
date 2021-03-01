@@ -1,6 +1,7 @@
 ## [Unreleased]
 ## Fixed
 * Support Ruby 2.6-3.0.
+* Fix ruby warnings
 
 ## 5.7.1 / 2021-01-03
 ## Fixed

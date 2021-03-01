@@ -1,5 +1,3 @@
-require 'ndr_support/utf8_encoding'
-
 module UTF8Encoding
   # Allows any supported object to have control characters
   # escaped, using standard replacement scheme.

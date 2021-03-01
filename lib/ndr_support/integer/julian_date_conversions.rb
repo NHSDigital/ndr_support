@@ -1,5 +1,3 @@
-require 'ndr_support/ourdate'
-
 # Extend Integer for use in our Daterange class
 class Integer
   # Julian date number to Ruby Date

@@ -28,8 +28,8 @@ class Ourtime
   end
 
   def empty?
-    # An unspecified time will be empty. A valid or invalid time will not.
-    @thetime.nil? && @source.blank?
+    # An unspecified time will be empty. A valid time will not.
+    @thetime.nil?
   end
 
   private

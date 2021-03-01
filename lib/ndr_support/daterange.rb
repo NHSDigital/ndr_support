@@ -140,7 +140,7 @@ class Daterange
   def source=(s)
     @source = s
     ss = s.upcase.sub(/TO/, ' ') # accept default _to_s format
-    if ss =~ /[^\w0-9\-\/\. ]/i # only allow letters, digits, hyphen, slash, dot, space
+    if ss =~ %r{[^A-Z0-9\-/\. ]}i # only allow letters, digits, hyphen, slash, dot, space
       @date1 = @date2 = nil
     else
       da = [] # temporary array of arrays of dates
@@ -149,7 +149,7 @@ class Daterange
       end
       da.flatten!
       if da.include?(nil)
-        @date1 = @date2 =  nil
+        @date1 = @date2 = nil
       else
         da.sort!
         @date1, @date2 = da.first, da.last

@@ -84,7 +84,7 @@ class String
 
   # Try to convert the string value into a date.
   # If given a pattern, use it to parse date, otherwise use default setting to parse it
-  def to_date(pattern = nil)
+  redefine_method :to_date do |pattern = nil|
     return nil if blank?
 
     pattern = '%d%m%Y' if 'ddmmyyyy' == pattern
