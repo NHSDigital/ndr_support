@@ -357,9 +357,9 @@ class String::ConversionsTest < Minitest::Test
   end
 
   def assert_ymd(ymd, date)
-    assert_equal ymd.first,  date.year,  'years were not equal'
-    assert_equal ymd.second, date.month, 'months were not equal'
-    assert_equal ymd.third,  date.day,   'days were not equal'
+    assert_equal ymd[0],  date.year,  'years were not equal'
+    assert_equal ymd[1], date.month, 'months were not equal'
+    assert_equal ymd[2],  date.day,   'days were not equal'
   end
 
   def assert_ymd_parsed(ymd, parse_results)

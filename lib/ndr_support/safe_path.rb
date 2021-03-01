@@ -118,6 +118,7 @@ class SafePath
 
     @path_space = path_space
     @maximum_prms = fs_paths[platform][path_space]['prms']
+    @prm = nil
 
     self.path = @root
   end

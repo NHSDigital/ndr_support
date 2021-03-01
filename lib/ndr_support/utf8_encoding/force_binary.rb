@@ -1,5 +1,3 @@
-require 'ndr_support/utf8_encoding'
-
 module UTF8Encoding
   # Allows any supported object to have any high-ascii string
   # content to be force-encoded from UTF-8 to BINARY (/ASCII-8BIT).

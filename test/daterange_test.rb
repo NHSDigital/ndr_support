@@ -36,7 +36,14 @@ class DaterangeTest < Minitest::Test
     assert_equal '', dr.to_s
     assert_nil dr.date1
     assert_nil dr.date2
-    refute dr.empty?  # Illegal dates do not count as empty / blank,
+    refute dr.empty? # Illegal dates do not count as empty / blank,
+    refute_nil dr.source # but the illegal string is preserved
+
+    dr = Daterange.new('01_01_2000')
+    assert_equal '', dr.to_s
+    assert_nil dr.date1
+    assert_nil dr.date2
+    refute dr.empty? # Illegal dates do not count as empty / blank,
     refute_nil dr.source # but the illegal string is preserved
   end
 
