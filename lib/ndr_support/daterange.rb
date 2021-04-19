@@ -28,7 +28,7 @@ class Daterange
       @date1 = do_not_sort_dates ? x1 : [x1, x2].min
       @date2 = do_not_sort_dates ? x2 : [x1, x2].max
       @source = nil
-    elsif x1.is_a?(Daterange) && x2.nil?  # Patient model line 645
+    elsif x1.is_a?(Daterange) && x2.nil? # Patient model line 645
       @date1 = x1.date1
       @date2 = x1.date2
       @source = x1.source
@@ -37,13 +37,14 @@ class Daterange
       @date2 = x1
       @source = nil
     elsif x1.is_a?(String) && x2.nil?
-      string_dates(x1, do_not_sort_dates)
+      self.send(:source=, x1, do_not_sort_dates)
     else
       @date1 = nil
       @date2 = nil
       @source = nil
     end
     raise WrongDateOrderError, 'Invalid date range order' if do_not_sort_dates && @date1 > @date2
+
     self.freeze
   end
 
@@ -141,14 +142,14 @@ class Daterange
   # +s+ consists of one or more dates separated with spaces.
   # Each date can be in various formats, e.g. d/m/yyyy, ddmmyyyy, yyyy-mm-dd, dd-mon-yyyy
   # Each date can omit days or months, e.g. yyyy, dd/yyyy, yyyy-mm, mon-yyyy
-  def string_dates(s, do_not_sort_dates = false)
+  def source=(s, do_not_sort_dates)
     @source = s
     ss = s.upcase.sub(/TO/, ' ') # accept default _to_s format
     if ss =~ %r{[^A-Z0-9\-/\. ]}i # only allow letters, digits, hyphen, slash, dot, space
       @date1 = @date2 = nil
     else
       da = [] # temporary array of arrays of dates
-      ss.split(' ').each do |vaguedate|
+      ss.split.each do |vaguedate|
         da << str_to_date_array(vaguedate)
       end
       da.flatten!
@@ -156,7 +157,8 @@ class Daterange
         @date1 = @date2 = nil
       else
         da.sort! unless do_not_sort_dates
-        @date1, @date2 = da.first, da.last
+        @date1 = da.first
+        @date2 = da.last
       end
     end
   end
