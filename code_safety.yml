@@ -1,5 +1,17 @@
 ---
 file safety:
+  ".github/CODEOWNERS":
+    comments: 
+    reviewed_by: ollietulloch
+    safe_revision: 993f7719b57eb6ddd8dffa7230ed9ffc69f48749
+  ".github/workflows/lint.yml":
+    comments: 
+    reviewed_by: ollietulloch
+    safe_revision: 993f7719b57eb6ddd8dffa7230ed9ffc69f48749
+  ".github/workflows/test.yml":
+    comments: 
+    reviewed_by: ollietulloch
+    safe_revision: 993f7719b57eb6ddd8dffa7230ed9ffc69f48749
   ".gitignore":
     comments: 
     reviewed_by: josh.pencheon
