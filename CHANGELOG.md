@@ -1,4 +1,9 @@
 ## [Unreleased]
+*no unreleased changes*
+
+## 5.8.0 / 2021-04-19
+## Added
+
 * Add ability to disable date reversing in Daterange
 
 ## Fixed
