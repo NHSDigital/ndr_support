@@ -8,6 +8,9 @@ class Daterange
 
   OKYEARS = 1880..2030
 
+  # Raised when dates are not supplied in the correct order if do_not_flip_dates is passed as true:
+  class WrongDateOrderError < StandardError; end
+
   def self.extract(dates_string)
     dates_string.to_s.split(',').map { |str| new(str) }
   end
@@ -17,13 +20,13 @@ class Daterange
     new(ranges.map(&:date1).compact.min, ranges.map(&:date2).compact.max)
   end
 
-  def initialize(x1 = nil, x2 = nil)
+  def initialize(x1 = nil, x2 = nil, do_not_sort_dates: false)
     x1 = x1.to_datetime if x1.is_a?(Date) || x1.is_a?(Time)
     x2 = x2.to_datetime if x2.is_a?(Date) || x2.is_a?(Time)
 
     if x1.is_a?(DateTime) && x2.is_a?(DateTime)
-      @date1 = [x1, x2].min
-      @date2 = [x1, x2].max
+      @date1 = do_not_sort_dates ? x1 : [x1, x2].min
+      @date2 = do_not_sort_dates ? x2 : [x1, x2].max
       @source = nil
     elsif x1.is_a?(Daterange) && x2.nil?  # Patient model line 645
       @date1 = x1.date1
@@ -34,12 +37,13 @@ class Daterange
       @date2 = x1
       @source = nil
     elsif x1.is_a?(String) && x2.nil?
-      self.source = (x1)
+      string_dates(x1, do_not_sort_dates)
     else
       @date1 = nil
       @date2 = nil
       @source = nil
     end
+    raise WrongDateOrderError, 'Invalid date range order' if do_not_sort_dates && @date1 > @date2
     self.freeze
   end
 
@@ -137,7 +141,7 @@ class Daterange
   # +s+ consists of one or more dates separated with spaces.
   # Each date can be in various formats, e.g. d/m/yyyy, ddmmyyyy, yyyy-mm-dd, dd-mon-yyyy
   # Each date can omit days or months, e.g. yyyy, dd/yyyy, yyyy-mm, mon-yyyy
-  def source=(s)
+  def string_dates(s, do_not_sort_dates = false)
     @source = s
     ss = s.upcase.sub(/TO/, ' ') # accept default _to_s format
     if ss =~ %r{[^A-Z0-9\-/\. ]}i # only allow letters, digits, hyphen, slash, dot, space
@@ -151,7 +155,7 @@ class Daterange
       if da.include?(nil)
         @date1 = @date2 = nil
       else
-        da.sort!
+        da.sort! unless do_not_sort_dates
         @date1, @date2 = da.first, da.last
       end
     end

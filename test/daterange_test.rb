@@ -24,11 +24,32 @@ class DaterangeTest < Minitest::Test
     # assert_match(/\d\d\.\d\d\.\d\d\d\d to \d\d.\d\d.\d\d\d\d/, dr.to_s)
   end
 
-  def test_dates_in_reverse_order
+  def test_date_time_dates_in_reverse_order_with_do_not_sort_dates_false
     d = Date.today
-    dr = Daterange.new d, d + 1
-    dr2 = Daterange.new d + 1, d
+    dr = Daterange.new(d, d + 1)
+    dr2 = Daterange.new(d + 1, d)
     assert_equal(dr.to_s, dr2.to_s)
+  end
+
+  def test_date_time_dates_in_reverse_order_with_do_not_sort_dates_true
+    d = Date.today
+    d1 = Daterange.new(d, d + 1, do_not_sort_dates: true)
+    assert_raises(Daterange::WrongDateOrderError) do
+      Daterange.new(d + 1, d, do_not_sort_dates: true)
+    end
+  end
+
+  def test_string_dates_in_reverse_order_with_do_not_sort_dates_false
+    dr = Daterange.new('01/01/2019 to 01/01/2020')
+    dr2 = Daterange.new('01/01/2020 to 01/01/2019')
+    assert_equal(dr.to_s, dr2.to_s)
+  end
+
+  def test_string_dates_in_reverse_order_with_do_not_sort_dates_true
+    Daterange.new('01/01/2019 to 01/01/2020', do_not_sort_dates: true)
+    assert_raises(Daterange::WrongDateOrderError) do
+      Daterange.new('01/01/2020 to 01/01/2019', do_not_sort_dates: true)
+    end
   end
 
   def test_illegal_strings
