@@ -1,4 +1,6 @@
 ## [Unreleased]
+* Add ability to disable date reversing in Daterange
+
 ## Fixed
 * Support Ruby 2.6-3.0.
 * Fix ruby warnings
