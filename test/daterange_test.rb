@@ -31,6 +31,12 @@ class DaterangeTest < Minitest::Test
     assert_equal(dr.to_s, dr2.to_s)
   end
 
+  def test_blank_does_not_trigger_error_and_returns_nil_in_dates
+    dr = Daterange.new('', do_not_sort_dates: true)
+    assert_nil dr.date1
+    assert_nil dr.date2
+  end
+
   def test_date_time_dates_in_reverse_order_with_do_not_sort_dates_true
     d = Time.zone.today
     Daterange.new(d, d + 1, do_not_sort_dates: true)
