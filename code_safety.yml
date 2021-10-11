@@ -23,7 +23,7 @@ file safety:
   CHANGELOG.md:
     comments: 
     reviewed_by: ollietulloch
-    safe_revision: 12f40dced9c3878efa20b938c2de579870ccf925
+    safe_revision: de292b8dd286a0164a67cda49bbbbc8ba75409cc
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -75,7 +75,7 @@ file safety:
   lib/ndr_support/daterange.rb:
     comments: 
     reviewed_by: ollietulloch
-    safe_revision: 7b9c9525a5d9d319ddec75d5106c85a53f77e3f4
+    safe_revision: fc52184297e0a3bcd52b119e2e0add952c8ab7f1
   lib/ndr_support/hash.rb:
     comments: 
     reviewed_by: pauleves
@@ -167,7 +167,7 @@ file safety:
   lib/ndr_support/version.rb:
     comments: 
     reviewed_by: ollietulloch
-    safe_revision: 12f40dced9c3878efa20b938c2de579870ccf925
+    safe_revision: de292b8dd286a0164a67cda49bbbbc8ba75409cc
   lib/ndr_support/working_days.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -191,7 +191,7 @@ file safety:
   test/daterange_test.rb:
     comments: 
     reviewed_by: ollietulloch
-    safe_revision: 7b9c9525a5d9d319ddec75d5106c85a53f77e3f4
+    safe_revision: ccca1dc67e3742efb154e01e01243e7b38180936
   test/hash_test.rb:
     comments: 
     reviewed_by: timgentry
