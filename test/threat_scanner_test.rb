@@ -8,6 +8,8 @@ class ThreatScannerTest < Minitest::Test
 
     ThreatScanner.stubs(installed?: true)
     ThreatScanner.any_instance.stubs(:`)
+
+    `pwd` # Ensure that $CHILD_STATUS is not nil, even if we never run any child processes
   end
 
   def teardown
