@@ -1,4 +1,7 @@
 ## [Unreleased]
+*no unreleased changes*
+
+## 5.8.1 / 2021-10-11
 ### Patched
 * Added fix for failing threat scanner tests (#22)
 
