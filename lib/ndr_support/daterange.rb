@@ -52,7 +52,7 @@ class Daterange
     return false unless do_not_sort_dates
     return false unless @date1.present? && @date2.present?
 
-    do_not_sort_dates && @date1 > @date2
+    @date1 > @date2
   end
 
   # If we have a valid date range, return a string representation of it
