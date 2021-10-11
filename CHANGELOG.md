@@ -1,6 +1,10 @@
 ## [Unreleased]
 *no unreleased changes*
 
+## 5.8.2 / 2021-10-11
+## Fixed
+* fix issue with blank date causing error for dateranges
+
 ## 5.8.1 / 2021-10-11
 ### Patched
 * Added fix for failing threat scanner tests (#22)
