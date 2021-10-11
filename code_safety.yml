@@ -23,7 +23,7 @@ file safety:
   CHANGELOG.md:
     comments: 
     reviewed_by: ollietulloch
-    safe_revision: b0dc20ab24516ac5c3ecb6c7078b56a20dd2fbd5
+    safe_revision: 12f40dced9c3878efa20b938c2de579870ccf925
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -167,7 +167,7 @@ file safety:
   lib/ndr_support/version.rb:
     comments: 
     reviewed_by: ollietulloch
-    safe_revision: b0dc20ab24516ac5c3ecb6c7078b56a20dd2fbd5
+    safe_revision: 12f40dced9c3878efa20b938c2de579870ccf925
   lib/ndr_support/working_days.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -258,8 +258,8 @@ file safety:
     safe_revision: 34ae80f2952f0bfd18688541862774cbaaa6c5f5
   test/threat_scanner_test.rb:
     comments: 
-    reviewed_by: josh.pencheon
-    safe_revision: ed8ff421cc9353456af13a37049a07ce2545aac1
+    reviewed_by: ollietulloch
+    safe_revision: fbb6ef9804040aa2e38257d9f5c487bde18a490d
   test/utf8_encoding/control_characters_test.rb:
     comments: 
     reviewed_by: timgentry
