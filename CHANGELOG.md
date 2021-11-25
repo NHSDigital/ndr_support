@@ -1,5 +1,5 @@
 ## [Unreleased]
-*no unreleased changes*
+* remove circular dependencies between Ourdate and Daterange
 
 ## 5.8.2 / 2021-10-11
 ## Fixed
