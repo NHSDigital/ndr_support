@@ -22,8 +22,8 @@ file safety:
     safe_revision: a02f14cbf1fc36fbaf820365fdedfdc9af326db1
   CHANGELOG.md:
     comments: 
-    reviewed_by: ollietulloch
-    safe_revision: de292b8dd286a0164a67cda49bbbbc8ba75409cc
+    reviewed_by: brian.shand
+    safe_revision: 9d19593cc45a9f1724c4b34a1a05a5ff48003084
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -74,8 +74,8 @@ file safety:
     safe_revision: c1158eccb843b637b4dd82815dc7c081f12b93e4
   lib/ndr_support/daterange.rb:
     comments: 
-    reviewed_by: ollietulloch
-    safe_revision: fc52184297e0a3bcd52b119e2e0add952c8ab7f1
+    reviewed_by: brian.shand
+    safe_revision: 9d19593cc45a9f1724c4b34a1a05a5ff48003084
   lib/ndr_support/hash.rb:
     comments: 
     reviewed_by: pauleves
@@ -84,10 +84,6 @@ file safety:
     comments: 
     reviewed_by: josh.pencheon
     safe_revision: 2685f35c907af6968a69eabb5ab9424b490d0f40
-  lib/ndr_support/integer/julian_date_conversions.rb:
-    comments: 
-    reviewed_by: ollietulloch
-    safe_revision: '09b3f97fb4c1afc88d0d070c39796b1f60c39d25'
   lib/ndr_support/integer/rounding.rb:
     comments: 
     reviewed_by: josh.pencheon
@@ -106,8 +102,12 @@ file safety:
     safe_revision: 50a4293953f9ae227823c390b069a3ed4825074c
   lib/ndr_support/ourdate.rb:
     comments: 
-    reviewed_by: ollietulloch
-    safe_revision: '09b3f97fb4c1afc88d0d070c39796b1f60c39d25'
+    reviewed_by: brian.shand
+    safe_revision: 9d19593cc45a9f1724c4b34a1a05a5ff48003084
+  lib/ndr_support/ourdate/build_datetime.rb:
+    comments: 
+    reviewed_by: brian.shand
+    safe_revision: 9d19593cc45a9f1724c4b34a1a05a5ff48003084
   lib/ndr_support/ourtime.rb:
     comments: 
     reviewed_by: ollietulloch
