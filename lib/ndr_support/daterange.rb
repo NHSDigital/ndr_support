@@ -1,6 +1,6 @@
 require 'active_support/core_ext/enumerable'
 require 'active_support/time'
-require 'ndr_support/integer/julian_date_conversions'
+require 'ndr_support/ourdate/build_datetime'
 
 # Our "vague date" class, which can represent a single date or a date range.
 class Daterange
@@ -188,7 +188,10 @@ class Daterange
       j1 = j2 = Date.new(parts[0], parts[1], parts[2]).jd
     end
 
-    [j1.jd_to_datetime, j2.jd_to_datetime]
+    [j1, j2].collect do |jd|
+      date = Date.jd(jd) # Julian date number to Ruby Date
+      Ourdate.build_datetime(date.year, date.month, date.day)
+    end
   rescue
     nil
   end
