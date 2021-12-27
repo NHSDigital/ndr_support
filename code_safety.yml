@@ -23,7 +23,7 @@ file safety:
   CHANGELOG.md:
     comments: 
     reviewed_by: brian.shand
-    safe_revision: efa8b316f7ee8169baf8b74b4d8e9d3bf02499d5
+    safe_revision: 3c246b08d80a424d160914a6597197b8925826ec
   CODE_OF_CONDUCT.md:
     comments: 
     reviewed_by: timgentry
@@ -167,7 +167,7 @@ file safety:
   lib/ndr_support/version.rb:
     comments: 
     reviewed_by: brian.shand
-    safe_revision: efa8b316f7ee8169baf8b74b4d8e9d3bf02499d5
+    safe_revision: 3c246b08d80a424d160914a6597197b8925826ec
   lib/ndr_support/working_days.rb:
     comments: 
     reviewed_by: josh.pencheon
