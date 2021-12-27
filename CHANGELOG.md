@@ -1,6 +1,10 @@
 ## [Unreleased]
 *no unreleased changes*
 
+## 5.8.4 / 2021-12-27
+## Fixed
+* Support 2023 public holidays
+
 ## 5.8.3 / 2021-11-25
 ## Fixed
 * remove circular dependencies between Ourdate and Daterange
