@@ -66,8 +66,8 @@ file safety:
     safe_revision: 4a4ed24d2cfe7e1736baadf4cf6e0fece6823be1
   lib/ndr_support/concerns/working_days.rb:
     comments: 
-    reviewed_by: brianshand
-    safe_revision: b72baa322dc58820ccd615a178371c2e5dab113c
+    reviewed_by: brian.shand
+    safe_revision: 42b82bdc466503800c021263899cdbbe444b78b0
   lib/ndr_support/date_and_time_extensions.rb:
     comments: 
     reviewed_by: josh.pencheon
