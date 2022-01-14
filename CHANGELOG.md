@@ -1,5 +1,6 @@
 ## [Unreleased]
-*no unreleased changes*
+## Fixed
+* Support Rails 6.1
 
 ## 5.8.4 / 2021-12-27
 ## Fixed
