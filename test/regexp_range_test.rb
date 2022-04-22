@@ -16,7 +16,8 @@ class RegexpRangeTest < Minitest::Test
     regexp_range = RegexpRange.new(0, /^3Ut/)
 
     # Don't test YAML serialisation directly, but make it can be loaded:
-    deserialized_regexp_range = YAML.load(regexp_range.to_yaml)
+    deserialized_regexp_range = YAML.safe_load(regexp_range.to_yaml,
+                                               permitted_classes: [RegexpRange, Regexp])
     assert_instance_of RegexpRange, deserialized_regexp_range
     assert_equal regexp_range.begin, deserialized_regexp_range.begin
     assert_equal regexp_range.end, deserialized_regexp_range.end

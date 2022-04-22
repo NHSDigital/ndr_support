@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 require 'test_helper'
 
 class SerializationTest < Minitest::Test
@@ -70,7 +68,7 @@ class SerializationTest < Minitest::Test
 
   def assert_times
     # Dumped by 1.9.3 syck, within era.
-    loaded = YAML.load("--- !timestamp 2014-03-01\n")
+    loaded = YAML.safe_load("--- !timestamp 2014-03-01\n", permitted_classes: YAML_SAFE_CLASSES)
     assert [Date, Time].include?(loaded.class), '1.9.3 era timestamp class'
     assert_equal 2014, loaded.year,  '1.9.3 era timestamp year'
     assert_equal 3,    loaded.month, '1.9.3 era timestamp month'
@@ -81,17 +79,17 @@ class SerializationTest < Minitest::Test
     date = Date.new(2014, 3, 1)
 
     # Dumped by 1.8.7 syck, within era.
-    loaded = YAML.load("--- 2014-03-01\n")
+    loaded = YAML.safe_load("--- 2014-03-01\n", permitted_classes: YAML_SAFE_CLASSES)
     assert_equal date, loaded, '1.8.7 era date'
 
     # Check default formatting does not affect serialisation:
     assert_equal '01.03.2014', date.to_s
-    assert_equal date, YAML.load(date.to_yaml)
+    assert_equal date, YAML.safe_load(date.to_yaml, permitted_classes: YAML_SAFE_CLASSES)
   end
 
   def assert_datetimes
     datetime = DateTime.new(2014, 3, 1, 12, 45, 15)
-    loaded   = YAML.load(datetime.to_yaml)
+    loaded   = YAML.safe_load(datetime.to_yaml, permitted_classes: YAML_SAFE_CLASSES)
 
     assert [DateTime, Time].include?(loaded.class), 'datetime class'
     assert_equal datetime, loaded.to_datetime
