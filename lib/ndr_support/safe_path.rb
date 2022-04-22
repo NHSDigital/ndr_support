@@ -64,13 +64,12 @@ class SafePath
   # should be used. Attempting to reconfigure with
   # new settings will raise a security error.
   def self.configure!(filepath)
-    if defined?(@@fs_paths)
-      fail SecurityError, 'Attempt to re-assign SafePath config!'
-    else
-      File.open(filepath, 'r') do |file|
-        @@fs_paths = YAML.load(ERB.new(file.read).result)
-        @@fs_paths.freeze
-      end
+    raise SecurityError, 'Attempt to re-assign SafePath config!' if defined?(@@fs_paths)
+
+    File.open(filepath, 'r') do |file|
+      @@fs_paths = YAML.safe_load(ERB.new(file.read).result,
+                                  permitted_classes: [Regexp], aliases: true)
+      @@fs_paths.freeze
     end
   end
 

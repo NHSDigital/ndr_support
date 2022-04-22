@@ -8,6 +8,10 @@ module NdrSupport
     module SerializationMigration
       include UTF8Encoding
 
+      # Classes we routinely allow to be included in our YAML serialisations, automatically
+      # accepted by load_yaml
+      YAML_SAFE_CLASSES = [Date, DateTime, Time, Symbol].freeze
+
       # Wrapper around: YAML.load(string)
       def load_yaml(string, coerce_invalid_chars = false)
         fix_encoding!(string, coerce_invalid_chars)
@@ -16,7 +20,12 @@ module NdrSupport
         handle_special_characters!(string, coerce_invalid_chars)
         fix_encoding!(string, coerce_invalid_chars)
 
-        object = Psych.load(string)
+        # TODO: Bump NdrSupport major version, and switch to safe_load by default
+        object = if Psych::VERSION.start_with?('3.')
+                   Psych.load(string)
+                 else
+                   Psych.safe_load(string, permitted_classes: YAML_SAFE_CLASSES)
+                 end
 
         # Ensure that any string related to the object
         # we've loaded is also valid UTF-8.
