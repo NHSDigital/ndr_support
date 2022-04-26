@@ -3,6 +3,9 @@
 * Support Rails 6.1
 * Support Ruby 3.1
 
+## Changed
+* Drop support for Ruby 2.6
+
 ## 5.8.4 / 2021-12-27
 ## Fixed
 * Support 2023 public holidays
