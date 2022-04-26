@@ -1,4 +1,7 @@
 ## [Unreleased]
+* No unreleased changes
+
+## 5.9.0 / 2022-04-26
 ## Fixed
 * Support Rails 6.1
 * Support Ruby 3.1
@@ -24,7 +27,6 @@
 
 ## 5.8.0 / 2021-04-19
 ## Added
-
 * Add ability to disable date reversing in Daterange
 
 ## Fixed

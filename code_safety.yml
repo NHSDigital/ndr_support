@@ -11,7 +11,7 @@ file safety:
   ".github/workflows/test.yml":
     comments:
     reviewed_by: brian.shand
-    safe_revision: 16254a4332aab074a27c8e13859dc4712e707122
+    safe_revision: e91fab5ac8474b001ca3805c6cce8eefa6b49f2d
   ".gitignore":
     comments:
     reviewed_by: josh.pencheon
@@ -23,7 +23,7 @@ file safety:
   CHANGELOG.md:
     comments:
     reviewed_by: brian.shand
-    safe_revision: 16254a4332aab074a27c8e13859dc4712e707122
+    safe_revision: e91fab5ac8474b001ca3805c6cce8eefa6b49f2d
   CODE_OF_CONDUCT.md:
     comments:
     reviewed_by: timgentry
@@ -138,8 +138,8 @@ file safety:
     safe_revision: 2685f35c907af6968a69eabb5ab9424b490d0f40
   lib/ndr_support/safe_path.rb:
     comments:
-    reviewed_by: ollietulloch
-    safe_revision: '09b3f97fb4c1afc88d0d070c39796b1f60c39d25'
+    reviewed_by: brian.shand
+    safe_revision: f4f7cb0803ea34a2f1ba83495d8bcbd942786bce
   lib/ndr_support/string/cleaning.rb:
     comments:
     reviewed_by: brianshand
@@ -182,12 +182,12 @@ file safety:
     safe_revision: c1158eccb843b637b4dd82815dc7c081f12b93e4
   lib/ndr_support/yaml/serialization_migration.rb:
     comments:
-    reviewed_by: timgentry
-    safe_revision: 29595e6431587ff9b7db6e3ad3abbb3577bff99c
+    reviewed_by: brian.shand
+    safe_revision: f4f7cb0803ea34a2f1ba83495d8bcbd942786bce
   ndr_support.gemspec:
     comments:
     reviewed_by: brian.shand
-    safe_revision: 16254a4332aab074a27c8e13859dc4712e707122
+    safe_revision: e91fab5ac8474b001ca3805c6cce8eefa6b49f2d
   test/array_test.rb:
     comments:
     reviewed_by: timgentry
@@ -238,8 +238,8 @@ file safety:
     safe_revision: f5d1ba50d378286c0541f300d73844240e2eb7c1
   test/regexp_range_test.rb:
     comments:
-    reviewed_by: timgentry
-    safe_revision: 29595e6431587ff9b7db6e3ad3abbb3577bff99c
+    reviewed_by: brian.shand
+    safe_revision: f4f7cb0803ea34a2f1ba83495d8bcbd942786bce
   test/resources/filesystem_paths.yml:
     comments:
     reviewed_by: timgentry
@@ -282,5 +282,5 @@ file safety:
     safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
   test/yaml/serialization_test.rb:
     comments:
-    reviewed_by: josh.pencheon
-    safe_revision: 4daf43bf8cb48761471b32ad45c4d1cf97aab476
+    reviewed_by: brian.shand
+    safe_revision: f4f7cb0803ea34a2f1ba83495d8bcbd942786bce
