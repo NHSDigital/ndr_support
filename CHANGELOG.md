@@ -1,6 +1,10 @@
 ## [Unreleased]
 * No unreleased changes
 
+## 5.9.1 / 2022-09-12
+## Fixed
+* Add extra 2022 Bank Holiday
+
 ## 5.9.0 / 2022-04-26
 ## Fixed
 * Support Rails 6.1
