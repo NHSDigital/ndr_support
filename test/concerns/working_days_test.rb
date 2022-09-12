@@ -128,13 +128,19 @@ class WorkingDaysTest < Minitest::Test
     response = Net::HTTP.get(URI(url))
 
     events = JSON.parse(response)['events']
-    events.each do |event|
+    missing_holidays = events.collect do |event|
       event_date = event['date']
       parsed_date = Date.parse(event_date)
-
-      assert parsed_date.public_holiday?, "#{event_date} should be a public holiday"
-      # next if parsed_date.public_holiday?
-      # puts "'#{event_date}', # #{parsed_date.strftime('%A')} - #{event['title']}"
+      if parsed_date.public_holiday?
+        nil
+      else
+        [event_date, "    '#{event_date}', # #{parsed_date.strftime('%A')} - #{event['title']}"]
+      end
+    end.compact
+    if missing_holidays.any?
+      flunk (["#{missing_holidays.collect(&:first).join(', ')} should be public holidays in " \
+              'lib/ndr_support/concerns/working_days.rb:'] +
+             missing_holidays.collect(&:last)).join("\n")
     end
   end
 end

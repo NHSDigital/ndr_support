@@ -105,6 +105,7 @@ module WorkingDays
     '2022-06-02', # Thursday - Spring bank holiday
     '2022-06-03', # Friday   - Platinum Jubilee bank holiday
     '2022-08-29', # Monday   - Summer bank holiday
+    '2022-09-19', # Monday   - Bank Holiday for the State Funeral of Queen Elizabeth II
     '2022-12-26', # Monday   - Boxing Day
     '2022-12-27', # Tuesday  - Christmas Day (substitute day)
     # 2023
@@ -114,8 +115,8 @@ module WorkingDays
     '2023-05-01', # Monday   - Early May bank holiday
     '2023-05-29', # Monday   - Spring bank holiday
     '2023-08-28', # Monday   - Summer bank holiday
-    '2023-12-25', # Monday   - Boxing Day
-    '2023-12-26', # Tuesday  - Christmas Day (substitute day)
+    '2023-12-25', # Monday   - Christmas Day
+    '2023-12-26', # Tuesday  - Boxing Day
   ].map { |str| Date.parse(str) }
 
   def self.check_lookup
