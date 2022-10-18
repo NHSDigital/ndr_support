@@ -1,2 +1,2 @@
 # Admins should have oversight of the version:
-lib/ndr_support/version.rb      @publichealthengland/ndr-admins
+lib/ndr_support/version.rb      @NHSDigital/ndrs-it-admins @publichealthengland/ndr-admins
