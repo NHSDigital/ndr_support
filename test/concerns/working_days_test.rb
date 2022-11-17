@@ -134,7 +134,9 @@ class WorkingDaysTest < Minitest::Test
       if parsed_date.public_holiday?
         nil
       else
-        [event_date, "    '#{event_date}', # #{parsed_date.strftime('%A')} - #{event['title']}"]
+        [event_date, format("    '%<date>s', # %<day>-9s - %<title>s",
+                            date: event_date, day: parsed_date.strftime('%A'),
+                            title: event['title'])]
       end
     end.compact
     if missing_holidays.any?

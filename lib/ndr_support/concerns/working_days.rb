@@ -113,10 +113,29 @@ module WorkingDays
     '2023-04-07', # Friday   - Good Friday
     '2023-04-10', # Monday   - Easter Monday
     '2023-05-01', # Monday   - Early May bank holiday
+    '2023-05-08', # Monday    - Bank holiday for the coronation of King Charles III
     '2023-05-29', # Monday   - Spring bank holiday
     '2023-08-28', # Monday   - Summer bank holiday
     '2023-12-25', # Monday   - Christmas Day
     '2023-12-26', # Tuesday  - Boxing Day
+    # 2024
+    '2024-01-01', # Monday    - New Year’s Day
+    '2024-03-29', # Friday    - Good Friday
+    '2024-04-01', # Monday    - Easter Monday
+    '2024-05-06', # Monday    - Early May bank holiday
+    '2024-05-27', # Monday    - Spring bank holiday
+    '2024-08-26', # Monday    - Summer bank holiday
+    '2024-12-25', # Wednesday - Christmas Day
+    '2024-12-26', # Thursday  - Boxing Day
+    # 2025
+    '2025-01-01', # Wednesday - New Year’s Day
+    '2025-04-18', # Friday    - Good Friday
+    '2025-04-21', # Monday    - Easter Monday
+    '2025-05-05', # Monday    - Early May bank holiday
+    '2025-05-26', # Monday    - Spring bank holiday
+    '2025-08-25', # Monday    - Summer bank holiday
+    '2025-12-25', # Thursday  - Christmas Day
+    '2025-12-26', # Friday    - Boxing Day
   ].map { |str| Date.parse(str) }
 
   def self.check_lookup
