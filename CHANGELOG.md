@@ -1,5 +1,8 @@
 ## [Unreleased]
 * No unreleased changes
+
+## 5.9.2 / 2022-11-17
+## Fixed
 * Add extra 2023 Bank Holiday, and 2024 and 2025 Bank Holidays
 
 ## 5.9.1 / 2022-09-12

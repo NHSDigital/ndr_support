@@ -2,8 +2,8 @@
 file safety:
   ".github/CODEOWNERS":
     comments:
-    reviewed_by: ollietulloch
-    safe_revision: 993f7719b57eb6ddd8dffa7230ed9ffc69f48749
+    reviewed_by: brian.shand
+    safe_revision: ee57573b35d6ef0f1a2d8e774ee95aa41a85d40c
   ".github/workflows/lint.yml":
     comments:
     reviewed_by: ollietulloch
@@ -23,7 +23,7 @@ file safety:
   CHANGELOG.md:
     comments:
     reviewed_by: brian.shand
-    safe_revision: '0317988580be42bc3a3b64680e340223268c525f'
+    safe_revision: bac214f4c93d8753268825408fc560171fac91c0
   CODE_OF_CONDUCT.md:
     comments:
     reviewed_by: timgentry
@@ -75,7 +75,7 @@ file safety:
   lib/ndr_support/concerns/working_days.rb:
     comments:
     reviewed_by: brian.shand
-    safe_revision: f35774faa74bfe6f7d2f1e7447388f11914ecab8
+    safe_revision: bac214f4c93d8753268825408fc560171fac91c0
   lib/ndr_support/date_and_time_extensions.rb:
     comments:
     reviewed_by: josh.pencheon
@@ -175,7 +175,7 @@ file safety:
   lib/ndr_support/version.rb:
     comments:
     reviewed_by: brian.shand
-    safe_revision: '0317988580be42bc3a3b64680e340223268c525f'
+    safe_revision: 8321c488b8a7342762ee8c322ce3ffd5b1a1a880
   lib/ndr_support/working_days.rb:
     comments:
     reviewed_by: josh.pencheon
@@ -195,7 +195,7 @@ file safety:
   test/concerns/working_days_test.rb:
     comments:
     reviewed_by: brian.shand
-    safe_revision: f35774faa74bfe6f7d2f1e7447388f11914ecab8
+    safe_revision: bac214f4c93d8753268825408fc560171fac91c0
   test/daterange_test.rb:
     comments:
     reviewed_by: ollietulloch
