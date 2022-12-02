@@ -56,7 +56,7 @@ class Daterange
   end
 
   # If we have a valid date range, return a string representation of it
-  # TODO: possibly add support for to_s(format) e.g. to_s(:short)
+  # TODO: possibly add support for to_formatted_s(format) e.g. to_formatted_s(:short)
   def to_s
     return '' unless @date1 && @date2
     if @date1 == @date2 # single date
@@ -139,9 +139,9 @@ class Daterange
   def tidy_string_if_midnight(datetime)
     if datetime.hour == 0 && datetime.min == 0 && datetime.sec == 0
       # it's midnight
-      datetime.to_date.to_s(:ui)
+      datetime.to_date.to_formatted_s(:ui)
     else
-      return datetime.to_time.to_s(:ui)
+      datetime.to_time.to_formatted_s(:ui)
     end
   end
 

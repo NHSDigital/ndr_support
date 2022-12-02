@@ -24,7 +24,7 @@ class Ourtime
   end
 
   def to_s
-    @thetime ? @thetime.to_time.to_s(:ui) : ''
+    @thetime ? @thetime.to_time.to_formatted_s(:ui) : ''
   end
 
   def empty?
