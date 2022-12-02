@@ -1,4 +1,7 @@
 ## [Unreleased]
+* No unreleased changes
+
+## 5.9.3 / 2022-12-02
 ## Fixed
 * Support Rails 7.0
 
