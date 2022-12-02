@@ -18,8 +18,8 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'activerecord',  '>= 5.2.0', '< 7'
-  spec.add_dependency 'activesupport', '>= 5.2.0', '< 7'
+  spec.add_dependency 'activerecord',  '>= 6.0.0', '< 7.1'
+  spec.add_dependency 'activesupport', '>= 6.0.0', '< 7.1'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake', '>= 12.3.3'
@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
 
   # Avoid std-lib minitest (which has different namespace)
   spec.add_development_dependency 'minitest', '>= 5.0.0'
-  spec.add_development_dependency 'mocha', '~> 1.1'
+  spec.add_development_dependency 'mocha', '~> 2.0'
 
   spec.add_development_dependency 'ndr_dev_support', '~> 6.0.2'
 

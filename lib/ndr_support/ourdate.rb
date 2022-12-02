@@ -39,7 +39,7 @@ class Ourdate
   end
 
   def to_s
-    @thedate ? @thedate.to_date.to_s(:ui) : ''
+    @thedate ? @thedate.to_date.to_formatted_s(:ui) : ''
   end
 
   def empty?

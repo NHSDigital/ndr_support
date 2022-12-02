@@ -15,6 +15,19 @@ class Date
     return in_time_zone.to_datetime if ActiveRecord::Base.default_timezone == :local
     orig_to_datetime
   end
+
+  alias orig_to_s to_s
+
+  # Rails 7 stops overriding to_s (without a format specification) (for performance on Ruby 3.1)
+  # cf. activesupport-7.0.4/lib/active_support/core_ext/date/deprecated_conversions.rb
+  # We keep overriding this for compatibility
+  def to_s(format = :default)
+    if format == :default
+      to_formatted_s(:default)
+    else
+      orig_to_s(format)
+    end
+  end
 end
 
 #-------------------------------------------------------------------------------
@@ -23,6 +36,55 @@ class Time
   # to_iso output must be SQL safe for security reasons
   def to_iso
     strftime('%Y-%m-%dT%H:%M:%S')
+  end
+
+  alias orig_to_s to_s
+
+  # Rails 7 stops overriding to_s (without a format specification) (for performance on Ruby 3.1)
+  # cf. activesupport-7.0.4/lib/active_support/core_ext/date/deprecated_conversions.rb
+  # We keep overriding this for compatibility
+  def to_s(format = :default)
+    if format == :default
+      to_formatted_s(:default)
+    else
+      orig_to_s(format)
+    end
+  end
+end
+
+#-------------------------------------------------------------------------------
+
+class DateTime
+  alias orig_to_s to_s
+
+  # Rails 7 stops overriding to_s (without a format specification) (for performance on Ruby 3.1)
+  # cf. activesupport-7.0.4/lib/active_support/core_ext/date/deprecated_conversions.rb
+  # We keep overriding this for compatibility
+  def to_s(format = :default)
+    if format == :default
+      to_formatted_s(:default)
+    else
+      orig_to_s(format)
+    end
+  end
+end
+
+#-------------------------------------------------------------------------------
+
+module ActiveSupport
+  class TimeWithZone
+    alias orig_to_s to_s
+
+    # Rails 7 stops overriding to_s (without a format specification) (for performance on Ruby 3.1)
+    # cf. activesupport-7.0.4/lib/active_support/core_ext/date/deprecated_conversions.rb
+    # We keep overriding this for compatibility
+    def to_s(format = :default)
+      if format == :default
+        to_formatted_s(:default)
+      else
+        orig_to_s(format)
+      end
+    end
   end
 end
 
@@ -52,8 +114,8 @@ module NdrSupport
     def apply_date_patch!
       # Ensure we emit "yaml-formatted" string, instead of the revised default format.
       Psych::Visitors::YAMLTree.class_eval do
-        def visit_Date o
-          @emitter.scalar o.to_s(:yaml), nil, nil, true, false, Psych::Nodes::Scalar::ANY
+        def visit_Date(o)
+          @emitter.scalar o.to_formatted_s(:yaml), nil, nil, true, false, Psych::Nodes::Scalar::ANY
         end
       end
     end
