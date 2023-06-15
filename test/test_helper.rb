@@ -16,7 +16,11 @@ NdrSupport.apply_era_date_formats!
 # require all dates to be stored in UTC in the database.
 # Thus a birth date of 1975-06-01 would be stored as 1975-05-31 23.00.00.
 # Instead, we want to store all times in local time.
-ActiveRecord::Base.default_timezone = :local
+if ActiveRecord.respond_to?(:default_timezone=)
+  ActiveRecord.default_timezone = :local
+else
+  ActiveRecord::Base.default_timezone = :local # Rails <= 6.1
+end
 ActiveRecord::Base.time_zone_aware_attributes = false
 Time.zone = 'London'
 

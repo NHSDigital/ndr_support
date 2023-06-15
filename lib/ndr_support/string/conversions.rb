@@ -1,4 +1,3 @@
-# encoding: utf-8
 require 'active_support/core_ext/string/conversions'
 require 'ndr_support/daterange'
 require 'ndr_support/ourdate'
@@ -130,7 +129,13 @@ class String
 
   def to_datetime
     # Default timezone for to_datetime conversion is GMT, not local timezone
-    return to_time.to_datetime if ActiveRecord::Base.default_timezone == :local
+    default_timezone = if ActiveRecord.respond_to?(:default_timezone)
+                         ActiveRecord.default_timezone
+                       else
+                         ActiveRecord::Base.default_timezone # Rails <= 6.1
+                       end
+    return to_time.to_datetime if default_timezone == :local
+
     orig_to_datetime
   end
 
