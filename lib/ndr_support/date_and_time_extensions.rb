@@ -12,7 +12,13 @@ class Date
 
   def to_datetime
     # Default timezone for Date is GMT, not local timezone
-    return in_time_zone.to_datetime if ActiveRecord::Base.default_timezone == :local
+    default_timezone = if ActiveRecord.respond_to?(:default_timezone)
+                         ActiveRecord.default_timezone
+                       else
+                         ActiveRecord::Base.default_timezone # Rails <= 6.1
+                       end
+    return in_time_zone.to_datetime if default_timezone == :local
+
     orig_to_datetime
   end
 

@@ -15,7 +15,12 @@ class Ourdate
     #--
     # TODO: Use Ourdate.build_datetime everywhere below:
     #++
-    if ActiveRecord::Base.default_timezone == :local
+    default_timezone = if ActiveRecord.respond_to?(:default_timezone)
+                         ActiveRecord.default_timezone
+                       else
+                         ActiveRecord::Base.default_timezone # Rails <= 6.1
+                       end
+    if default_timezone == :local
       build_datetime(current_time.year, current_time.month, current_time.day)
     else
       #--
