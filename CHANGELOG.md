@@ -1,4 +1,7 @@
 ## [Unreleased]
+* No unreleased changes
+
+## 5.9.4 / 2023-07-13
 ### Added
 * Support Ruby 3.2. Drop support for Ruby 2.7, Rails 6.0
 
