@@ -1,4 +1,7 @@
 ## [Unreleased]
+* No unreleased changes
+
+## 5.9.6 / 2023-11-14
 ## Fixed
 * YAMLSupport should preserve escape sequences in JSON text
 
