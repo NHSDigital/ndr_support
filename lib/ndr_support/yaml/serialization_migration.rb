@@ -57,6 +57,9 @@ module NdrSupport
       # While `psych` emits UTF-8 YAML, `syck` double escapes
       # higher characters. We need to unescape any we find:
       def handle_special_characters!(string, coerce_invalid_chars)
+        # TODO: Change to only handle syck control characters
+        return unless string.start_with?('---') # Only handle YAML that is not JSON
+
         # Replace any encoded hex chars with their actual value:
         string.gsub!(/((?:\\x[0-9A-F]{2})+)/) do
           byte_sequence = $1.scan(/[0-9A-F]{2}/)

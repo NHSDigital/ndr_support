@@ -1,5 +1,6 @@
 ## [Unreleased]
-* No unreleased changes
+## Fixed
+* YAMLSupport should preserve escape sequences in JSON text
 
 ## 5.9.5 / 2023-10-26
 * Support Rails 7.1

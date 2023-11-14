@@ -29,6 +29,11 @@ class SerializationTest < Minitest::Test
     assert_equal "control 0x01 char \n whoops!", load_yaml(chr_1_yaml)
   end
 
+  test 'should leave non-binary JSON with things that look like control chars unchanged' do
+    hash = { 'report' => ' \x09 ' }
+    assert_equal hash, load_yaml(hash.to_json)
+  end
+
   test 'load_yaml should not coerce to UTF-8 by default' do
     assert_yaml_coercion_behaviour
   end
