@@ -56,14 +56,17 @@ module NdrSupport
       # Within double quotes, YAML allows special characters.
       # While `psych` emits UTF-8 YAML, `syck` double escapes
       # higher characters. We need to unescape any we find:
+      # Both `psych` and `syck` escape lower control characters.
       def handle_special_characters!(string, coerce_invalid_chars)
-        # TODO: Change to only handle syck control characters
         return unless string.start_with?('---') # Only handle YAML that is not JSON
 
         # Replace any encoded hex chars with their actual value:
-        string.gsub!(/((?:\\x[0-9A-F]{2})+)/) do
-          byte_sequence = $1.scan(/[0-9A-F]{2}/)
-          byte_sequence.pack('H2' * byte_sequence.length).tap do |sequence|
+        string.gsub!(/(?<!\\)((?:\\\\)*)((?:\\x[0-9A-F]{2})+)/) do
+          # We use negative lookbehind and the first capturing group to skip over
+          # properly escaped backslashes
+          prefix = ::Regexp.last_match(1) # Prefix is an even number of backslashes
+          byte_sequence = ::Regexp.last_match(2).scan(/[0-9A-F]{2}/)
+          prefix + byte_sequence.pack('H2' * byte_sequence.length).tap do |sequence|
             fix_encoding!(sequence, coerce_invalid_chars)
           end
         end

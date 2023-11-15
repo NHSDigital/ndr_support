@@ -1,5 +1,6 @@
 ## [Unreleased]
-* No unreleased changes
+## Fixed
+* YAMLSupport should preserve escaped backslashes in YAML text
 
 ## 5.9.6 / 2023-11-14
 ## Fixed
