@@ -29,8 +29,14 @@ class SerializationTest < Minitest::Test
     assert_equal "control 0x01 char \n whoops!", load_yaml(chr_1_yaml)
   end
 
+  test 'should handle non-binary yaml with escaped things that look like control chars' do
+    # irb> Psych.dump(['\\x01 \\xAF \\\\xAF', "\x01 \\\x01 \x01\\\x01"])
+    escaped_yaml = "---\n- \"\\\\x01 \\\\xAF \\\\\\\\xAF\"\n- \"\\x01 \\\\\\x01 \\x01\\\\\\x01\"\n"
+    assert_equal ['\\x01 \\xAF \\\\xAF', '0x01 \\0x01 0x01\\0x01'], load_yaml(escaped_yaml)
+  end
+
   test 'should leave non-binary JSON with things that look like control chars unchanged' do
-    hash = { 'report' => ' \x09 ' }
+    hash = { 'report' => ' \x01 ' }
     assert_equal hash, load_yaml(hash.to_json)
   end
 
