@@ -12,8 +12,29 @@ module NdrSupport
       # accepted by load_yaml
       YAML_SAFE_CLASSES = [Date, DateTime, Time, Symbol].freeze
 
+      # Set list of YAML safe classes, or :unsafe to use unsafe load
+      def yaml_safe_classes=(yaml_safe_classes)
+        @yaml_safe_classes = yaml_safe_classes
+      end
+
+      def yaml_safe_classes
+        @yaml_safe_classes || YAML_SAFE_CLASSES
+      end
+
+      # Allow emitted YAML to contain UTF-8 characters
+      # Defaults to true. (Defaulted to false in ndr_support versions < 6)
+      def utf8_storage=(utf8_storage)
+        @utf8_storage = utf8_storage
+      end
+
+      def utf8_storage
+        return @utf8_storage if @utf8_storage == false
+
+        true # New ndr_support default for versions >= 6, previously false
+      end
+
       # Wrapper around: YAML.load(string)
-      def load_yaml(string, coerce_invalid_chars = false)
+      def load_yaml(string, coerce_invalid_chars = false) # rubocop:disable Style/OptionalBooleanParameter
         fix_encoding!(string, coerce_invalid_chars)
 
         # Achieve same behaviour using `syck` and `psych`:
@@ -21,10 +42,14 @@ module NdrSupport
         fix_encoding!(string, coerce_invalid_chars)
 
         # TODO: Bump NdrSupport major version, and switch to safe_load by default
-        object = if Psych::VERSION.start_with?('3.')
+        object = if yaml_safe_classes == :unsafe
+                   unless Psych::VERSION.start_with?('3.')
+                     raise(SecurityError, 'Unsafe YAML no longer supported')
+                   end
+
                    Psych.load(string)
                  else
-                   Psych.safe_load(string, permitted_classes: YAML_SAFE_CLASSES)
+                   Psych.safe_load(string, permitted_classes: yaml_safe_classes)
                  end
 
         # Ensure that any string related to the object
@@ -37,8 +62,10 @@ module NdrSupport
 
       # Wrapper around: YAML.dump(object)
       def dump_yaml(object)
-        # Psych produces UTF-8 encoded output; we'd rather
-        # have YAML that can be safely stored in stores with
+        return Psych.dump(object) if utf8_storage
+
+        # Psych produces UTF-8 encoded output; historically we
+        # preferred YAML that can be safely stored in stores with
         # other encodings. If #load_yaml is used, the binary
         # encoding of the object will be reversed on load.
         Psych.dump binary_encode_any_high_ascii(object)

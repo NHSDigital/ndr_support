@@ -44,24 +44,58 @@ class SerializationTest < Minitest::Test
     assert_yaml_coercion_behaviour
   end
 
-  test 'dump_yaml should produce encoding-portable YAML' do
-    original_object = { :basic => 'manana', :complex => 'mañana' }
+  test 'dump_yaml with utf8_storage = false should produce encoding-portable YAML' do
+    self.utf8_storage = false
+    original_object = { basic: 'manana', complex: 'mañana' }
     yaml_produced   = dump_yaml(original_object)
     reloaded_object = load_yaml(yaml_produced)
 
-    assert yaml_produced =~ /basic: manana/, 'binary-encoded more than was necessary'
+    assert_match(/basic: manana/, yaml_produced, 'binary-encoded more than was necessary')
 
     refute yaml_produced.bytes.detect { |byte| byte > 127 }, 'yaml has high-ascii'
     assert reloaded_object.inspect.bytes.detect { |byte| byte > 127 }
     assert_equal original_object, reloaded_object
   end
 
-  test 'encoding-portable YAML should be loadable' do
-    original_object = { :basic => 'manana', :complex => 'mañana' }
+  test 'encoding-portable YAML with utf8_storage = false should be loadable' do
+    self.utf8_storage = false
+    original_object = { basic: 'manana', complex: 'mañana' }
     yaml_produced   = dump_yaml(original_object)
+
+    assert_equal("---\n:basic: manana\n:complex: !binary |-\n  bWHDsWFuYQ==\n", yaml_produced)
 
     reloaded_object = load_yaml(yaml_produced)
     assert_equal original_object, reloaded_object
+  end
+
+  test 'non-encoding-portable YAML with utf8_storage = true should be loadable' do
+    self.utf8_storage = true
+    original_object = { basic: 'manana', complex: 'mañana' }
+    yaml_produced   = dump_yaml(original_object)
+    assert_equal("---\n:basic: manana\n:complex: mañana\n", yaml_produced)
+
+    reloaded_object = load_yaml(yaml_produced)
+    assert_equal original_object, reloaded_object
+  end
+
+  test 'yaml_safe_classes should filter which classes can be loaded' do
+    original_object = { basic: 'manana', complex: 'mañana' }
+    yaml_produced   = dump_yaml(original_object)
+    self.yaml_safe_classes = []
+    assert_raises Psych::DisallowedClass, 'Load should fail without Symbol in yaml_safe_classes' do
+      load_yaml(yaml_produced)
+    end
+
+    self.yaml_safe_classes = [Symbol]
+    reloaded_object = load_yaml(yaml_produced)
+    assert_equal original_object, reloaded_object, 'Safe reload with Symbol class specified'
+
+    if Psych::VERSION.start_with?('3.')
+      # Not supported with Ruby >= 3.1 unless you force psych version < 4
+      self.yaml_safe_classes = :unsafe
+      reloaded_object = load_yaml(yaml_produced)
+      assert_equal original_object, reloaded_object, 'Unsafe reload with Symbol class'
+    end
   end
 
   test 'time-like objects should serialise correctly with psych' do
