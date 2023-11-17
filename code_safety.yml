@@ -23,7 +23,7 @@ file safety:
   CHANGELOG.md:
     comments:
     reviewed_by: brian.shand
-    safe_revision: ead7b5fe38f4f580d5c4ca2697136acc8ef1bd8b
+    safe_revision: 646eaebdf824490150e991225f9e15abb67dd4c1
   CODE_OF_CONDUCT.md:
     comments:
     reviewed_by: timgentry
@@ -171,7 +171,7 @@ file safety:
   lib/ndr_support/version.rb:
     comments:
     reviewed_by: brian.shand
-    safe_revision: 9a91fe5935711475449aebbb6b93bd9f40884a77
+    safe_revision: 765520ebaf3652bed7105995c815afe681dd5363
   lib/ndr_support/working_days.rb:
     comments:
     reviewed_by: josh.pencheon
@@ -179,7 +179,7 @@ file safety:
   lib/ndr_support/yaml/serialization_migration.rb:
     comments:
     reviewed_by: brian.shand
-    safe_revision: ead7b5fe38f4f580d5c4ca2697136acc8ef1bd8b
+    safe_revision: 646eaebdf824490150e991225f9e15abb67dd4c1
   ndr_support.gemspec:
     comments:
     reviewed_by: brian.shand
@@ -283,4 +283,4 @@ file safety:
   test/yaml/serialization_test.rb:
     comments:
     reviewed_by: brian.shand
-    safe_revision: ead7b5fe38f4f580d5c4ca2697136acc8ef1bd8b
+    safe_revision: 646eaebdf824490150e991225f9e15abb67dd4c1
