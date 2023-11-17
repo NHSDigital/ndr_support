@@ -1,5 +1,9 @@
 ## [Unreleased]
-* No unreleased changes
+## Changed
+* Generate UTF-8 encoded YAML by default. Disable with `utf8_storage = false`
+* Use `YAML.safe_load` by default. Override with
+  `self.yaml_safe_classes = yaml_safe_classes + [Klass1, Klass2]` and revert to
+  unsafe loading with `yaml_safe_classes = :unsafe` and `gem 'psych', '< 4'`
 
 ## 5.9.7 / 2023-11-16
 ## Fixed
