@@ -43,13 +43,11 @@ module NdrSupport
 
         # TODO: Bump NdrSupport major version, and switch to safe_load by default
         object = if yaml_safe_classes == :unsafe
-                   unless Psych::VERSION.start_with?('3.')
-                     raise(SecurityError, 'Unsafe YAML no longer supported')
-                   end
+                   raise(SecurityError, 'Unsafe YAML no longer supported') unless Psych::VERSION.start_with?('3.')
 
                    Psych.load(string)
                  else
-                   Psych.safe_load(string, permitted_classes: yaml_safe_classes)
+                   Psych.safe_load(string, permitted_classes: yaml_safe_classes, aliases: true)
                  end
 
         # Ensure that any string related to the object

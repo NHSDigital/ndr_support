@@ -8,6 +8,14 @@ class SerializationTest < Minitest::Test
     assert_equal hash, load_yaml(dump_yaml(hash))
   end
 
+  test 'should support aliases correctly' do
+    x = { 'c' => 5 }
+    hash = { 'a' => x, 'b' => x }
+    hash_yaml = "---\na: &1\n  c: 5\nb: *1\n"
+    assert_equal hash, load_yaml(hash_yaml), 'Deserialising known YAML with an alias'
+    assert_equal hash, load_yaml(dump_yaml(hash)), 'Deserialising a structure with repeated objects'
+  end
+
   test 'should handle syck-encoded characters' do
     assert_syck_1_8_yaml_loads_correctly
   end
