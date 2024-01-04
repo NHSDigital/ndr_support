@@ -1,4 +1,7 @@
 ## [Unreleased]
+* No unreleased changes
+
+## 5.10.0 / 2023-11-17
 ## Changed
 * Generate UTF-8 encoded YAML by default. Disable with `utf8_storage = false`
 * Use `YAML.safe_load` by default. Override with
