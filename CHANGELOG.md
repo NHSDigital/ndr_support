@@ -1,5 +1,6 @@
 ## [Unreleased]
-* No unreleased changes
+## Fixed
+* Allow YAML aliases when using `yaml_safe_classes`
 
 ## 5.10.0 / 2023-11-17
 ## Changed
