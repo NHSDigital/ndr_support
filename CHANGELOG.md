@@ -1,5 +1,9 @@
 ## [Unreleased]
+* No unreleased changes
+
+## 5.10.1 / 2024-01-04
 ## Fixed
+* Add 2026 bank holidays
 * Allow YAML aliases when using `yaml_safe_classes`
 
 ## 5.10.0 / 2023-11-17
