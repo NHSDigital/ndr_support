@@ -31,9 +31,10 @@ class String
       assert_equal 'IP222E', 'IP222E'.postcodeize(:db)
       assert_equal 'HANTS', 'HANTS'.postcodeize(:db)
       # Log10
-      assert '0.0', '0'.clean(:log10)
-      assert '-10.1', '-10.1'.clean(:log10)
-      assert '1.1', '0.04139268515822508'.clean(:log10)
+      assert_equal '0.0', '0'.clean(:log10)
+      assert_equal '-10.1', '-10.1'.clean(:log10)
+      assert_equal '0.04139268515822508', '1.1'.clean(:log10)
+      assert_equal 'BILBO', 'BILBO'.clean(:log10)
     end
 
     test 'xml_unsafe?' do
