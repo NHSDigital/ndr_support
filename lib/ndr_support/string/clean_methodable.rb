@@ -95,7 +95,7 @@ module CleanMethodable
     codes = upcase.split_on_separators.delete_if { |x| x.squash.blank? }
     cleaned_codes = []
     codes.each do |code|
-      if code == 'D' || code == 'A'
+      if code.in?(%w[D A])
         cleaned_codes[-1] += code
       else
         cleaned_codes << code
@@ -110,7 +110,7 @@ module CleanMethodable
   end
 
   def clean_hospitalnumber
-    self[-1..-1] =~ /\d/ ? self : self[0..-2]
+    self[-1..] =~ /\d/ ? self : self[0..-2]
   end
 
   def clean_xmlsafe
@@ -135,6 +135,7 @@ module CleanMethodable
     split_on_separators.map do |code|
       db_code = code.squash
       next unless 4 == db_code.length || db_code =~ /CZ00[12]/
+
       db_code
     end.compact.join(' ')
   end
