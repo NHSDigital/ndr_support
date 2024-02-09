@@ -158,7 +158,8 @@ class String
     end
 
     test 'clean code_icd' do
-      # TODO
+      assert_equal 'C449 Q123A Q455', 'C449,Q123,A,Q455'.clean(:code_icd)
+      assert_equal 'C449 Q123D Q455', 'C449,Q123,D,Q455'.clean(:code_icd)
     end
 
     test 'clean icd' do

@@ -95,7 +95,7 @@ module CleanMethodable
     codes = upcase.split_on_separators.delete_if { |x| x.squash.blank? }
     cleaned_codes = []
     codes.each do |code|
-      if code.in?(%w[D A])
+      if %w[A D].include?(code)
         cleaned_codes[-1] += code
       else
         cleaned_codes << code
