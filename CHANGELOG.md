@@ -1,5 +1,8 @@
 ## [Unreleased]
-* No unreleased changes
+## Fixed
+* Refactored the cleaning code to fix Rubcocop issues
+## Added
+* Added a new 'log10' cleaning method
 
 ## 5.10.1 / 2024-01-04
 ## Fixed

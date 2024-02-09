@@ -16,7 +16,8 @@ module CleanMethodable
     xmlsafe: :clean_xmlsafe, make_xml_safe: :clean_xmlsafe,
     roman5: :clean_roman5,
     tnmcategory: :clean_tnmcategory,
-    strip: :strip, upcase: :upcase, itself: :itself
+    strip: :strip, upcase: :upcase, itself: :itself,
+    log10: :clean_log10
   }.freeze
 
   def clean(what)
@@ -136,5 +137,12 @@ module CleanMethodable
       next unless 4 == db_code.length || db_code =~ /CZ00[12]/
       db_code
     end.compact.join(' ')
+  end
+
+  def clean_log10
+    f_value = Float(self, exception: false)
+    return self if f_value.nil? || f_value.negative?
+
+    f_value.zero? ? '0.0' : Math.log10(f_value).to_s
   end
 end
