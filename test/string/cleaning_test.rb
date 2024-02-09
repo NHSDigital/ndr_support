@@ -33,7 +33,8 @@ class String
       # Log10
       assert_equal '0.0', '0'.clean(:log10)
       assert_equal '-10.1', '-10.1'.clean(:log10)
-      assert_equal '0.04139268515822508', '1.1'.clean(:log10)
+      assert_match(/\A0.041392685158225[0-9]*\z/, '1.1'.clean(:log10),
+                   "Different ruby versions give '0.04139268515822507' or '0.04139268515822508'")
       assert_equal 'BILBO', 'BILBO'.clean(:log10)
     end
 
