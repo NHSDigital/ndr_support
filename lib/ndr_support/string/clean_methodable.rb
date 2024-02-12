@@ -3,7 +3,7 @@
 module CleanMethodable
   extend ActiveSupport::Concern
 
-  ROMAN_ONE_TO_FIVE_MAPPING = { 'I' => '1', 'II' => '2', 'III' => '3', 'IIII' => '4', 'IV' => '4', 'V' => '5' }
+  ROMAN_ONE_TO_FIVE_MAPPING = { 'I' => '1', 'II' => '2', 'III' => '3', 'IIII' => '4', 'IV' => '4', 'V' => '5' }.freeze
 
   CLEAN_METHODS = {
     nhsnumber: :clean_nhsnumber,

@@ -1,5 +1,8 @@
 ## [Unreleased]
-* No unreleased changes
+## Fixed
+* Fixed issue with constant in wrone file/concern
+* Added tests for roman5 cleaning method
+* Seperated log10 tests
 
 ## 5.10.2 / 2024-02-09
 ## Fixed
