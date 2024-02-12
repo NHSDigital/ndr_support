@@ -22,8 +22,8 @@ file safety:
     safe_revision: 8796a1a32273a106a6b1a134a48077cff0176659
   CHANGELOG.md:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: af6c7ddedf6627de8ec823ff33399c7938cd64b1
+    reviewed_by: ollietulloch
+    safe_revision: 8cb498126d68a19f880b0cd1b83b127c8ec90a89
   CODE_OF_CONDUCT.md:
     comments:
     reviewed_by: timgentry
@@ -138,12 +138,12 @@ file safety:
     safe_revision: f4f7cb0803ea34a2f1ba83495d8bcbd942786bce
   lib/ndr_support/string/clean_methodable.rb:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: af6c7ddedf6627de8ec823ff33399c7938cd64b1
+    reviewed_by: ollietulloch
+    safe_revision: ff21f98e6608eedb4b33f977778736b38f9fbacb
   lib/ndr_support/string/cleaning.rb:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: af6c7ddedf6627de8ec823ff33399c7938cd64b1
+    reviewed_by: ollietulloch
+    safe_revision: d99c4bf5d2cbbfe78101beff399e7da8645417b2
   lib/ndr_support/string/conversions.rb:
     comments:
     reviewed_by: brian.shand
@@ -174,8 +174,8 @@ file safety:
     safe_revision: '09b3f97fb4c1afc88d0d070c39796b1f60c39d25'
   lib/ndr_support/version.rb:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: a58c1057a2829284ae527bdd66401b1891f28196
+    reviewed_by: ollietulloch
+    safe_revision: 8cb498126d68a19f880b0cd1b83b127c8ec90a89
   lib/ndr_support/working_days.rb:
     comments:
     reviewed_by: josh.pencheon
@@ -258,8 +258,8 @@ file safety:
     safe_revision: b562d0c15ff1b1d565522a47e6bae47ea09706f0
   test/string/cleaning_test.rb:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: af6c7ddedf6627de8ec823ff33399c7938cd64b1
+    reviewed_by: ollietulloch
+    safe_revision: d99c4bf5d2cbbfe78101beff399e7da8645417b2
   test/string/conversions_test.rb:
     comments:
     reviewed_by: brian.shand
