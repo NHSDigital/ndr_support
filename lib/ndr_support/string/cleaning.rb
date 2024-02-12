@@ -7,7 +7,6 @@ class String
   include CleanMethodable
 
   INVALID_CONTROL_CHARS = /[\x00-\x08\x0b-\x0c\x0e-\x1f]/
-  ROMAN_ONE_TO_FIVE_MAPPING = { 'I' => '1', 'II' => '2', 'III' => '3', 'IIII' => '4', 'IV' => '4', 'V' => '5' }
 
   POSTCODE_REGEXP = /
     ^(

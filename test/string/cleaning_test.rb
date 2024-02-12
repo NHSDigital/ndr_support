@@ -30,12 +30,25 @@ class String
       assert_equal 'IP222', 'IP222'.postcodeize(:db)
       assert_equal 'IP222E', 'IP222E'.postcodeize(:db)
       assert_equal 'HANTS', 'HANTS'.postcodeize(:db)
-      # Log10
+    end
+
+    test 'clean_log10' do
       assert_equal '0.0', '0'.clean(:log10)
       assert_equal '-10.1', '-10.1'.clean(:log10)
       assert_match(/\A0.041392685158225[0-9]*\z/, '1.1'.clean(:log10),
                    "Different ruby versions give '0.04139268515822507' or '0.04139268515822508'")
       assert_equal 'BILBO', 'BILBO'.clean(:log10)
+    end
+
+    test 'clean_roman5' do
+      assert_equal '12345', 'I2345'.clean(:roman5)
+      assert_equal '12345', '1II345'.clean(:roman5)
+      assert_equal '12345', '12III45'.clean(:roman5)
+      assert_equal '12345', '123IIII5'.clean(:roman5)
+      assert_equal '12345', '123IIII5'.clean(:roman5)
+      assert_equal '12345', '123IV5'.clean(:roman5)
+      assert_equal '12345', '1234V'.clean(:roman5)
+      assert_equal '12345', '1II34V'.clean(:roman5)
     end
 
     test 'xml_unsafe?' do
