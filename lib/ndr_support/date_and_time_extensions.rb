@@ -2,6 +2,7 @@ require 'yaml'
 require 'date'
 require 'ndr_support/working_days'
 
+# Extend standard Date class with our custom to_s overrides
 class Date
   # to_iso output must be SQL safe for security reasons
   def to_iso
@@ -12,11 +13,7 @@ class Date
 
   def to_datetime
     # Default timezone for Date is GMT, not local timezone
-    default_timezone = if ActiveRecord.respond_to?(:default_timezone)
-                         ActiveRecord.default_timezone
-                       else
-                         ActiveRecord::Base.default_timezone # Rails <= 6.1
-                       end
+    default_timezone = ActiveRecord.default_timezone
     return in_time_zone.to_datetime if default_timezone == :local
 
     orig_to_datetime
@@ -29,7 +26,7 @@ class Date
   # We keep overriding this for compatibility
   def to_s(format = :default)
     if format == :default
-      to_formatted_s(:default)
+      DATE_FORMATS.key?(:default) ? to_fs(:default) : orig_to_s
     else
       orig_to_s(format)
     end
@@ -38,6 +35,7 @@ end
 
 #-------------------------------------------------------------------------------
 
+# Extend standard Time class with our custom to_s overrides
 class Time
   # to_iso output must be SQL safe for security reasons
   def to_iso
@@ -51,7 +49,7 @@ class Time
   # We keep overriding this for compatibility
   def to_s(format = :default)
     if format == :default
-      to_formatted_s(:default)
+      DATE_FORMATS.key?(:default) ? to_fs(:default) : orig_to_s
     else
       orig_to_s(format)
     end
@@ -60,6 +58,7 @@ end
 
 #-------------------------------------------------------------------------------
 
+# Extend standard DateTime class with our custom to_s overrides
 class DateTime
   alias orig_to_s to_s
 
@@ -68,7 +67,7 @@ class DateTime
   # We keep overriding this for compatibility
   def to_s(format = :default)
     if format == :default
-      to_formatted_s(:default)
+      Time::DATE_FORMATS.key?(:default) ? to_fs(:default) : orig_to_s
     else
       orig_to_s(format)
     end
@@ -78,6 +77,7 @@ end
 #-------------------------------------------------------------------------------
 
 module ActiveSupport
+  # Extend ActiveSupport::TimeWithZone with our custom to_s overrides
   class TimeWithZone
     alias orig_to_s to_s
 
@@ -86,7 +86,7 @@ module ActiveSupport
     # We keep overriding this for compatibility
     def to_s(format = :default)
       if format == :default
-        to_formatted_s(:default)
+        Time::DATE_FORMATS.key?(:default) ? to_fs(:default) : orig_to_s
       else
         orig_to_s(format)
       end
@@ -96,6 +96,7 @@ end
 
 #-------------------------------------------------------------------------------
 
+# NdrSupport module
 module NdrSupport
   class << self
     # Within the NDR, we change default date formatting, as below.
@@ -120,8 +121,8 @@ module NdrSupport
     def apply_date_patch!
       # Ensure we emit "yaml-formatted" string, instead of the revised default format.
       Psych::Visitors::YAMLTree.class_eval do
-        def visit_Date(o)
-          @emitter.scalar o.to_formatted_s(:yaml), nil, nil, true, false, Psych::Nodes::Scalar::ANY
+        def visit_Date(o) # rubocop:disable Naming/MethodName, Naming/MethodParameterName
+          @emitter.scalar o.to_fs(:yaml), nil, nil, true, false, Psych::Nodes::Scalar::ANY
         end
       end
     end

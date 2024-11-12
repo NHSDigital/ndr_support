@@ -10,11 +10,7 @@ class Ourdate
   def self.build_datetime(year, month = 1, day = 1, hour = 0, min = 0, sec = 0, usec = 0)
     return nil if year.nil?
 
-    default_timezone = if ActiveRecord.respond_to?(:default_timezone)
-                         ActiveRecord.default_timezone
-                       else
-                         ActiveRecord::Base.default_timezone # Rails <= 6.1
-                       end
+    default_timezone = ActiveRecord.default_timezone
     if default_timezone == :local
       # Time.local_time(year, month, day, hour, min, sec, usec).to_datetime
       # Behave like oracle_adapter.rb
