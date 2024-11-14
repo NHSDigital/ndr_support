@@ -1,8 +1,11 @@
 ## [Unreleased]
+* no unreleased changes
+
+## 5.10.4 / 2024-11-13
 ### Added
 * Support Rails 7.1, 7.2, 8.0, Ruby 3.2, 3.3. Drop support for Rails 6.1
 
-## 5.10.3 / 2023-02-12
+## 5.10.3 / 2024-02-12
 ## Fixed
 * Fixed issue with constant in wrong file/concern
 * Added tests for roman5 cleaning method
