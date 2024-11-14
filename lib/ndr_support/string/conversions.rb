@@ -129,11 +129,7 @@ class String
 
   def to_datetime
     # Default timezone for to_datetime conversion is GMT, not local timezone
-    default_timezone = if ActiveRecord.respond_to?(:default_timezone)
-                         ActiveRecord.default_timezone
-                       else
-                         ActiveRecord::Base.default_timezone # Rails <= 6.1
-                       end
+    default_timezone = ActiveRecord.default_timezone
     return to_time.to_datetime if default_timezone == :local
 
     orig_to_datetime
