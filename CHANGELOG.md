@@ -1,5 +1,6 @@
 ## [Unreleased]
-* no unreleased changes
+## Fixed
+* Exclude unneeded files from gem package
 
 ## 5.10.4 / 2024-11-13
 ### Added
