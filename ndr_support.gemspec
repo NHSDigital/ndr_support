@@ -12,8 +12,10 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/PublicHealthEngland/ndr_support'
   spec.license       = 'MIT'
 
-  # Exclude older versions of this gem from the package.
-  spec.files         = `git ls-files -z`.split("\x0").reject { |s| s =~ %r{^(\.github|pkg/)} }
+  gem_files          = %w[CHANGELOG.md CODE_OF_CONDUCT.md LICENSE.txt README.md
+                          lib ndr_support.gemspec]
+  spec.files         = `git ls-files -z`.split("\x0").
+                       select { |f| gem_files.include?(f.split('/')[0]) }
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
