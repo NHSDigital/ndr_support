@@ -1,5 +1,6 @@
 ## [Unreleased]
-* no unreleased changes
+## Fixed
+* Add 2027 bank holidays
 
 ## 5.10.4 / 2024-11-13
 ### Added
