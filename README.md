@@ -1,6 +1,6 @@
-# NdrSupport [![Build Status](https://github.com/publichealthengland/ndr_support/workflows/Test/badge.svg)](https://github.com/publichealthengland/ndr_support/actions?query=workflow%3Atest) [![Gem Version](https://badge.fury.io/rb/ndr_support.svg)](https://rubygems.org/gems/ndr_support)
+# NdrSupport [![Build Status](https://github.com/NHSDigital/ndr_support/workflows/Test/badge.svg)](https://github.com/NHSDigital/ndr_support/actions?query=workflow%3Atest) [![Gem Version](https://badge.fury.io/rb/ndr_support.svg)](https://rubygems.org/gems/ndr_support)
 
-This is the Public Health England (PHE) National Disease Registers (NDR) Support ruby gem, providing:
+This is the NHS England (NHS-E) National Disease Registration Service (NDRS) Support ruby gem, providing:
 
 1. core ruby class extensions;
 2. additional time, regular expression, file security, password checking/generation, and encoding classes.
@@ -55,7 +55,7 @@ include NdrSupport::YAML::SerializationMigration
 
 ## Contributing
 
-1. Fork it ( https://github.com/PublicHealthEngland/ndr_support/fork )
+1. Fork it ( https://github.com/NHSDigital/ndr_support/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

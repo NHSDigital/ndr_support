@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = []
   spec.summary       = 'NDR Support library'
   spec.description   = 'Provides NDR classes and class extensions'
-  spec.homepage      = 'https://github.com/PublicHealthEngland/ndr_support'
+  spec.homepage      = 'https://github.com/NHSDigital/ndr_support'
   spec.license       = 'MIT'
 
   gem_files          = %w[CHANGELOG.md CODE_OF_CONDUCT.md LICENSE.txt README.md
