@@ -1,4 +1,7 @@
 ## [Unreleased]
+### Fixed
+* Drop support for Ruby 3.0
+
 ## Fixed
 * Exclude unneeded files from gem package
 * Add 2027 bank holidays
