@@ -23,7 +23,7 @@ class ControlCharactersTest < Minitest::Test
   end
 
   test 'escape_control_chars! with harmless string' do
-    string   = 'null \x00 characters suck'
+    string   = +'null \x00 characters suck'
     expected = 'null \x00 characters suck'
     actual   = escape_control_chars!(string)
 
@@ -41,7 +41,7 @@ class ControlCharactersTest < Minitest::Test
   end
 
   test 'escape_control_chars! with unprintable control characters' do
-    string   = "null \x00 characters suck"
+    string   = +"null \x00 characters suck"
     expected = 'null 0x00 characters suck'
     actual   = escape_control_chars!(string)
 
@@ -50,15 +50,15 @@ class ControlCharactersTest < Minitest::Test
   end
 
   test 'escape_control_chars! with printable control characters' do
-    string   = "null \x00 characters \r\n really \t suck \x07\x07\x07"
+    string   = +"null \x00 characters \r\n really \t suck \x07\x07\x07"
     expected = "null 0x00 characters \r\n really \t suck 0x070x070x07" # ring ring ring
 
     assert_equal expected, escape_control_chars!(string)
   end
 
   test 'escape_control_chars_in_object! with array' do
-    array    = %W( hello\tcruel \x00 world!\n \x07 )
-    expected = %W( hello\tcruel 0x00 world!\n 0x07 )
+    array    = %W[hello\tcruel \x00 world!\n \x07].collect(&:dup)
+    expected = %W[hello\tcruel 0x00 world!\n 0x07]
     actual   = escape_control_chars_in_object!(array)
 
     assert_equal expected, actual
@@ -66,8 +66,8 @@ class ControlCharactersTest < Minitest::Test
   end
 
   test 'escape_control_chars_in_object! with hash' do
-    hash     = { :a => "hello\tcruel", :b => "\x00", :c => "world!\n", :d => "\x07" }
-    expected = { :a => "hello\tcruel", :b => '0x00', :c => "world!\n", :d => '0x07' }
+    hash     = { a: +"hello\tcruel", b: +"\x00", c: +"world!\n", d: +"\x07" }
+    expected = { a: "hello\tcruel", b: '0x00', c: "world!\n", d: '0x07' }
     actual   = escape_control_chars_in_object!(hash)
 
     assert_equal expected, actual
