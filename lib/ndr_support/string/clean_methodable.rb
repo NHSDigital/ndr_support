@@ -125,11 +125,11 @@ module CleanMethodable
   end
 
   def clean_tnmcategory
-    sub!(/\A[tnm]/i, '')
-    if self =~ /\Ax\z/i
-      upcase
+    without_prefix = sub(/\A[tnm]/i, '')
+    if without_prefix =~ /\Ax\z/i
+      without_prefix.upcase
     else
-      downcase
+      without_prefix.downcase
     end
   end
 

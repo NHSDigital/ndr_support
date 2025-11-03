@@ -3,6 +3,7 @@
 * Exclude unneeded files from gem package
 * Add 2027 bank holidays
 * Replace Public Health England naming with NHS England
+* Support Ruby 3.4. Drop support for Rails 7.0, Ruby 3.0, 3.1
 
 ## 5.10.4 / 2024-11-13
 ### Added

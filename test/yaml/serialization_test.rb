@@ -11,7 +11,7 @@ class SerializationTest < Minitest::Test
   test 'should support aliases correctly' do
     x = { 'c' => 5 }
     hash = { 'a' => x, 'b' => x }
-    hash_yaml = "---\na: &1\n  c: 5\nb: *1\n"
+    hash_yaml = +"---\na: &1\n  c: 5\nb: *1\n"
     assert_equal hash, load_yaml(hash_yaml), 'Deserialising known YAML with an alias'
     assert_equal hash, load_yaml(dump_yaml(hash)), 'Deserialising a structure with repeated objects'
   end
@@ -22,24 +22,24 @@ class SerializationTest < Minitest::Test
 
   test 'should handle binary yaml with control chars' do
     # irb> "\xC2\xA1null \x00 characters \r\n suck!".to_yaml
-    yaml = "--- !binary |-\n  wqFudWxsIAAgY2hhcmFjdGVycyANCiBzdWNrIQ==\n"
+    yaml = +"--- !binary |-\n  wqFudWxsIAAgY2hhcmFjdGVycyANCiBzdWNrIQ==\n"
     assert_equal "¡null 0x00 characters \r\n suck!", load_yaml(yaml)
 
     # irb> {fulltext: "\xC2\xA1null \x00 characters \r\n suck!"}.to_yaml
-    yamled_hash = "---\n:fulltext: !binary |-\n  wqFudWxsIAAgY2hhcmFjdGVycyANCiBzdWNrIQ==\n"
+    yamled_hash = +"---\n:fulltext: !binary |-\n  wqFudWxsIAAgY2hhcmFjdGVycyANCiBzdWNrIQ==\n"
     assert_equal({ :fulltext => "¡null 0x00 characters \r\n suck!" }, load_yaml(yamled_hash))
   end
 
   # Psych doesn't always base64-encode control characters:
   test 'should handle non-binary yaml with control chars' do
     #irb> Psych.dump("control \x01 char \n whoops!")
-    chr_1_yaml = "--- ! \"control \\x01 char \\n whoops!\"\n"
+    chr_1_yaml = +"--- ! \"control \\x01 char \\n whoops!\"\n"
     assert_equal "control 0x01 char \n whoops!", load_yaml(chr_1_yaml)
   end
 
   test 'should handle non-binary yaml with escaped things that look like control chars' do
     # irb> Psych.dump(['\\x01 \\xAF \\\\xAF', "\x01 \\\x01 \x01\\\x01"])
-    escaped_yaml = "---\n- \"\\\\x01 \\\\xAF \\\\\\\\xAF\"\n- \"\\x01 \\\\\\x01 \\x01\\\\\\x01\"\n"
+    escaped_yaml = +"---\n- \"\\\\x01 \\\\xAF \\\\\\\\xAF\"\n- \"\\x01 \\\\\\x01 \\x01\\\\\\x01\"\n"
     assert_equal ['\\x01 \\xAF \\\\xAF', '0x01 \\0x01 0x01\\0x01'], load_yaml(escaped_yaml)
   end
 
@@ -166,7 +166,7 @@ class SerializationTest < Minitest::Test
   end
 
   def assert_syck_1_8_yaml_loads_correctly
-    yaml = "--- \nname: Dr. Doctor\000\000\000 \ndiagnosis: \"CIN 1 \\xE2\\x80\\x93 CIN 2\"\n"
+    yaml = +"--- \nname: Dr. Doctor\000\000\000 \ndiagnosis: \"CIN 1 \\xE2\\x80\\x93 CIN 2\"\n"
     hash = load_yaml(yaml)
 
     # The null chars should be escaped:
@@ -187,7 +187,7 @@ class SerializationTest < Minitest::Test
 
   def assert_yaml_coercion_behaviour
     # UTF-8, with an unmappable byte too:
-    yaml = "---\nfulltextreport: \"Here is \\xE2\\x80\\x93 a weird \\x9D char\"\n"
+    yaml = +"---\nfulltextreport: \"Here is \\xE2\\x80\\x93 a weird \\x9D char\"\n"
 
     # By default, we'd expect the (serialised) \x9D
     assert_raises(UTF8Encoding::UTF8CoercionError) { load_yaml(yaml) }

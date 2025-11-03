@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 require 'test_helper'
 
 class Utf8EncodingTest < Minitest::Test
@@ -14,7 +12,7 @@ class Utf8EncodingTest < Minitest::Test
   end
 
   test 'ensure_utf8! should return the same string' do
-    string1 = 'hello'
+    string1 = +'hello'
     string2 = ensure_utf8!(string1)
 
     assert string1.object_id == string2.object_id
@@ -68,14 +66,14 @@ class Utf8EncodingTest < Minitest::Test
   end
 
   test 'coerce_utf8! should return the same string' do
-    string1 = 'hello'
+    string1 = +'hello'
     string2 = coerce_utf8!(string1)
 
     assert string1.object_id == string2.object_id
   end
 
   test 'ensure_utf8 should convert low bytes to UTF-8 if possible' do
-    string1 = 'hello'.force_encoding('Windows-1252')
+    string1 = (+'hello').force_encoding('Windows-1252')
     string2 = ensure_utf8!(string1)
 
     assert_equal string1, string2
@@ -83,7 +81,7 @@ class Utf8EncodingTest < Minitest::Test
   end
 
   test 'ensure_utf8 should convert high bytes to UTF-8 if possible' do
-    string1 = "dash \x96 dash".force_encoding('Windows-1252')
+    string1 = (+"dash \x96 dash").force_encoding('Windows-1252')
     assert_equal 11, string1.bytes.to_a.length
     assert_equal 11, string1.chars.to_a.length
 
