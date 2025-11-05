@@ -1,4 +1,7 @@
 ## [Unreleased]
+* no unreleased changes
+
+## 5.10.5 / 2025-11-05
 ## Fixed
 * Exclude unneeded files from gem package
 * Add 2027 bank holidays
