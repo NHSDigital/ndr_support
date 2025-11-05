@@ -6,12 +6,12 @@ file safety:
     safe_revision: ee57573b35d6ef0f1a2d8e774ee95aa41a85d40c
   ".github/workflows/lint.yml":
     comments:
-    reviewed_by: ollietulloch
-    safe_revision: 993f7719b57eb6ddd8dffa7230ed9ffc69f48749
+    reviewed_by: brian.shand
+    safe_revision: 34801d77b2bb82cb5275d27fcde76f1d5b755cc8
   ".github/workflows/test.yml":
     comments:
     reviewed_by: brian.shand
-    safe_revision: 931e0ac50f7843abd80aa907245936fe907d96f8
+    safe_revision: 34801d77b2bb82cb5275d27fcde76f1d5b755cc8
   ".gitignore":
     comments:
     reviewed_by: josh.pencheon
@@ -23,7 +23,7 @@ file safety:
   CHANGELOG.md:
     comments:
     reviewed_by: brian.shand
-    safe_revision: 931e0ac50f7843abd80aa907245936fe907d96f8
+    safe_revision: 34801d77b2bb82cb5275d27fcde76f1d5b755cc8
   CODE_OF_CONDUCT.md:
     comments:
     reviewed_by: timgentry
@@ -38,20 +38,16 @@ file safety:
     safe_revision: e33e9dae7f38bc449ce9276515a539836dbbbd53
   LICENSE.txt:
     comments:
-    reviewed_by: timgentry
-    safe_revision: 90328cca8494539257e192a63b240a91c89f0616
+    reviewed_by: brian.shand
+    safe_revision: 326f7541b5f410ea0273476c964363b22493364f
   README.md:
     comments:
-    reviewed_by: ollietulloch
-    safe_revision: 993f7719b57eb6ddd8dffa7230ed9ffc69f48749
+    reviewed_by: brian.shand
+    safe_revision: 326f7541b5f410ea0273476c964363b22493364f
   Rakefile:
     comments:
     reviewed_by: timgentry
     safe_revision: e33e9dae7f38bc449ce9276515a539836dbbbd53
-  gemfiles/Gemfile.rails70:
-    comments:
-    reviewed_by: brian.shand
-    safe_revision: 16254a4332aab074a27c8e13859dc4712e707122
   gemfiles/Gemfile.rails71:
     comments:
     reviewed_by: brian.shand
@@ -75,7 +71,7 @@ file safety:
   lib/ndr_support/concerns/working_days.rb:
     comments:
     reviewed_by: brian.shand
-    safe_revision: 6fb8c080befbb9c741c2bc3a2fadb29fe1c3d0aa
+    safe_revision: b1baebbfc5334b0f1eb95f212c2d85b0ffda899c
   lib/ndr_support/date_and_time_extensions.rb:
     comments:
     reviewed_by: brian.shand
@@ -142,8 +138,8 @@ file safety:
     safe_revision: f4f7cb0803ea34a2f1ba83495d8bcbd942786bce
   lib/ndr_support/string/clean_methodable.rb:
     comments:
-    reviewed_by: ollietulloch
-    safe_revision: ff21f98e6608eedb4b33f977778736b38f9fbacb
+    reviewed_by: brian.shand
+    safe_revision: 34801d77b2bb82cb5275d27fcde76f1d5b755cc8
   lib/ndr_support/string/cleaning.rb:
     comments:
     reviewed_by: ollietulloch
@@ -178,8 +174,8 @@ file safety:
     safe_revision: '09b3f97fb4c1afc88d0d070c39796b1f60c39d25'
   lib/ndr_support/version.rb:
     comments:
-    reviewed_by: ollietulloch
-    safe_revision: 8cb498126d68a19f880b0cd1b83b127c8ec90a89
+    reviewed_by: brian.shand
+    safe_revision: 569aa2be734d902cb9a5c04db639d135ca5c1c75
   lib/ndr_support/working_days.rb:
     comments:
     reviewed_by: josh.pencheon
@@ -191,7 +187,7 @@ file safety:
   ndr_support.gemspec:
     comments:
     reviewed_by: brian.shand
-    safe_revision: 931e0ac50f7843abd80aa907245936fe907d96f8
+    safe_revision: 34801d77b2bb82cb5275d27fcde76f1d5b755cc8
   test/array_test.rb:
     comments:
     reviewed_by: timgentry
@@ -278,17 +274,17 @@ file safety:
     safe_revision: fbb6ef9804040aa2e38257d9f5c487bde18a490d
   test/utf8_encoding/control_characters_test.rb:
     comments:
-    reviewed_by: timgentry
-    safe_revision: d210b982841611381a0df02d8f2db9c13e41e42f
+    reviewed_by: brian.shand
+    safe_revision: 34801d77b2bb82cb5275d27fcde76f1d5b755cc8
   test/utf8_encoding/force_binary_test.rb:
     comments:
     reviewed_by: timgentry
     safe_revision: 29595e6431587ff9b7db6e3ad3abbb3577bff99c
   test/utf8_encoding_test.rb:
     comments:
-    reviewed_by: timgentry
-    safe_revision: 2a5d30674dc9dde336e1dbbbf3c8a98905647432
+    reviewed_by: brian.shand
+    safe_revision: 34801d77b2bb82cb5275d27fcde76f1d5b755cc8
   test/yaml/serialization_test.rb:
     comments:
     reviewed_by: brian.shand
-    safe_revision: c764a4d8c251b5076ed3d60391c8271bb5a099bc
+    safe_revision: 34801d77b2bb82cb5275d27fcde76f1d5b755cc8
