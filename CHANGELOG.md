@@ -1,4 +1,5 @@
 ## [Unreleased]
+## 5.11.0 / 2026-01-05
 ## Fixed
 * Add 2028 bank holidays
 * support 21st century 4 digit year strings for Daterange
