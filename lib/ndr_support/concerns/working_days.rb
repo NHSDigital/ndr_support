@@ -155,6 +155,15 @@ module WorkingDays # rubocop:disable Metrics/ModuleLength
     '2027-08-30', # Monday    - Summer bank holiday
     '2027-12-27', # Monday    - Christmas Day
     '2027-12-28', # Tuesday   - Boxing Day
+    # 2028
+    '2028-01-03', # Monday     - New Year’s Day (Substitute day)
+    '2028-04-14', # Friday     - Good Friday
+    '2028-04-17', # Monday     - Easter Monday
+    '2028-05-01', # Monday     - Early May bank holiday
+    '2028-05-29', # Monday     - Spring bank holiday
+    '2028-08-28', # Monday     - Summer bank holiday
+    '2028-12-25', # Monday     - Christmas Day
+    '2028-12-26'  # Tuesday    - Boxing Day
   ].map { |str| Date.parse(str) }
   # rubocop:enable Style/TrailingCommaInArrayLiteral
 
