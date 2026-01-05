@@ -6,7 +6,7 @@ require 'ndr_support/ourdate/build_datetime'
 class Daterange
   attr_reader :date1, :date2, :source
 
-  OKYEARS = 1880..2030
+  OKYEARS = 1880..2099
 
   # Raised when dates are not supplied in the correct order if do_not_flip_dates is passed as true:
   class WrongDateOrderError < StandardError; end

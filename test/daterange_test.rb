@@ -98,7 +98,7 @@ class DaterangeTest < Minitest::Test
   end
 
   def test_year_range_future
-    s = 2.years.from_now.strftime('%Y')
+    s = '2099'
     dr = Daterange.new(s)
     assert_equal s, dr.to_s, "Daterange should support future years up to #{s}"
   end
