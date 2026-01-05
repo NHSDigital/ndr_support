@@ -22,8 +22,8 @@ file safety:
     safe_revision: 8796a1a32273a106a6b1a134a48077cff0176659
   CHANGELOG.md:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 34801d77b2bb82cb5275d27fcde76f1d5b755cc8
+    reviewed_by: kenny.lee
+    safe_revision: 88733bd2268e625c675d3b7cded15d4880c186fc
   CODE_OF_CONDUCT.md:
     comments:
     reviewed_by: timgentry
@@ -70,16 +70,16 @@ file safety:
     safe_revision: 4a4ed24d2cfe7e1736baadf4cf6e0fece6823be1
   lib/ndr_support/concerns/working_days.rb:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: b1baebbfc5334b0f1eb95f212c2d85b0ffda899c
+    reviewed_by: kenny.lee
+    safe_revision: f4c6f36471051683989d9032d4c6f643eaf71382
   lib/ndr_support/date_and_time_extensions.rb:
     comments:
     reviewed_by: brian.shand
     safe_revision: 931e0ac50f7843abd80aa907245936fe907d96f8
   lib/ndr_support/daterange.rb:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: e977f8c0f8a5c6a1952bd1565b75e16850ef11e0
+    reviewed_by: kenny.lee
+    safe_revision: 5b0c02c5a8c8b6ff700c2fd1c5493a09086b9cbb
   lib/ndr_support/hash.rb:
     comments:
     reviewed_by: pauleves
@@ -174,8 +174,8 @@ file safety:
     safe_revision: '09b3f97fb4c1afc88d0d070c39796b1f60c39d25'
   lib/ndr_support/version.rb:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 569aa2be734d902cb9a5c04db639d135ca5c1c75
+    reviewed_by: kenny.lee
+    safe_revision: 88733bd2268e625c675d3b7cded15d4880c186fc
   lib/ndr_support/working_days.rb:
     comments:
     reviewed_by: josh.pencheon
@@ -202,8 +202,8 @@ file safety:
     safe_revision: 931e0ac50f7843abd80aa907245936fe907d96f8
   test/daterange_test.rb:
     comments:
-    reviewed_by: brian.shand
-    safe_revision: 931e0ac50f7843abd80aa907245936fe907d96f8
+    reviewed_by: kenny.lee
+    safe_revision: 5b0c02c5a8c8b6ff700c2fd1c5493a09086b9cbb
   test/hash_test.rb:
     comments:
     reviewed_by: timgentry
