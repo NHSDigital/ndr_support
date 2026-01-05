@@ -1,5 +1,6 @@
 ## [Unreleased]
-* no unreleased changes
+## Fixed
+* Add 2028 bank holidays
 
 ## 5.10.5 / 2025-11-05
 ## Fixed
