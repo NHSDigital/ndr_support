@@ -1,4 +1,7 @@
 ## [Unreleased]
+### Fixed
+* Support Rails 8.1, Ruby 4.0
+
 ## 5.11.0 / 2026-01-05
 ## Fixed
 * Add 2028 bank holidays
