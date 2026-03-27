@@ -54,12 +54,12 @@ class ThreatScanner
   end
 
   def run_scanner!
-    `clamdscan --fdpass --quiet #{Shellwords.escape(@path)}`
+    output = `clamdscan --fdpass --no-summary #{Shellwords.escape(@path)} 2>&1` 
 
     case $CHILD_STATUS.exitstatus
     when 0 then true
-    when 1 then raise(ThreatDetectedError, "possible virus detected at #{@path}!")
-    else        raise(ScannerOperationError, "the scan was unable to complete. Exit status: #{$CHILD_STATUS.exitstatus}")
+    when 1 then raise(ThreatDetectedError, "possible virus detected at #{@path}! Output: #{output.strip}")
+    else        raise(ScannerOperationError, "the scan was unable to complete. Exit status: #{$CHILD_STATUS.exitstatus}. Output: #{output.strip}")
     end
   end
 end
