@@ -59,7 +59,7 @@ class ThreatScanner
     case $CHILD_STATUS.exitstatus
     when 0 then true
     when 1 then raise(ThreatDetectedError, "possible virus detected at #{@path}!")
-    else        raise(ScannerOperationError, 'the scan was unable to complete')
+    else        raise(ScannerOperationError, "the scan was unable to complete. Exit status: #{$CHILD_STATUS.exitstatus}")
     end
   end
 end
