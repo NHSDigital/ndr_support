@@ -1,4 +1,7 @@
 ## [Unreleased]
+* no unreleased changes
+
+## 5.11.1 / 2026-04-20
 ### Fixed
 * Support Rails 8.1, Ruby 4.0
 
