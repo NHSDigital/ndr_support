@@ -4,14 +4,18 @@ file safety:
     comments:
     reviewed_by: brian.shand
     safe_revision: ee57573b35d6ef0f1a2d8e774ee95aa41a85d40c
+  ".github/dependabot.yml":
+    comments:
+    reviewed_by: brian.shand
+    safe_revision: 81ec4affbd3dab0288d82181bdd7f64f8ebf8b21
   ".github/workflows/lint.yml":
     comments:
     reviewed_by: brian.shand
-    safe_revision: 34801d77b2bb82cb5275d27fcde76f1d5b755cc8
+    safe_revision: 81ec4affbd3dab0288d82181bdd7f64f8ebf8b21
   ".github/workflows/test.yml":
     comments:
     reviewed_by: brian.shand
-    safe_revision: 34801d77b2bb82cb5275d27fcde76f1d5b755cc8
+    safe_revision: 81ec4affbd3dab0288d82181bdd7f64f8ebf8b21
   ".gitignore":
     comments:
     reviewed_by: josh.pencheon
@@ -22,8 +26,8 @@ file safety:
     safe_revision: 8796a1a32273a106a6b1a134a48077cff0176659
   CHANGELOG.md:
     comments:
-    reviewed_by: kenny.lee
-    safe_revision: 88733bd2268e625c675d3b7cded15d4880c186fc
+    reviewed_by: brian.shand
+    safe_revision: fa3b4a330e220aaf9a40dd8d96918e20b5abd5f9
   CODE_OF_CONDUCT.md:
     comments:
     reviewed_by: timgentry
@@ -60,6 +64,10 @@ file safety:
     comments:
     reviewed_by: brian.shand
     safe_revision: 931e0ac50f7843abd80aa907245936fe907d96f8
+  gemfiles/Gemfile.rails81:
+    comments:
+    reviewed_by: brian.shand
+    safe_revision: fa3b4a330e220aaf9a40dd8d96918e20b5abd5f9
   lib/ndr_support.rb:
     comments:
     reviewed_by: brian.shand
@@ -187,7 +195,7 @@ file safety:
   ndr_support.gemspec:
     comments:
     reviewed_by: brian.shand
-    safe_revision: 34801d77b2bb82cb5275d27fcde76f1d5b755cc8
+    safe_revision: fa3b4a330e220aaf9a40dd8d96918e20b5abd5f9
   test/array_test.rb:
     comments:
     reviewed_by: timgentry
