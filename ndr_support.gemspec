@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.license       = 'MIT'
 
   gem_files          = %w[CHANGELOG.md CODE_OF_CONDUCT.md LICENSE.txt README.md
-                          lib ndr_support.gemspec]
+                          SECURITY.md lib ndr_support.gemspec]
   spec.files         = `git ls-files -z`.split("\x0").
                        select { |f| gem_files.include?(f.split('/')[0]) }
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
