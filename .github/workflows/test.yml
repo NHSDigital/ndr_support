@@ -33,7 +33,7 @@ jobs:
     steps:
     - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # actions/checkout@v6 see https://github.com/actions/checkout/releases/tag/v6
     - name: Set up Ruby
-      uses: ruby/setup-ruby@c4e5b1316158f92e3d49443a9d58b31d25ac0f8f # ruby/setup-ruby@v1 see https://github.com/ruby/setup-ruby/tree/v1
+      uses: ruby/setup-ruby@0dafeac902942906541bc140009cdbf32665b601 # ruby/setup-ruby@v1 see https://github.com/ruby/setup-ruby/tree/v1
       with:
         ruby-version: ${{ matrix.ruby-version }}
     - name: Install dependencies
